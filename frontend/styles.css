@@ -1,0 +1,290 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+
+}
+
+body {
+    background-color: rgb(22, 22, 22);
+    color: white;
+    font-family: 'Roboto Flex', sans-serif;
+}
+
+header {
+    background-color: rgb(26, 26, 26);
+    height: 70px;
+    box-shadow: 0 5px 10px rgba( W0, 0, 0, 0.5);
+    width: 100%;
+    position: relative;
+}
+
+nav {
+    display: flex;
+    align-items: center; 
+    padding-right: 60px; 
+    height: 100%;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 0px;
+    padding-left: 20px; 
+}
+
+.logo {
+    width: 120px; 
+    height: 120px;
+}
+
+.site-name {
+    color: rgb(251, 103, 4); 
+    text-decoration: none;
+    font-family: 'Roboto Flex', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.site-name:hover {
+    opacity: 0.8; /* Эффект при наведении */
+}
+
+.container {
+    max-width: 1440px;
+    max-height: 3000px;
+    margin: 0 auto;
+    padding: 0 120px;
+}
+
+.profile-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgb(22, 22, 22);
+}
+
+.profile-icon:hover {
+    opacity: 0.8;
+}
+
+.Menu {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-left: 40px; /* Отступ от logo-section */
+}
+
+nav li {
+    display: inline-block;
+    padding: 0 20px;
+    line-height: 70px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-family: 'Roboto Flex', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+nav .active a {
+    color: rgb(251, 103, 4);
+}
+
+
+
+
+
+
+
+
+
+
+
+.teams-section {
+    padding: 10px 0px 15px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.teams-section h1 {
+    font-size: 32px;
+    font-weight: 300;
+    margin: 0;
+    margin-left: 20px;
+}
+
+.game-icons-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0 20px;
+}
+
+.game-icons {
+    display: flex;
+    gap: 20px;
+    margin-left: 0px;
+}
+
+
+.game-icon {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    object-fit: contain;
+    transform: scale(1); 
+    transition: transform 0s ease; /* Плавный переход */
+}
+
+.game-icon.active {
+    animation: pulse 0.45s ease;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    10% {
+        transform: scale(1.03);
+    }
+    20% {
+        transform: scale(1.08);
+    }
+    30% {
+        transform: scale(1.12);
+    }
+    40% {
+        transform: scale(1.15);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    60% {
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(1.04);
+    }
+    80% {
+        transform: scale(1.03);
+    }
+    90% {
+        transform: scale(1.02);
+    }
+    95% {
+        transform: scale(1.01);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+
+
+
+.create-team-btn {
+    background-color: rgb(251, 103, 4);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.create-team-btn:hover {
+    background-color: rgb(200, 82, 3);
+}
+
+.teams-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 0 20px;
+}
+
+.team-card {
+    display: flex;
+    align-items: center;
+    background-color: rgb(40, 40, 40);
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.game-image {
+    width: 100px;
+    height: 150px;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+
+.team-info {
+    flex: 1;
+}
+
+.team-info h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 0 5px 0;
+}
+
+.team-info p {
+    font-size: 14px;
+    color: #ccc;
+    margin: 0;
+}
+
+.team-avatars {
+    display: flex;
+    gap: 10px;
+}
+
+
+
+
+
+.avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.avatar::before {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(60, 60, 60);
+    border-radius: 50%;
+    margin-bottom: 5px;
+}
+
+.avatar.active::before {
+    background-color: rgb(251, 103, 4);
+}
+
+.avatar span {
+    font-size: 12px;
+    color: #ccc;
+}
+
