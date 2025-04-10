@@ -5,31 +5,30 @@
     box-sizing: border-box;
 }
 
-html{
-    height: 100%
+html {
+    height: 100%;
 }
-
 
 body {
     background-color: rgb(22, 22, 22);
     color: white;
     font-family: 'Roboto Flex', sans-serif;
     min-height: 100%;
-    margin: 0; 
+    margin: 0;
 }
 
 header {
     background-color: rgb(26, 26, 26);
     height: 70px;
-    box-shadow: 0 5px 10px rgba( W0, 0, 0, 0.5);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
     width: 100%;
     position: relative;
 }
 
 nav {
     display: flex;
-    align-items: center; 
-    padding-right: 60px; 
+    align-items: center;
+    padding-right: 60px;
     height: 100%;
 }
 
@@ -37,16 +36,16 @@ nav {
     display: flex;
     align-items: center;
     gap: 0px;
-    padding-left: 20px; 
+    padding-left: 20px;
 }
 
 .logo {
-    width: 120px; 
+    width: 120px;
     height: 120px;
 }
 
 .site-name {
-    color: rgb(251, 103, 4); 
+    color: rgb(251, 103, 4);
     text-decoration: none;
     font-family: 'Roboto Flex', sans-serif;
     font-size: 20px;
@@ -55,20 +54,19 @@ nav {
 }
 
 .Teams:hover {
-    opacity: 0.8; /* Эффект при наведении */
+    opacity: 0.8;
 }
 
 .Rating:hover {
-    opacity: 0.8; /* Эффект при наведении */
+    opacity: 0.8;
 }
 
 .Tournaments:hover {
-    opacity: 0.8; /* Эффект при наведении */
+    opacity: 0.8;
 }
 
-
 .site-name:hover {
-    opacity: 0.8; /* Эффект при наведении */
+    opacity: 0.8;
 }
 
 .container {
@@ -80,10 +78,10 @@ nav {
 
 .profile-icon {
     position: absolute;
-    top: 15px;
+    top: 10px;
     right: 15px;
-    width: 40px;
-    height: 40px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid rgb(22, 22, 22);
@@ -101,7 +99,7 @@ nav {
     list-style: none;
     padding: 0;
     margin: 0;
-    margin-left: 40px; /* Отступ от logo-section */
+    margin-left: 40px;
 }
 
 nav li {
@@ -123,16 +121,6 @@ nav .active a {
     color: rgb(251, 103, 4);
 }
 
-
-
-
-
-
-
-
-
-
-
 .teams-section {
     padding: 10px 0px 15px;
     margin-top: 30px;
@@ -144,6 +132,8 @@ nav .active a {
     font-weight: 300;
     margin: 0;
     margin-left: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid white;
 }
 
 .game-icons-section {
@@ -160,13 +150,12 @@ nav .active a {
     margin-left: 0px;
 }
 
-
 .game-icon {
     width: 40px;
     height: 40px;
     cursor: pointer;
     object-fit: contain;
-    transform: scale(1); 
+    transform: scale(1);
 }
 
 .game-icon.active {
@@ -212,10 +201,6 @@ nav .active a {
     }
 }
 
-
-
-
-
 .create-team-btn {
     background-color: rgb(251, 103, 4);
     color: white;
@@ -241,67 +226,112 @@ nav .active a {
 
 .team-card {
     display: flex;
-    align-items: center;
+    flex-direction: row;
     background-color: rgb(40, 40, 40);
     border-radius: 10px;
     padding: 15px;
+    min-height: 200px;
 }
 
 .game-image {
-    width: 100px;
-    height: 150px;
+    width: 150px;
+    height: 100%;
     border-radius: 5px;
     margin-right: 20px;
+    object-fit: cover;
 }
 
-.team-info {
+.team-content {
+    display: flex;
+    flex-direction: column;
     flex: 1;
 }
 
+.team-header {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.team-info {
+    display: flex;
+    flex-direction: column;
+}
+
 .team-info h2 {
-    font-size: 24px;
+    font-size: 32px;
     font-weight: 700;
-    margin: 0 0 5px 0;
+    margin: 0;
+    margin-bottom: 5px;
 }
 
 .team-info p {
-    font-size: 14px;
+    font-size: 24px;
     color: #ccc;
     margin: 0;
 }
 
-.team-avatars {
-    display: flex;
-    gap: 10px;
+.more-options {
+    font-size: 24px;
+    color: #ccc;
+    cursor: pointer;
+    margin-left: auto;
+    transition: color 0.3s ease; 
 }
 
+.more-options:hover {
+    color: rgb(251, 103, 4);
+}
 
+.team-avatars {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    justify-content: space-between;
+}
 
+.team-avatars a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+}
 
+.team-avatars a:hover .avatar {
+    background-color: rgb(251, 103, 4);
+}
 
 .avatar {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     text-align: center;
+    cursor: pointer;
+    width: 160px;
+    height: 100px;
+    background-color: rgb(76, 75, 75);
+    border-radius: 15px;
+    transition: background-color 0.3s ease;
+    padding: 0;
 }
 
-.avatar::before {
-    content: '';
-    display: block;
-    width: 50px;
-    height: 50px;
-    background-color: rgb(60, 60, 60);
+.avatar img {
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
-    margin-bottom: 5px;
-}
-
-.avatar.active::before {
-    background-color: rgb(251, 103, 4);
+    object-fit: cover;
 }
 
 .avatar span {
-    font-size: 12px;
-    color: #ccc;
+    font-size: 16px;
+    color: #ffffff;
+    margin-top: 12px;
 }
 
+.avatar::before {
+    display: none;
+}
+
+.avatar.active::before {
+    display: none;
+}
