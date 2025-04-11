@@ -25,3 +25,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+
+// Функция для открытия модального окна
+function openModal() {
+    // Находим модальное окно по ID
+    const modal = document.getElementById('createTeamModal');
+    // Добавляем класс active для отображения
+    modal.classList.add('active');
+}
+
+// Функция для закрытия модального окна
+function closeModal() {
+    // Находим модальное окно по ID
+    const modal = document.getElementById('createTeamModal');
+    // Убираем класс active для скрытия
+    modal.classList.remove('active');
+}

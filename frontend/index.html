@@ -32,7 +32,7 @@
                 <img src="images/Valorant-icon.svg" data-active="images/Valorant-icon-active.svg" alt="Valorant" class="game-icon">
                 <img src="images/Lol-icon.svg" data-active="images/LoL-icon-active.svg" alt="League of Legends" class="game-icon">
             </div>
-            <button class="create-team-btn">Создать команду</button>
+            <button class="create-team-btn" onclick="openModal()">Создать команду</button>
         </div>
         <div class="teams-list">
             <div class="team-card">
@@ -169,6 +169,64 @@
             </div>
         </div>
     </div>
+
+    <!-- Добавляем модальное окно для создания команды -->
+    <div class="modal" id="createTeamModal">
+        <!-- Фон затемнения для модального окна -->
+        <div class="modal-overlay" onclick="closeModal()"></div>
+        <!-- Контейнер модального окна -->
+        <div class="modal-content">
+            <!-- Контейнер для заголовка и крестика -->
+            <div class="modal-header">
+                <!-- Заголовок модального окна -->
+                <h2>Создание команды</h2>
+                <!-- Кнопка закрытия (крестик в виде изображения) -->
+                <img src="images/close-button.svg" alt="Close" class="modal-close" onclick="closeModal()">
+            </div>
+            <!-- Поле ввода названия команды -->
+            <div class="team-name-input">
+                <input type="text" placeholder="Введите название команды..." required>
+            </div>
+            <!-- Контейнер для выбора игры и количества участников (в одном ряду) -->
+            <div class="selection-row">
+                <!-- Блок выбора игры -->
+                <div class="game-selection">
+                    <label>Выберите игру</label>
+                    <!-- Выпадающий список для выбора игры -->
+                    <select name="game" required>
+                        <option value="" disabled selected></option>
+                        <option value="dota2">Dota 2</option>
+                        <option value="cs2">Counter-Strike 2</option>
+                        <option value="valorant">Valorant</option>
+                        <option value="lol">League of Legends</option>
+                    </select>
+                </div>
+                <!-- Блок выбора количества участников -->
+                <div class="players-count">
+                    <label>Кол-во участников</label>
+                    <!-- Выпадающий список для количества участников -->
+                    <select name="players" required>
+                        <option value="" disabled selected></option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Блок с информацией о лидере -->
+            <div class="leader-info">
+                <img src="images/Profile-icon.svg" alt="Лидер">
+                <span>Player1 (Лидер)</span>
+            </div>
+            <!-- Контейнер для кнопки "Создать" -->
+            <div class="modal-buttons">
+                <!-- Кнопка создания команды -->
+                <button class="modal-create-btn">Создать</button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
