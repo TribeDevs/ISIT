@@ -26,19 +26,59 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-
 // Функция для открытия модального окна
 function openModal() {
-    // Находим модальное окно по ID
     const modal = document.getElementById('createTeamModal');
-    // Добавляем класс active для отображения
     modal.classList.add('active');
 }
 
 // Функция для закрытия модального окна
 function closeModal() {
-    // Находим модальное окно по ID
     const modal = document.getElementById('createTeamModal');
-    // Убираем класс active для скрытия
     modal.classList.remove('active');
+}
+
+// Функция для открытия модального окна успешного создания команды
+function openSuccessModal() {
+    closeModal();
+    const successModal = document.getElementById("successModal");
+    successModal.classList.add("active");
+}
+
+// Функция для закрытия модального окна успешного создания команды
+function closeSuccessModal() {
+    const successModal = document.getElementById("successModal");
+    successModal.classList.remove("active");
+}
+
+// Функция для копирования пригласительной ссылки в буфер обмена
+function copyInviteLink() {
+    const inviteLink = document.querySelector(".invite-link").textContent;
+    navigator.clipboard.writeText(inviteLink).then(() => {
+        alert("Ссылка скопирована в буфер обмена!");
+    }).catch(err => {
+        console.error("Ошибка при копировании ссылки: ", err);
+    });
+}
+
+// Функция для переключения видимости выпадающего списка
+function toggleDropdown(dropdownId) {
+    const dropdownMenu = document.getElementById(dropdownId);
+    dropdownMenu.classList.toggle('active');
+}
+
+// Функция для выбора игры
+function selectGame(value, text) {
+    const dropdownSelected = document.querySelector('#gameDropdown').parentElement.querySelector('.dropdown-selected');
+    dropdownSelected.textContent = text;
+    dropdownSelected.setAttribute('data-value', value);
+    document.getElementById('gameDropdown').classList.remove('active');
+}
+
+// Функция для выбора количества игроков
+function selectPlayers(value) {
+    const dropdownSelected = document.querySelector('#playersDropdown').parentElement.querySelector('.dropdown-selected');
+    dropdownSelected.textContent = value;
+    dropdownSelected.setAttribute('data-value', value);
+    document.getElementById('playersDropdown').classList.remove('active');
 }
