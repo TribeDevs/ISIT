@@ -197,7 +197,7 @@ nav .active a {
     border: none;
     border-radius: 25px;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -850,7 +850,7 @@ nav .active a {
 }
 
 /* Стили для иконки игры */
-.game-icon {
+.game-icon-50x50 {
     width: 40px;
     height: 40px;
     flex-shrink: 0;
@@ -1711,11 +1711,6 @@ nav .active a {
     filter: none; /* Убираем фильтр, возвращаем исходный цвет */
 }
 
-/* Стили для информации о турнире */
-.tournament-info {
-    flex: 1; /* Занимает доступное пространство */
-}
-
 /* Стили для названия турнира */
 .tournament-name {
     color: #FFF;
@@ -1897,4 +1892,181 @@ nav .active a {
 .tournament-item:hover .tournament-name {
     opacity: 0.8;
     cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Стили для заголовка страницы и линии */
+.page-title {
+    padding: 10px 0px 15px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    margin-left: 178px; /* Отступ слева */
+    margin-right: 178px; /* Отступ справа */
+}
+
+.page-title h1 {
+    font-size: 32px;
+    font-weight: 300;
+    margin: 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid white;
+}
+
+/* Общие стили для контейнера */
+.container {
+    max-width: 1440px;
+    min-width: 960px; 
+    margin: 0 auto;
+    padding: 0 120px;
+    box-sizing: border-box;
+}
+
+/* Переопределяем контейнер для страницы профиля */
+.profile-page .container {
+    margin: 0; /* Убираем центрирование */
+    padding: 0; /* Убираем отступы */
+}
+
+/* Стили для блока профиля */
+.profile-block {
+    width: 370px; /* Общая ширина: 150px (фото) + 20px (gap) + 370px (данные) + 40px (padding) */
+    height: 370px;
+    flex-shrink: 0;
+    margin-top: 30px;
+    border-radius: 20px;
+    border: 1px solid #FB6704;
+    background: #272727;
+    padding: 20px; /* Внутренние отступы для содержимого */
+    display: flex; /* Используем flex для горизонтального расположения */
+    flex-direction: row; /* Элементы располагаются в ряд */
+    gap: 20px; /* Отступ между фото и данными */
+    margin-left: 178px; /* Прижимаем к левому краю с отступом 178px */
+}
+
+/* Стили для фото профиля */
+.profile-image {
+    width: 150px;
+    height: 150px;
+    flex-shrink: 0;
+    aspect-ratio: 1/1;
+}
+
+/* Стили для блока с данными профиля */
+.profile-details {
+    width: 370px; /* Фиксированная ширина из Figma */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Отступы между элементами внутри блока */
+}
+
+/* Стили для блока с информацией о студенте */
+.student-info-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.student-name,
+.student-group {
+    display: block; /* Убираем flex, текст теперь вертикально */
+}
+
+.student-name {
+    border-bottom: 1px solid white;
+    width:145px;
+}
+
+.student-name .label,
+.student-group .label {
+    color: #FFF;
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+}
+
+.student-name .name-value,
+.student-group .group-value {
+    color: #FFF;
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.student-name .name-value {
+    word-break: break-word; /* Перенос слов для ФИО */
+}
+
+/* Стили для блока с кнопками */
+.profile-actions-block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Уменьшен отступ между кнопками */
+}
+
+/* Стили для кнопок */
+.verify-account-btn,
+.username-btn,
+.email-btn {
+    display: flex;
+    width: 100%; /* Занимает всю ширину .profile-actions-block */
+    height: 48px; /* Увеличена высота */
+    padding: 12px 20px; /* Уменьшены боковые отступы */
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #FB6704;
+    border: none;
+    color: #FFF;
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 16px; /* Увеличен размер шрифта */
+    font-style: normal;
+    font-weight: 400; /* Уменьшен вес шрифта */
+    line-height: normal;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase; /* Текст в верхнем регистре, как в Figma */
+}
+
+.verify-account-btn:hover,
+.username-btn:hover,
+.email-btn:hover {
+    background-color: rgb(200, 82, 3); /* Тёмный оранжевый при наведении */
+}
+
+/* Для username-btn и email-btn */
+.username-btn,
+.email-btn {
+    background: #4C4B4B; /* Серый фон */
+    text-transform: none; /* Убираем верхний регистр для имени и email */
+    justify-content: space-between; /* Распределяем текст и иконку */
+}
+
+.username-text,
+.email-text {
+    flex-grow: 1;
+    text-align: center; /* Выравнивание текста по левому краю */
+}
+
+.edit-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
 }
