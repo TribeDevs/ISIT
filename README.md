@@ -1,5 +1,6 @@
 
 <div align="center">
   <h1>ISIT</h1>
-  <img src="https://github.com/user-attachments/assets/27d28bf5-d1d1-46bf-8f91-8cbbe16a8e6f" width="600" height="300"/>
+  <img src="https://github.com/user-attachments/assets/6799bf42-a897-4925-840c-1fc6a7447ee7" width="600" height="300"/>
 </div>
+
