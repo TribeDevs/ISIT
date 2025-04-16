@@ -40,7 +40,6 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // Явное определение AuthenticationManager
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
