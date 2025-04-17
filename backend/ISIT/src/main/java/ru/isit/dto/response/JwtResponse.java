@@ -1,13 +1,15 @@
 package ru.isit.dto.response;
 
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-@Data
+@Getter
+@AllArgsConstructor
 public class JwtResponse {
-    private String token;
 
-    public JwtResponse(String token) {
-        this.token = token;
-    }
+    private final String type = "Bearer";
+    private String accessToken;
+    private String refreshToken;
+
 }
