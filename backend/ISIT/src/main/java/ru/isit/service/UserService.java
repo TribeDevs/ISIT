@@ -1,33 +1,48 @@
 package ru.isit.service;
 
 
+import org.springframework.transaction.annotation.Transactional;
+import ru.isit.dto.request.SignUpRequest;
+import ru.isit.exception.AuthException;
 import ru.isit.models.User;
-import ru.isit.repository.UserRepository;
 import ru.isit.models.Role;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import ru.isit.repository.UserRepository;
 
-import java.util.Set;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
-public class UserService implements UserDetailsService {
+public class UserService {
+
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return (UserDetails) userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    /** Grant role */
+    @Transactional
+    public void grantRole(UUID userId, Role role) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new AuthException("User not found"));
+
+        user.getRoles().add(role);
+        userRepository.save(user);
     }
 
-    public User registerUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRoles(Set.of(Role.ROLE_USER));
-        return userRepository.save(user);
+    /** Revoke role */
+    @Transactional
+    public void revokeRole(UUID userId, Role role) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new AuthException("User not found"));
+
+        boolean removed = user.getRoles().remove(role);
+        if (!removed) {
+            throw new AuthException("User  does not have role: " + role);
+        }
+
+        userRepository.save(user);
     }
+
+    @Transactional
+    public boolean verifyUser(UUID userId) { return false; } // TODO
+
 }
