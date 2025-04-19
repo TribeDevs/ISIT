@@ -3,21 +3,26 @@ package ru.isit.service;
 import io.jsonwebtoken.Claims;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.isit.dto.request.JwtRequest;
 import ru.isit.dto.request.SignUpRequest;
 import ru.isit.dto.response.JwtResponse;
-import ru.isit.exception.AuthException;
+import ru.isit.exception.Exception;
+import ru.isit.exception.GlobalExceptionHandler;
+import ru.isit.models.ConfirmationToken;
 import ru.isit.models.Role;
 import ru.isit.repository.UserRepository;
 import ru.isit.security.JwtAuthentication;
 import ru.isit.models.User;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 
 
 @Service
@@ -31,10 +36,10 @@ public class AuthService {
 
     public User signUp(SignUpRequest request) {
         if (userRepository.existsByUsername(request.getUsername())) {
-            throw new AuthException("This is username is busy");
+            throw new Exception("This is username is busy");
         }
         if (userRepository.existsByEmail(request.getEmail())) {
-            throw new AuthException("This is email is busy");
+            throw new Exception("This is email is busy");
         }
 
         User user = new User();
@@ -57,7 +62,7 @@ public class AuthService {
             refreshStorage.put(user.get().getUsername(), refreshToken);
             return new JwtResponse(accessToken, refreshToken);
         } else {
-            throw new AuthException("Wrong password");
+            throw new Exception("Wrong password");
         }
     }
 
@@ -68,7 +73,7 @@ public class AuthService {
             final String saveRefreshToken = refreshStorage.get(login);
             if (saveRefreshToken != null && saveRefreshToken.equals(refreshToken)) {
                 final User user = userRepository.findByUsername(login)
-                        .orElseThrow(() -> new AuthException("User not found"));
+                        .orElseThrow(() -> new Exception("User not found"));
                 final String accessToken = jwtProvider.generateAccessToken(user);
                 return new JwtResponse(accessToken, null);
             }
@@ -83,14 +88,14 @@ public class AuthService {
             final String saveRefreshToken = refreshStorage.get(login);
             if (saveRefreshToken != null && saveRefreshToken.equals(refreshToken)) {
                 final User user = userRepository.findByUsername(login)
-                        .orElseThrow(() -> new AuthException("User not found"));
+                        .orElseThrow(() -> new Exception("User not found"));
                 final String accessToken = jwtProvider.generateAccessToken(user);
                 final String newRefreshToken = jwtProvider.generateRefreshToken(user);
                 refreshStorage.put(user.getUsername(), newRefreshToken);
                 return new JwtResponse(accessToken, newRefreshToken);
             }
         }
-        throw new AuthException("Invalid JWT token");
+        throw new Exception("Invalid JWT token");
     }
 
     public JwtAuthentication getAuthInfo() {
