@@ -46,7 +46,7 @@ public class AuthController {
         confirmationTokenService.saveConfirmationToken(confirmationToken);
         emailService.sendConfirmationEmail(user.getEmail(), token);
 
-        return ResponseEntity.ok("User " + user.getUsername() + " registered successfully!");
+        return ResponseEntity.ok("User " + user.getUsername() + " registered successfully, need approve your  email!");
     }
 
     @PostMapping("/signin")

@@ -54,17 +54,25 @@ public class AuthService {
     }
 
     public JwtResponse signIn(@NonNull JwtRequest request) {
-        final Optional<User> user = userRepository.findByUsername(request.getLogin());
+        User user = userRepository.findByUsername(request.getLogin())
+                .orElseThrow(() -> new Exception(
+                        "User with login '" + request.getLogin() + "' not found!"));
 
-        if (passwordEncoder.matches(request.getPassword(), user.get().getPassword())) {
-            final String accessToken = jwtProvider.generateAccessToken(user.orElse(null));
-            final String refreshToken = jwtProvider.generateRefreshToken(user.orElse(null));
-            refreshStorage.put(user.get().getUsername(), refreshToken);
-            return new JwtResponse(accessToken, refreshToken);
-        } else {
-            throw new Exception("Wrong password");
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            throw new Exception("Invalid login or password!");
         }
+
+        if (!user.isEnable()) {
+            throw new Exception("Confirmed your email address!");
+        }
+
+        String accessToken  = jwtProvider.generateAccessToken(user);
+        String refreshToken = jwtProvider.generateRefreshToken(user);
+
+        refreshStorage.put(user.getUsername(), refreshToken);
+        return new JwtResponse(accessToken, refreshToken);
     }
+
 
     public JwtResponse getAccessToken(@NonNull String refreshToken) {
         if (jwtProvider.validateRefreshToken(refreshToken)) {

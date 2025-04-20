@@ -49,5 +49,6 @@ public class User {
 
     private String avatarUrl;
     private boolean isVerified = false;
+    private boolean enable;
 
 }
