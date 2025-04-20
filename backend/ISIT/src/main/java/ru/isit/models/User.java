@@ -32,20 +32,19 @@ public class User {
     private String email;
 
 //    @Min(3)
-//    @Max(12)
+//    @Max(50)
     private String username;
 
 //    @Min(8)
-//    @Max(50)
-//    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d).{8,}$")
+//    @Max(150)
     private String password;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     private Set<Role> roles = new HashSet<>();
 
-//    @CreationTimestamp
-//    private LocalDateTime createdAt;
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 
     private String avatarUrl;
     private boolean isVerified = false;

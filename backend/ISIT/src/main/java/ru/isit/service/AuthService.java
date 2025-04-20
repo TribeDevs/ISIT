@@ -3,7 +3,6 @@ package ru.isit.service;
 import io.jsonwebtoken.Claims;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,18 +10,14 @@ import ru.isit.dto.request.JwtRequest;
 import ru.isit.dto.request.SignUpRequest;
 import ru.isit.dto.response.JwtResponse;
 import ru.isit.exception.Exception;
-import ru.isit.exception.GlobalExceptionHandler;
-import ru.isit.models.ConfirmationToken;
 import ru.isit.models.Role;
 import ru.isit.repository.UserRepository;
 import ru.isit.security.JwtAuthentication;
 import ru.isit.models.User;
 
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+
 
 
 @Service

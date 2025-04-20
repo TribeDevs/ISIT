@@ -30,6 +30,7 @@ public class ConfirmationTokenController {
         }
 
         if (confirmationToken.getExpiresAt().isBefore(LocalDateTime.now())) {
+            tokenService.deleteConfirmationToken(confirmationToken);
             throw new IllegalStateException("Токен истек");
         }
 
