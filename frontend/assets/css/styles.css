@@ -54,8 +54,6 @@ nav {
 .logo-section {
     display: flex;
     align-items: center;
-    gap: 0px;
-    padding-left: 20px;
 }
 
 .logo {
@@ -115,7 +113,6 @@ nav a {
 
 nav a:hover,
 .site-name:hover,
-.logo-section:hover,
 .profile-icon:hover {
     opacity: 0.8;
 }
@@ -926,17 +923,29 @@ nav {
 }
 
 .logo {
-    width: 120px;
-    height: 120px;
+    width: 80px;
+    height: 80px;
+    margin-right: 15px;
 }
 
 .site-name {
-    color: rgb(251, 103, 4);
-    text-decoration: none;
-    font-family: 'Roboto Flex', sans-serif;
-    font-size: 20px;
+    display: flex; /* Чтобы части лого располагались в одну строку */
+    align-items: baseline; /* Выравнивание по базовой линии */
+    gap: 0; /* Убираем отступ между частями */
+}
+
+.logo-large {
+    font-size: 40px; /* Большой размер для "ISIT." */
+    color: white;
     font-weight: 700;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
+}
+
+.logo-small {
+    font-size: 20px; /* Меньший размер для "GAMING" */
+    color: rgb(251, 103, 4);
+    font-weight: 700;
+    letter-spacing: 1.5px;
 }
 
 .profile-icon {
@@ -982,7 +991,6 @@ nav a {
 
 nav a:hover,
 .site-name:hover,
-.logo-section:hover,
 .profile-icon:hover {
     opacity: 0.8;
 }
@@ -992,12 +1000,13 @@ nav .active a {
 }
 
 /* Общие стили для контейнера */
-.container {
+.teams-container {
     max-width: 1440px;
     min-width: 960px; 
     margin: 0 auto;
     padding: 0 120px;
     box-sizing: border-box;
+    
 }
 
 /* Стили для страницы "Команды" */
@@ -1905,33 +1914,29 @@ nav .active a {
 
 
 
-
-
-
-/* Стили для заголовка страницы и линии */
-.page-title {
-    padding: 10px 0px 15px;
-    margin-top: 30px;
-    margin-bottom: 10px;
-    margin-left: 178px; /* Отступ слева */
-    margin-right: 178px; /* Отступ справа */
+.profile-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0 178px;
+    gap: 20px; /* Отступ между блоками */
 }
 
-.page-title h1 {
-    font-size: 32px;
-    font-weight: 300;
-    margin: 0;
-    padding-bottom: 10px;
-    border-bottom: 2px solid white;
-}
 
-/* Общие стили для контейнера */
-.container {
-    max-width: 1440px;
-    min-width: 960px; 
-    margin: 0 auto;
-    padding: 0 120px;
-    box-sizing: border-box;
+/* Стили для блока профиля */
+.profile-block {
+    width: 370px; 
+    height: auto; 
+    flex-shrink: 0;
+    border-radius: 20px;
+    border: 1px solid #FB6704;
+    background: #272727;
+    padding: 30px; /* Внутренние отступы для содержимого */
+    display: flex;
+    position: fixed;
+    left: 178px; /* Отступ слева, чтобы совпадать с page-title */
+    flex-direction: column; /* Элементы располагаются вертикально */
+    gap: 20px; /* Отступ между фото+данные и кнопками */
 }
 
 /* Переопределяем контейнер для страницы профиля */
@@ -1940,20 +1945,11 @@ nav .active a {
     padding: 0; /* Убираем отступы */
 }
 
-/* Стили для блока профиля */
-.profile-block {
-    width: 370px; /* Общая ширина: 150px (фото) + 20px (gap) + 370px (данные) + 40px (padding) */
-    height: 370px;
-    flex-shrink: 0;
-    margin-top: 30px;
-    border-radius: 20px;
-    border: 1px solid #FB6704;
-    background: #272727;
-    padding: 20px; /* Внутренние отступы для содержимого */
-    display: flex; /* Используем flex для горизонтального расположения */
-    flex-direction: row; /* Элементы располагаются в ряд */
+/* Стили для контейнера фото и данных */
+.profile-content {
+    display: flex;
+    flex-direction: row; /* Фото и данные располагаются в ряд */
     gap: 20px; /* Отступ между фото и данными */
-    margin-left: 178px; /* Прижимаем к левому краю с отступом 178px */
 }
 
 /* Стили для фото профиля */
@@ -1962,6 +1958,13 @@ nav .active a {
     height: 150px;
     flex-shrink: 0;
     aspect-ratio: 1/1;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.profile-image:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
 }
 
 /* Стили для блока с данными профиля */
@@ -1976,19 +1979,10 @@ nav .active a {
 .student-info-block {
     display: flex;
     flex-direction: column;
+    gap: 10px; /* Отступ между "Студент" и "Группа" */
 }
 
-.student-name,
-.student-group {
-    display: block; /* Убираем flex, текст теперь вертикально */
-}
-
-.student-name {
-    border-bottom: 1px solid white;
-    width:145px;
-}
-
-.student-name .label,
+.student-info .label,
 .student-group .label {
     color: #FFF;
     font-family: "Roboto Flex", sans-serif;
@@ -1996,11 +1990,10 @@ nav .active a {
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-
 }
 
-.student-name .name-value,
-.student-group .group-value {
+.student-info .student-name,
+.student-group .group-name {
     color: #FFF;
     font-family: "Roboto Flex", sans-serif;
     font-size: 14px;
@@ -2009,25 +2002,33 @@ nav .active a {
     line-height: normal;
 }
 
-.student-name .name-value {
-    word-break: break-word; /* Перенос слов для ФИО */
+.student-info .student-name {
+    word-break: break-word; /* Перенос слов для длинных имён */
+}
+
+.student-info {
+    border-bottom: 2px solid white;
+    padding-bottom: 10px; 
+}
+
+.student-name {
+    margin-bottom: 10px;
 }
 
 /* Стили для блока с кнопками */
 .profile-actions-block {
     display: flex;
-    flex-direction: column;
-    gap: 10px; /* Уменьшен отступ между кнопками */
+    flex-direction: column; /* Кнопки располагаются вертикально */
+    gap: 10px; /* Отступ между кнопками, как в Figma */
+    align-items: center; /* Центрируем кнопки по горизонтали */
 }
 
 /* Стили для кнопок */
-.verify-account-btn,
-.username-btn,
-.email-btn {
+.verify-account-btn {
     display: flex;
-    width: 100%; /* Занимает всю ширину .profile-actions-block */
-    height: 48px; /* Увеличена высота */
-    padding: 12px 20px; /* Уменьшены боковые отступы */
+    width: 310px; /* Ширина из макета */
+    height: 40px; /* Высота из макета */
+    padding: 12px 20px;
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
@@ -2036,37 +2037,204 @@ nav .active a {
     border: none;
     color: #FFF;
     font-family: "Roboto Flex", sans-serif;
-    font-size: 16px; /* Увеличен размер шрифта */
+    font-size: 16px;
     font-style: normal;
-    font-weight: 400; /* Уменьшен вес шрифта */
+    font-weight: 400;
     line-height: normal;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    text-transform: uppercase; /* Текст в верхнем регистре, как в Figma */
 }
 
-.verify-account-btn:hover,
-.username-btn:hover,
-.email-btn:hover {
-    background-color: rgb(200, 82, 3); /* Тёмный оранжевый при наведении */
+.verify-account-btn:hover {
+    background-color: rgb(200, 82, 3);
 }
 
 /* Для username-btn и email-btn */
 .username-btn,
 .email-btn {
-    background: #4C4B4B; /* Серый фон */
-    text-transform: none; /* Убираем верхний регистр для имени и email */
-    justify-content: space-between; /* Распределяем текст и иконку */
+    display: flex;
+    width: 310px; /* Меньшая ширина, как в макете */
+    height: 40px;
+    padding: 12px 20px;
+    justify-content: space-between; /* Текст и иконка распределяются по краям */
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #4C4B4B;
+    border: none;
+    color: #FFF;
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-transform: none;
+}
+
+.username-btn:hover,
+.email-btn:hover {
+    background-color: #5A5959; /* Лёгкое затемнение при наведении */
 }
 
 .username-text,
 .email-text {
     flex-grow: 1;
-    text-align: center; /* Выравнивание текста по левому краю */
+    text-align: center; /* Текст строго по центру */
 }
 
 .edit-icon {
     width: 20px;
     height: 20px;
     flex-shrink: 0;
+}
+
+
+
+
+
+/* Блок "Прошедшие турниры" - фиксированное положение справа */
+.profile-tournaments-block {
+    position: fixed;
+    margin-top: 29px;
+    right: 178px;
+    top: 150px;
+    border-radius: 20px;
+    background: #272727;
+    width: 735px; /* Ширина из Figma */
+    height: 370px; /* Высота из Figma */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Заголовок блока "Прошедшие турниры" */
+.profile-tournaments-header {
+    width: 735px;
+    height: 70px;
+    flex-shrink: 0;
+    background: #4C4B4B;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    align-items: center;
+    padding-left: 32px;
+    padding-bottom: 21px;
+    padding-top: 23px;
+}
+
+/* Текст заголовка "Прошедшие турниры" */
+.profile-tournaments-header h2 {
+    color: #FFF;
+    font-family: "Roboto Flex";
+    font-size: 22px;
+    font-weight: 400;
+    line-height: normal;
+    flex-shrink: 0;
+}
+
+/* Список турниров с прокруткой */
+.profile-tournaments-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden; /* Убираем горизонтальную прокрутку */
+    padding-left: 0; /* Убираем общий padding-left */
+}
+
+/* Каждый элемент турнира */
+.profile-tournament-item {
+    border-bottom: 2px solid #706E6E;
+    width: 700px;
+    height: 60px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    gap: 10px;
+}
+
+/* Иконка игры */
+.profile-tournament-game-icon {
+    width: 40px;
+    height: 40px;
+}
+
+/* Название турнира */
+.profile-tournament-name {
+    color: #FFF;
+    font-family: "Roboto Flex";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: normal;
+    flex-grow: 0; /* Название не растягивается */
+}
+
+/* Место */
+.profile-tournament-place {
+    color: #FFF;
+    font-family: "Roboto Flex";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: normal;
+    flex-grow: 1; /* Занимает оставшееся пространство */
+    display: flex;
+    justify-content: center; /* Центрирование текста по горизонтали */
+    align-items: center; /* Центрирование текста по вертикали */
+}
+
+/* Контейнер для дат */
+.profile-tournament-dates {
+    display: flex;
+    align-items: center;
+    margin-right: 18px; /* Отступ справа */
+}
+
+/* Дата начала */
+.profile-tournament-start-date {
+    color: #FFF;
+    font-family: "Roboto Flex";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: normal;
+    text-align: right;
+}
+
+/* Разделитель */
+.profile-separator {
+    color: #FFF;
+    font-family: "Roboto Flex";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    margin: 0 5px;
+}
+
+/* Дата окончания */
+.profile-tournament-end-date {
+    color: #FFF;
+    font-family: "Roboto Flex";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: normal;
+    text-align: right;
+    margin-right: 18px; /* Отступ справа для выравнивания */
+}
+
+/* Стили для полосы прокрутки */
+.profile-tournaments-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.profile-tournaments-list::-webkit-scrollbar-track {
+    background: #272727;
+    border-radius: 10px;
+}
+
+.profile-tournaments-list::-webkit-scrollbar-thumb {
+    background: #4C4B4B;
+    border-radius: 10px;
+}
+
+.profile-tournaments-list::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
