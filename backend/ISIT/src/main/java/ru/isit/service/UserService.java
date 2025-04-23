@@ -66,7 +66,6 @@ public class UserService {
             return true;
         }
 
-        System.out.println("CJCJCJCJCCJJCJJCCCCCCCCCCCCCCCCCCCCCCCCjnfsdk;gnv;cgb;owrbg;oabnk;nafbkn;dfb;nebnae;ibnkxzjnb;ks");
         return false;
     }
 

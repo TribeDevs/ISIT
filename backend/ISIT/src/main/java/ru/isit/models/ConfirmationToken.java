@@ -14,6 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ConfirmationToken {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
@@ -26,10 +27,4 @@ public class ConfirmationToken {
     @ManyToOne
     private User user;
 
-    public ConfirmationToken(UUID uuid, String token, LocalDateTime now, LocalDateTime localDateTime, User user) {
-        this.token = token;
-        this.createdAt = now;
-        this.expiresAt = localDateTime;
-        this.user = user;
-    }
 }

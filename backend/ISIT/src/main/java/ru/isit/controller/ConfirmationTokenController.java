@@ -18,7 +18,6 @@ import java.time.LocalDateTime;
 @RequestMapping("/confirm")
 public class ConfirmationTokenController {
     private final ConfirmationTokenService tokenService;
-    private final UserRepository userRepository;
 
     @GetMapping
     public ResponseEntity<String> confirm(@RequestParam String token) {
@@ -34,13 +33,10 @@ public class ConfirmationTokenController {
             throw new IllegalStateException("Токен истек");
         }
 
-        confirmationToken.setConfirmedAt(LocalDateTime.now());
-        tokenService.saveConfirmationToken(confirmationToken);
-
-        confirmationToken.getUser().setEnable(true);
-        userRepository.save(confirmationToken.getUser());
+        tokenService.setConfirmedAtConfirmationToken(confirmationToken);
+        tokenService.updateUserConfirmationToken(confirmationToken);
 
 
-        return ResponseEntity.ok("Аккаунт успешно подтвержден");
+        return ResponseEntity.ok("Аккаунт успешно подтвержден!");
     }
 }

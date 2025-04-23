@@ -41,7 +41,7 @@ public class AuthService {
     @Value("${server.port}")
     private int serverPort;
 
-    public User signUp(SignUpRequest request) {
+    public User signUp(@NonNull SignUpRequest request) {
         if (userRepository.existsByUsername(request.getUsername())) {
             throw new Exception("This is username is busy");
         }
@@ -67,6 +67,7 @@ public class AuthService {
                 token,
                 LocalDateTime.now(),
                 LocalDateTime.now().plusMinutes(15),
+                null,
                 user
         );
 
