@@ -1,4 +1,4 @@
-package ru.isit.service;
+package ru.isit.security;
 
 
 import io.jsonwebtoken.*;

@@ -39,6 +39,7 @@ public class User {
 //    @Max(150)
     private String password;
 
+    @Column(name = "role")
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     private Set<Role> roles = new HashSet<>();
@@ -47,7 +48,7 @@ public class User {
     private LocalDateTime createdAt;
 
     private String avatarUrl;
-    private boolean isVerified = false;
-    private boolean enable;
+    private boolean verified = false;
+    private boolean enable = false;
 
 }
