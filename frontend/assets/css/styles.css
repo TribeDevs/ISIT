@@ -1912,7 +1912,9 @@ nav .active a {
 
 
 
-
+.profile-page {
+    min-height: 1200px; /* Или нужная вам высота */
+}
 
 .profile-container {
     display: flex;
@@ -1926,17 +1928,18 @@ nav .active a {
 /* Стили для блока профиля */
 .profile-block {
     width: 370px; 
-    height: auto; 
+    height: 370px;
     flex-shrink: 0;
     border-radius: 20px;
     border: 1px solid #FB6704;
     background: #272727;
-    padding: 30px; /* Внутренние отступы для содержимого */
+    padding: 30px;
     display: flex;
-    position: fixed;
-    left: 178px; /* Отступ слева, чтобы совпадать с page-title */
-    flex-direction: column; /* Элементы располагаются вертикально */
-    gap: 20px; /* Отступ между фото+данные и кнопками */
+    position: absolute; /* Изменяем на absolute */
+    left: 178px;
+    top: auto; /* Остаётся без изменений */
+    flex-direction: column;
+    gap: 20px;
 }
 
 /* Переопределяем контейнер для страницы профиля */
@@ -2006,7 +2009,7 @@ nav .active a {
     word-break: break-word; /* Перенос слов для длинных имён */
 }
 
-.student-info {
+.student-group {
     border-bottom: 2px solid white;
     padding-bottom: 10px; 
 }
@@ -2094,16 +2097,15 @@ nav .active a {
 
 
 
-/* Блок "Прошедшие турниры" - фиксированное положение справа */
+/* Блок "Прошедшие турниры" - теперь с position: absolute */
 .profile-tournaments-block {
-    position: fixed;
-    margin-top: 29px;
+    position: absolute; /* Изменяем на absolute */
     right: 178px;
-    top: 150px;
+    top: auto; 
     border-radius: 20px;
     background: #272727;
-    width: 735px; /* Ширина из Figma */
-    height: 370px; /* Высота из Figma */
+    width: 735px;
+    height: 370px;
     display: flex;
     flex-direction: column;
 }
@@ -2127,23 +2129,17 @@ nav .active a {
     color: #FFF;
     font-family: "Roboto Flex";
     font-size: 22px;
+    font-style: normal;
     font-weight: 400;
     line-height: normal;
-    flex-shrink: 0;
 }
 
-/* Список турниров с прокруткой */
-.profile-tournaments-list {
-    flex-grow: 1;
-    overflow-y: auto;
-    overflow-x: hidden; /* Убираем горизонтальную прокрутку */
-    padding-left: 0; /* Убираем общий padding-left */
-}
+
 
 /* Каждый элемент турнира */
 .profile-tournament-item {
     border-bottom: 2px solid #706E6E;
-    width: 700px;
+    width: 682px;
     height: 60px;
     flex-shrink: 0;
     display: flex;
@@ -2156,6 +2152,8 @@ nav .active a {
 .profile-tournament-game-icon {
     width: 40px;
     height: 40px;
+    flex-shrink: 0;
+    transition: opacity 0.3s ease, filter 0.3s ease; /* Добавляем transition для filter */
 }
 
 /* Название турнира */
@@ -2217,24 +2215,211 @@ nav .active a {
     font-weight: 400;
     line-height: normal;
     text-align: right;
-    margin-right: 18px; /* Отступ справа для выравнивания */
+    margin-right: 9px; /* Отступ справа для выравнивания */
 }
 
 /* Стили для полосы прокрутки */
 .profile-tournaments-list::-webkit-scrollbar {
-    width: 8px;
+    width: 4px;
+}
+
+/* Список турниров с прокруткой */
+.profile-tournaments-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 270px;
+    margin-right: 15px;
 }
 
 .profile-tournaments-list::-webkit-scrollbar-track {
     background: #272727;
-    border-radius: 10px;
+    margin-right: 30px;
+    margin-left: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .profile-tournaments-list::-webkit-scrollbar-thumb {
-    background: #4C4B4B;
-    border-radius: 10px;
+    background: #D9D9D9;
+    border-radius: 3px;
 }
 
-.profile-tournaments-list::-webkit-scrollbar-thumb:hover {
-    background: #555;
+
+
+
+
+
+
+
+/* Блок "Аккаунты" остаётся с position: fixed */
+.accounts-block {
+    position: absolute; /* Оставляем fixed */
+    left: 178px; 
+    top: 420px;
+    width: 370px;
+    min-height: 570px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #272727;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Шапка блока "Аккаунты" */
+.accounts-header {
+    width: 370px;
+    height: 70px;
+    flex-shrink: 0;
+    background: #4C4B4B;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    align-items: center;
+    padding-left: 32px; /* Как у других заголовков */
+    padding-bottom: 21px;
+    padding-top: 23px;
+}
+
+/* Текст заголовка "Аккаунты" */
+.accounts-header h2 {
+    color: #FFF;
+    font-family: "Roboto Flex";
+    font-size: 22px;
+    font-weight: 400;
+    line-height: normal;
+    flex-shrink: 0;
+}
+
+/* Контейнер для списка аккаунтов */
+.accounts-list {
+    flex-grow: 1;
+    padding: 20px 30px; /* Отступы внутри блока */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Отступ между элементами */
+}
+
+/* Блок с привязанной соцсетью */
+.account-item {
+    display: flex;
+    width: 310px;
+    padding: 15px 25px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border-radius: 10px;
+    background: #4C4B4B;
+}
+
+/* Картинка привязанной соцсети */
+.account-icon {
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+    aspect-ratio: 1/1;
+}
+
+/* Кнопка "Привязать" */
+.bind-account-btn {
+    display: flex;
+    width: 170px;
+    height: 35px;
+    padding: 7px 18px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    background: #FB6704; /* Цвет, как у других кнопок */
+    border-radius: 10px; /* Скругление углов */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.bind-account-btn a {
+    text-decoration: none;
+}
+
+/* Эффект при наведении на кнопку */
+.bind-account-btn:hover {
+    background-color: rgb(200, 82, 3); /* Затемнение при наведении */
+}
+
+/* Текст кнопки "Привязать" */
+.bind-account-btn span {
+    width: 134px;
+    height: 21px;
+    flex-shrink: 0;
+    color: #FFF;
+    text-align: center;
+    font-family: "Roboto Flex";
+    font-size: 17px;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+
+
+/* Блок "Статистика" */
+.stats-block {
+    position: absolute;
+    top: 420px; 
+    right: 178px;
+    width: 735px;
+    height: 400px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #272727;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Шапка блока "Статистика" */
+.stats-header {
+    width: 735px;
+    height: 70px;
+    flex-shrink: 0;
+    background: #4C4B4B;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    align-items: center;
+    padding-left: 32px;
+    padding-bottom: 21px;
+    padding-top: 23px;
+    margin: 0 auto; /* Центрируем шапку внутри блока */
+}
+
+/* Текст заголовка "Статистика" */
+.stats-header h2 {
+    color: #FFF;
+    font-family: "Roboto Flex";
+    font-size: 22px;
+    font-weight: 400;
+    line-height: normal;
+    flex-shrink: 0;
+}
+
+/* Контейнер для содержимого статистики */
+.stats-content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Текст "Work in progress..." */
+.stats-placeholder {
+    color: rgba(76, 75, 75, 1);
+    font-family: "Roboto Flex";
+    font-size: 26px;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+/* Глобальный контейнер для всех блоков */
+.global-profile-container {
+    position: relative; /* Для позиционирования дочерних блоков с position: absolute */
+    width: 1513px;
+    margin: 0 auto; /* Центрируем контейнер на странице */
 }
