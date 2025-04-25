@@ -11,6 +11,7 @@
   <h3>Frontend-разработчик #3— <a href=https://t.me/xmmmus>Сергей Тверетинов</a> (dwasp1)</h3> 
   <h3>Руководитель проекта — <a href=https://t.me/Howksss>Савинов Никита</a> (Howksss)</h3> 
 </div>
+<hr>
 <div align=center>
   <img src=https://github.com/devicons/devicon/blob/master/icons/spring/spring-original-wordmark.svg width=50 height=50>
   <img src=https://github.com/devicons/devicon/blob/master/icons/react/react-original-wordmark.svg width=50 height=50>
