@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Команды</title>
+
+    <link rel="icon" type="image/svg+xml" href="./images/Logo.svg" sizes="16x16">
+    <link rel="icon" type="image/svg+xml" href="./images/Logo.svg" sizes="32x32">
+    <link rel="icon" type="image/svg+xml" href="./images/Logo.svg" sizes="64x64">
+
+    <link rel="stylesheet" href="./css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body class="teams-page">
+    <header>
+        <nav>
+            <div class="logo-section">
+                <a href="main.html">
+                    <img src="./images/logo.svg" alt="ISIT GAMING Logo" class="logo">
+                </a>
+                <a href="main.html" class="site-name">
+                    <span class="logo-large">ISIT</span><span class="logo-small">.GAMING</span>
+                </a>
+            </div>
+            <ul class="Menu">
+                <li><a href="tournaments.html" class="Tournaments">Турниры</a></li>
+                <li><a href="teams.html" class="Teams">Команды</a></li>
+                <li><a href="rating.html" class="Rating">Рейтинг</a></li>
+            </ul>
+        </nav>
+        <a href="profile.html"><img src="./images/Profile-icon.svg" alt="Профиль" class="profile-icon"></a>
+    </header>
+    <div class="page-title">
+        <h1>Команды</h1>
+    </div>
+    <div class="teams-container">
+        <div class="game-icons-section">
+            <div class="game-icons">
+                <img src="./images/Dota2-icon.svg" data-active="./images/Dota2-icon-active.svg" alt="Dota 2" class="game-icon">
+                <img src="./images/CS2-icon.svg" data-active="./images/CS2-icon-active.svg" alt="Counter-Strike 2" class="game-icon">
+                <img src="./images/Valorant-icon.svg" data-active="./images/Valorant-icon-active.svg" alt="Valorant" class="game-icon">
+                <img src="./images/Lol-icon.svg" data-active="./images/LoL-icon-active.svg" alt="League of Legends" class="game-icon">
+            </div>
+            <button class="create-team-btn" onclick="openModal()">Создать команду</button>
+        </div>
+        <div class="teams-list">
+            <div class="team-card">
+                <img src="./images/CS2-tournament.svg" alt="Counter-Strike 2" class="game-image">
+                <div class="team-content">
+                    <div class="team-header">
+                        <div class="team-info">
+                            <h2>Team's Name</h2>
+                            <p>Участники: 5/5</p>
+                        </div>
+                        <div class="more-options">⋯</div>
+                    </div>
+                    <div class="team-avatars">
+                        <a href="#">
+                            <div class="avatar">
+                                <img src="./images/Profile-icon.svg" alt="Player 1">
+                                <span>Player 1 (Лидер)</span>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="avatar">
+                                <img src="./images/Profile-icon.svg" alt="Player 2">
+                                <span>Player 2</span>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="avatar">
+                                <img src="./images/Profile-icon.svg" alt="Player 3">
+                                <span>Player 3</span>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="avatar">
+                                <img src="./images/Profile-icon.svg" alt="Player 4">
+                                <span>Player 4</span>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="avatar">
+                                <img src="./images/Profile-icon.svg" alt="Player 5">
+                                <span>Player 5</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="team-card">
+                <img src="./images/CS2-tournament.svg" alt="Counter-Strike 2" class="game-image">
+                <div class="team-content">
+                    <div class="team-header">
+                        <div class="team-info">
+                            <h2>Team's Name</h2>
+                            <p>Участники: 5/5</p>
+                        </div>
+                        <div class="more-options">⋯</div>
+                    </div>
+                    <div class="team-avatars">
+                        <a href="#">
+                            <div class="avatar">
+                                <img src="./images/Profile-icon.svg" alt="Player 1">
+                                <span>Player 6 (Лидер)</span>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="avatar">
+                                <img src="./images/Profile-icon.svg" alt="Player 2">
+                                <span>Player 7</span>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="avatar">
+                                <img src="./images/Profile-icon.svg" alt="Player 3">
+                                <span>Player 8</span>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="avatar">
+                                <img src="./images/Profile-icon.svg" alt="Player 4">
+                                <span>Player 9</span>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="avatar">
+                                <img src="./images/Profile-icon.svg" alt="Player 5">
+                                <span>Player 10</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="team-card">
+                <img src="./images/CS2-tournament.svg" alt="Counter-Strike 2" class="game-image">
+                <div class="team-content">
+                    <div class="team-header">
+                        <div class="team-info">
+                            <h2>Team's Name</h2>
+                            <p>Участники: 5/5</p>
+                        </div>
+                        <div class="more-options">⋯</div>
+                    </div>
+                    <div class="team-avatars">
+                        <a href="#">
+                            <div class="avatar">
+                                <img src="./images/Profile-icon.svg" alt="Player 1">
+                                <span>Player 11 (Лидер)</span>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="avatar">
+                                <img src="./images/Profile-icon.svg" alt="Player 2">
+                                <span>Player 12</span>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="avatar">
+                                <img src="./images/Profile-icon.svg" alt="Player 3">
+                                <span>Player 13</span>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="avatar">
+                                <img src="./images/Profile-icon.svg" alt="Player 4">
+                                <span>Player 14</span>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="avatar">
+                                <img src="./images/Profile-icon.svg" alt="Player 5">
+                                <span>Player 15</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для создания команды -->
+    <div class="modal" id="createTeamModal">
+        <div class="modal-overlay" onclick="closeModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="success-modal-header">Создание команды</h2>
+                <img src="./images/close-button.svg" alt="Close" class="modal-close" onclick="closeModal()">
+            </div>
+            <div class="team-name-input">
+                <input type="text" placeholder="Введите название команды..." required>
+            </div>
+            <div class="selection-row">
+                <div class="game-selection">
+                    <div class="dropdown">
+                        <span class="dropdown-selected" data-value="">Выберите игру</span>
+                        <img src="./images/List-icon.svg" class="dropdown-arrow" onclick="toggleDropdown('gameDropdown')">
+                        <div class="dropdown-menu" id="gameDropdown">
+                            <div class="dropdown-item" data-value="dota2" onclick="selectGame('dota2', 'Dota 2')">Dota 2</div>
+                            <div class="dropdown-item" data-value="cs2" onclick="selectGame('cs2', 'Counter-Strike 2')">Counter-Strike 2</div>
+                            <div class="dropdown-item" data-value="valorant" onclick="selectGame('valorant', 'Valorant')">Valorant</div>
+                            <div class="dropdown-item" data-value="lol" onclick="selectGame('lol', 'League of Legends')">League of Legends</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="players-count">
+                    <div class="dropdown">
+                        <span class="dropdown-selected" data-value="">Кол-во участников</span>
+                        <img src="./images/List-icon.svg" class="dropdown-arrow" onclick="toggleDropdown('playersDropdown')">
+                        <div class="dropdown-menu" id="playersDropdown">
+                            <div class="dropdown-item" data-value="2" onclick="selectPlayers('2')">2</div>
+                            <div class="dropdown-item" data-value="3" onclick="selectPlayers('3')">3</div>
+                            <div class="dropdown-item" data-value="4" onclick="selectPlayers('4')">4</div>
+                            <div class="dropdown-item" data-value="5" onclick="selectPlayers('5')">5</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="leader-info">
+                <a href="profile.html" class="leader-profile-link">
+                    <img src="./images/Profile-icon.svg" alt="Лидер">
+                </a>
+                <span>Player x (Лидер)</span>
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-create-btn" onclick="openSuccessModal()">Создать</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для успешного создания команды -->
+    <div class="modal" id="successModal">
+        <div class="modal-overlay" onclick="closeSuccessModal()"></div>
+        <div class="modal-content success-modal-content">
+            <div class="modal-header">
+                <h2 class="success-modal-header">Создание команды</h2>
+                <img src="./images/close-button.svg" alt="Close" class="modal-close" onclick="closeSuccessModal()">
+            </div>
+            <div class="success-message">
+                Команда NAME успешно создана!
+            </div>
+            <div class="invite-link-label">
+                Пригласительная ссылка:
+            </div>
+            <div class="invite-link-box">
+                <button class="copy-link-btn" onclick="copyInviteLink()">
+                    <img src="./images/Copy-icon.svg" alt="Copy">
+                </button>
+                <span class="invite-link">https://isit.game/invite/ссылка</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/main.js"></script>
+</body>
+</html>

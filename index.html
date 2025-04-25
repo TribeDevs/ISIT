@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная</title>
+
+    <link rel="icon" type="image/svg+xml" href="./images/Logo.svg" sizes="16x16">
+    <link rel="icon" type="image/svg+xml" href="./images/Logo.svg" sizes="32x32">
+    <link rel="icon" type="image/svg+xml" href="./images/Logo.svg" sizes="64x64">
+
+    <link rel="stylesheet" href="./css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body class="main-page">
+    <header>
+        <nav>
+            <div class="logo-section">
+                <a href="main.html">
+                    <img src="./images/logo.svg" alt="ISIT GAMING Logo" class="logo">
+                </a>
+                <a href="main.html" class="site-name">
+                    <span class="logo-large">ISIT</span><span class="logo-small">.GAMING</span>
+                </a>
+            </div>
+            <ul class="Menu">
+                <li><a href="tournaments.html" class="Tournaments">Турниры</a></li>
+                <li><a href="teams.html" class="Teams">Команды</a></li>
+                <li><a href="rating.html" class="Rating">Рейтинг</a></li>
+            </ul>
+        </nav>
+        <img src="./images/Profile-icon.svg" alt="Профиль" class="profile-icon">
+    </header>
+    
+    <div class="page-title">
+        <h1>Главная</h1>
+    </div>
+    <div class="main-content">
+        <div class="games-window">
+            <div class="game-item">
+                <a href="teams.html">
+                    <img src="./images/CS2-tournament.svg" alt="Counter-Strike 2" class="game-image">
+                </a>
+                <span class="game-title">Counter-Strike 2</span>
+            </div>
+            <div class="game-item">
+                <a href="teams.html">
+                    <img src="./images/Dota2-tournament.svg" alt="Dota 2" class="game-image">
+                </a>
+                <span class="game-title">Dota 2</span>
+            </div>
+            <div class="game-item">
+                <a href="teams.html">
+                    <img src="./images/Valorant-tournament.svg" alt="Valorant" class="game-image">
+                </a>
+                <span class="game-title">Valorant</span>
+            </div>
+            <div class="game-item">
+                <a href="teams.html">
+                    <img src="./images/LoL-tournament.svg" alt="League of Legends" class="game-image">
+                </a>
+                <span class="game-title">League of Legends</span>
+            </div>
+        </div>
+        <div class="tournaments-window">
+            <div class="tournaments-header">
+                <h2>Турниры</h2>
+            </div>
+            <div class="tournaments-tabs">
+                <span class="tab">Прошедшие</span>
+                <span class="tab">Будущие</span>
+            </div>
+            
+            <div class="tournaments-list">
+                <div class="tournament-item">
+                    <a href="tournaments.html">
+                        <img src="./images/CS2-icon-active-50x50.svg" alt="CS2" class="game-icon-50x50">
+                    </a>
+                    <div class="tournament-info">
+                        <a href="tournaments.html">
+                            <span class="tournament-name">SibFU Spring Cup 2047</span>
+                        </a>
+                        <span class="tournament-format">Best of 3, LAN</span>
+                    </div>
+                    <span class="tournament-date">27.04.2023 - 01.05.2023</span>
+                </div>
+                <div class="tournament-item">
+                    <a href="tournaments.html">
+                        <img src="./images/Dota2-icon-active-50x50.svg" alt="CS2" class="game-icon-50x50">
+                    </a>
+                    <div class="tournament-info">
+                        <a href="tournaments.html">
+                            <span class="tournament-name">SibFU Spring Cup 2047</span>
+                        </a>
+                        <span class="tournament-format">Best of 3, LAN</span>
+                    </div>
+                    <span class="tournament-date">27.04.2023 - 01.05.2023</span>
+                </div>
+                <div class="tournament-item">
+                    <a href="tournaments.html">
+                        <img src="./images/Valorant-icon-active-50x50.svg" alt="CS2" class="game-icon-50x50">
+                    </a>
+                    <div class="tournament-info">
+                        <a href="tournaments.html">
+                            <span class="tournament-name">SibFU Spring Cup 2047</span>
+                        </a>
+                        <span class="tournament-format">Best of 3, LAN</span>
+                    </div>
+                    <span class="tournament-date">27.04.2023 - 01.05.2023</span>
+                </div>
+                <div class="tournament-item">
+                    <a href="tournaments.html">
+                        <img src="./images/LoL-icon-active-50x50.svg" alt="CS2" class="game-icon-50x50">
+                    </a>
+                    <div class="tournament-info">
+                        <a href="tournaments.html">
+                            <span class="tournament-name">SibFU Spring Cup 2047</span>
+                        </a>
+                        <span class="tournament-format">Best of 3, LAN</span>
+                    </div>
+                    <span class="tournament-date">27.04.2023 - 01.05.2023</span>
+                </div>
+                <div class="tournament-item">
+                    <a href="tournaments.html">
+                        <img src="./images/CS2-icon-active-50x50.svg" alt="CS2" class="game-icon-50x50">
+                    </a>
+                    <div class="tournament-info">
+                        <a href="tournaments.html">
+                            <span class="tournament-name">SibFU Spring Cup 2047</span>
+                        </a>
+                        <span class="tournament-format">Best of 3, LAN</span>
+                    </div>
+                    <span class="tournament-date">27.04.2023 - 01.05.2023</span>
+                </div>
+            </div>
+
+            <div class="tournaments-footer">
+                <a href="tournaments.html" class="all-tournaments-btn">Все турниры</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно входа -->
+    <div class="modal login-modal" id="loginModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="login-modal-header">
+                <div class="login-modal-logo">
+                    <div class="logo-section">
+                        <img src="./images/logo.svg" alt="ISIT GAMING Logo" class="logo">
+                        <div class="site-name">
+                            <span class="logo-large">ISIT</span><span class="logo-small">.GAMING</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="close-button">
+                    <img src="./images/close-button.svg" alt="Закрыть" class="modal-close">
+                </div>
+            </div>
+            <h2 class="login-modal-title">Вход в аккаунт</h2>
+            <label class="login-modal-label">Логин / Почта</label>
+            <div class="login-modal-input">
+                <input type="text" placeholder="Введите вашу почту...">
+            </div>
+            <label class="login-modal-label">Пароль</label>
+            <div class="login-modal-input">
+                <input type="password" placeholder="Введите ваш пароль...">
+            </div>
+            <button class="login-modal-submit-btn">Войти</button>
+            <div class="login-modal-divider"></div>
+            <a href="#" class="login-modal-register-link">Нет аккаунта? Зарегистрируйтесь</a>
+        </div>
+    </div>
+    
+    <script src="./js/main.js"></script>
+</body>
+</html>
