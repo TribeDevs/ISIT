@@ -43,10 +43,10 @@ public class AuthService {
 
     public User signUp(@NonNull SignUpRequest request) {
         if (userRepository.existsByUsername(request.getUsername())) {
-            throw new Exception("This is username is busy");
+            throw new Exception("Имя пользователя уже занято!");
         }
         if (userRepository.existsByEmail(request.getEmail())) {
-            throw new Exception("This is email is busy");
+            throw new Exception("Почта уже занята!");
         }
 
         User user = new User();
@@ -57,17 +57,17 @@ public class AuthService {
         user.setEmail(request.getEmail());
         user.getRoles().add(Role.USER);
 
+        sendConfirmationEmail(user);
+
         return userRepository.save(user);
     }
 
     public void sendConfirmationEmail(User user) {
         String token = UUID.randomUUID().toString();
         ConfirmationToken confirmationToken = new ConfirmationToken(
-                UUID.randomUUID(),
                 token,
                 LocalDateTime.now(),
                 LocalDateTime.now().plusMinutes(15),
-                null,
                 user
         );
 

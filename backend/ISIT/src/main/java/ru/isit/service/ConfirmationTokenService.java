@@ -2,38 +2,43 @@ package ru.isit.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.isit.models.ConfirmationToken;
+import ru.isit.models.User;
 import ru.isit.repository.ConfirmationTokenRepository;
 import ru.isit.repository.UserRepository;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class ConfirmationTokenService {
-    private final ConfirmationTokenRepository repository;
+    private final ConfirmationTokenRepository confirmationTokenRepository;
     private final UserRepository userRepository;
 
     public void saveConfirmationToken(ConfirmationToken token) {
-        repository.save(token);
+        confirmationTokenRepository.save(token);
     }
 
-    public void deleteConfirmationToken(ConfirmationToken token) {
-        repository.delete(token);
-    }
+    @Transactional
+    public void confirmToken(String token) {
+        ConfirmationToken confirmationToken = confirmationTokenRepository.findByToken(token)
+                .orElseThrow(() -> new IllegalStateException("Токен не найден!"));
 
-    public Optional<ConfirmationToken> getToken(String token) {
-        return repository.findByToken(token);
-    }
+        if (confirmationToken.getConfirmedAt() != null) {
+            throw new IllegalStateException("Почта уже подтверждена!");
+        }
 
-    public void setConfirmedAtConfirmationToken(ConfirmationToken token) {
-        token.setConfirmedAt(LocalDateTime.now());
-    }
+        if (confirmationToken.getExpiresAt().isBefore(LocalDateTime.now())) {
+            confirmationTokenRepository.delete(confirmationToken);
+            throw new IllegalStateException("Токен истек");
+        }
 
-    public void updateUserConfirmationToken(ConfirmationToken token) {
-        token.setConfirmedAt(LocalDateTime.now());
-        token.getUser().setEnable(true);
-        userRepository.save(token.getUser());
+        confirmationToken.setConfirmedAt(LocalDateTime.now());
+        confirmationTokenRepository.save(confirmationToken);
+
+        User user = confirmationToken.getUser();
+        user.setEnable(true);
+        userRepository.save(user);
     }
 }

@@ -16,7 +16,7 @@ import java.util.UUID;
 public class ConfirmationToken {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     private String token;
@@ -26,5 +26,17 @@ public class ConfirmationToken {
 
     @ManyToOne
     private User user;
+
+    public ConfirmationToken(
+            String token,
+            LocalDateTime createdAt,
+            LocalDateTime expiresAt,
+            User user
+    ) {
+        this.token = token;
+        this.createdAt = createdAt;
+        this.expiresAt = expiresAt;
+        this.user = user;
+    }
 
 }

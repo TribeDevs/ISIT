@@ -12,8 +12,12 @@ import ru.isit.dto.request.JwtRequest;
 import ru.isit.dto.request.RefreshJwtRequest;
 import ru.isit.dto.request.SignUpRequest;
 import ru.isit.dto.response.JwtResponse;
+import ru.isit.models.ConfirmationToken;
 import ru.isit.models.User;
 import ru.isit.service.AuthService;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 
 @RestController
