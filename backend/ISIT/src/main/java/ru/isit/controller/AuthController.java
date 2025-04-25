@@ -31,8 +31,7 @@ public class AuthController {
     public ResponseEntity<?> signUp(@RequestBody @Valid SignUpRequest request) {
         User user = authService.signUp(request);
         authService.sendConfirmationEmail(user);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(user);
+        return ResponseEntity.status(HttpStatus.CREATED).body("На вашу почту отправлено письмо для подтверждения!");
     }
 
     @PostMapping("/signin")

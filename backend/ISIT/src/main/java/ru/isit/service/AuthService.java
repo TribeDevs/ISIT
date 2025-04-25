@@ -57,8 +57,6 @@ public class AuthService {
         user.setEmail(request.getEmail());
         user.getRoles().add(Role.USER);
 
-        sendConfirmationEmail(user);
-
         return userRepository.save(user);
     }
 
