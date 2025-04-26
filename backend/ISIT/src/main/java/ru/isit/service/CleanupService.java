@@ -12,7 +12,7 @@ import ru.isit.repository.UserRepository;
 public class CleanupService {
     private final UserRepository userRepository;
 
-    @Scheduled(cron = "0 0 */4 * * ?")
+    @Scheduled(cron = "0 */30 * * * ?")
     @Transactional
     public void purgeOldData() {
         userRepository.deleteByEnableFalse();
