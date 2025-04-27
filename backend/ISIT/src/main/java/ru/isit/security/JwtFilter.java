@@ -13,7 +13,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.GenericFilterBean;
-import ru.isit.service.JwtProvider;
+import ru.isit.models.CustomUserDetails;
+import ru.isit.service.CustomUserDetailsService;
 
 import java.io.IOException;
 
@@ -25,6 +26,7 @@ public class JwtFilter extends GenericFilterBean {
     private static final String AUTHORIZATION = "Authorization";
 
     private final JwtProvider jwtProvider;
+    private final CustomUserDetailsService userDetailsService;
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain fc)
@@ -32,9 +34,14 @@ public class JwtFilter extends GenericFilterBean {
         final String token = getTokenFromRequest((HttpServletRequest) request);
         if (token != null && jwtProvider.validateAccessToken(token)) {
             final Claims claims = jwtProvider.getAccessClaims(token);
-            final JwtAuthentication jwtInfoToken = JwtUtils.generate(claims);
-            jwtInfoToken.setAuthenticated(true);
-            SecurityContextHolder.getContext().setAuthentication(jwtInfoToken);
+
+            CustomUserDetails userDetails = userDetailsService.loadUserByUsername(claims.getSubject());
+
+            JwtAuthentication auth = new JwtAuthentication();
+            auth.setUserDetails(userDetails);
+            auth.setAuthenticated(true);
+
+            SecurityContextHolder.getContext().setAuthentication(auth);
         }
         fc.doFilter(request, response);
     }

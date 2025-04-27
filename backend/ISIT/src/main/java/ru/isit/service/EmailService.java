@@ -14,14 +14,13 @@ public class EmailService {
     @Value("${spring.mail.username}")
     private String fromEmail;
 
-    public void sendConfirmationEmail(String to, String token) {
+    public void sendConfirmationEmail(String to, String title, String content) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(fromEmail);
         System.out.println(message.getFrom());
         message.setTo(to);
-        message.setSubject("Подтверждение регистрации");
-        message.setText("Для активации аккаунта перейдите по ссылке: "
-                + "http://localhost/confirm?token=" + token);
+        message.setSubject(title);
+        message.setText(content);
 
         mailSender.send(message);
     }

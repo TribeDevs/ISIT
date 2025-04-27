@@ -3,7 +3,7 @@ package ru.isit.service;
 import io.jsonwebtoken.Claims;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,17 +11,16 @@ import ru.isit.dto.request.JwtRequest;
 import ru.isit.dto.request.SignUpRequest;
 import ru.isit.dto.response.JwtResponse;
 import ru.isit.exception.Exception;
-import ru.isit.exception.GlobalExceptionHandler;
 import ru.isit.models.ConfirmationToken;
 import ru.isit.models.Role;
 import ru.isit.repository.UserRepository;
 import ru.isit.security.JwtAuthentication;
 import ru.isit.models.User;
+import ru.isit.security.JwtProvider;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
 
 
@@ -33,13 +32,21 @@ public class AuthService {
     private final Map<String, String> refreshStorage = new HashMap<>();
     private final JwtProvider jwtProvider;
     private final PasswordEncoder passwordEncoder;
+    private final ConfirmationTokenService confirmationTokenService;
+    private final EmailService emailService;
 
-    public User signUp(SignUpRequest request) {
+    @Value("${server.address}")
+    private String serverAddress;
+
+    @Value("${server.port}")
+    private int serverPort;
+
+    public User signUp(@NonNull SignUpRequest request) {
         if (userRepository.existsByUsername(request.getUsername())) {
-            throw new Exception("This is username is busy");
+            throw new Exception("Имя пользователя уже занято!");
         }
         if (userRepository.existsByEmail(request.getEmail())) {
-            throw new Exception("This is email is busy");
+            throw new Exception("Почта уже занята!");
         }
 
         User user = new User();
@@ -51,6 +58,26 @@ public class AuthService {
         user.getRoles().add(Role.USER);
 
         return userRepository.save(user);
+    }
+
+    public void sendConfirmationEmail(User user) {
+        String token = UUID.randomUUID().toString();
+        ConfirmationToken confirmationToken = new ConfirmationToken(
+                token,
+                LocalDateTime.now(),
+                LocalDateTime.now().plusMinutes(15),
+                user
+        );
+
+        String title = "[ISIT] - подтверждение регистрации";
+        String confirmationUrl = "https://" + serverAddress + "/confirm?token=" + token;
+
+        confirmationTokenService.saveConfirmationToken(confirmationToken);
+        emailService.sendConfirmationEmail(
+                user.getEmail(),
+                title,
+                confirmationUrl
+        );
     }
 
     public JwtResponse signIn(@NonNull JwtRequest request) {

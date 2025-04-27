@@ -2,13 +2,11 @@ package ru.isit.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import ru.isit.dto.response.UserResponse;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,24 +29,35 @@ public class User {
     @Column(unique = true, nullable = false)
     private String email;
 
-//    @Min(3)
-//    @Max(12)
+    @Size(min = 2, max = 30)
     private String username;
 
-//    @Min(8)
-//    @Max(50)
-//    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d).{8,}$")
+    @Size(min = 8, max = 100)
     private String password;
 
+    @Column(name = "role")
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     private Set<Role> roles = new HashSet<>();
 
-//    @CreationTimestamp
-//    private LocalDateTime createdAt;
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 
     private String avatarUrl;
-    private boolean isVerified = false;
-    private boolean enable;
+    private boolean verified = false;
+    private boolean enable = false;
+
+
+    public UserResponse toResponse() {
+        return new UserResponse(
+                this.id,
+                this.email,
+                this.username,
+                this.roles,
+                this.avatarUrl,
+                this.verified,
+                this.createdAt
+        );
+    }
 
 }
