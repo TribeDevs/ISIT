@@ -10,6 +10,6 @@ import java.util.UUID;
 public class UserSecurity {
     public boolean checkUserId(Authentication authentication, UUID targetUserId) {
         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-        return userDetails.getUserId().equals(targetUserId);
+        return userDetails.getId().equals(targetUserId);
     }
 }

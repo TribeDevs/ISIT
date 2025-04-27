@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import ru.isit.models.CustomUserDetails;
 import ru.isit.models.Role;
 
 import java.util.Collection;
@@ -15,20 +16,23 @@ import java.util.Set;
 public class JwtAuthentication implements Authentication {
 
     private boolean authenticated;
-    private String username;
-    private Set<Role> roles;
+    private CustomUserDetails userDetails;
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() { return roles; }
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return userDetails.getAuthorities();
+    }
+
+    @Override
+    public Object getPrincipal() {
+        return userDetails;
+    }
 
     @Override
     public Object getCredentials() { return null; }
 
     @Override
     public Object getDetails() { return null; }
-
-    @Override
-    public Object getPrincipal() { return username; }
 
     @Override
     public boolean isAuthenticated() { return authenticated; }

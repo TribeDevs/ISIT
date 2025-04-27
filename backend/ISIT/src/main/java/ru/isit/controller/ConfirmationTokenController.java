@@ -15,10 +15,10 @@ import ru.isit.service.ConfirmationTokenService;
 public class ConfirmationTokenController {
     private final ConfirmationTokenService tokenService;
 
-    @GetMapping
+    @GetMapping("/confirm")
     public ResponseEntity<String> confirm(@RequestParam String token) {
         tokenService.confirmToken(token);
-        return ResponseEntity.ok("Аккаунт успешно подтвержден!");
+        return ResponseEntity.ok("Аккаунт зарегистрирован!");
     }
 
 }
