@@ -69,7 +69,6 @@ public class UserService {
         return false;
     }
 
-
     @Transactional
     public boolean verifyUser(UUID userId) { return false; }
 

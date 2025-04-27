@@ -35,7 +35,6 @@ public class SecurityConfig {
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/"+ versionApi + "/auth/**", "/confirm").permitAll()
-//                        .requestMatchers("/**").permitAll() // изменить, сделано времено для dev
                         .anyRequest().authenticated()
                 )
                 .addFilterAfter(jwtFilter, UsernamePasswordAuthenticationFilter.class)

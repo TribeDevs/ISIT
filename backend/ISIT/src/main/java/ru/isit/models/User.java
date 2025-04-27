@@ -28,12 +28,10 @@ public class User {
     @Column(unique = true, nullable = false)
     private String email;
 
-    @Size(min = 2)
-    @Size(max = 30)
+    @Size(min = 2, max = 30)
     private String username;
 
-    @Size(min = 8)
-    @Size(max = 100)
+    @Size(min = 8, max = 100)
     private String password;
 
     @Column(name = "role")

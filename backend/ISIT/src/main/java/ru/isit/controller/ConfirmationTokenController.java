@@ -11,7 +11,7 @@ import ru.isit.service.ConfirmationTokenService;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/confirm")
+@RequestMapping("/api/${api.version}/auth")
 public class ConfirmationTokenController {
     private final ConfirmationTokenService tokenService;
 
