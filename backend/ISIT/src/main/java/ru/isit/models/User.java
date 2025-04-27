@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import ru.isit.dto.response.UserResponse;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -45,5 +46,18 @@ public class User {
     private String avatarUrl;
     private boolean verified = false;
     private boolean enable = false;
+
+
+    public UserResponse toResponse() {
+        return new UserResponse(
+                this.id,
+                this.email,
+                this.username,
+                this.roles,
+                this.avatarUrl,
+                this.verified,
+                this.createdAt
+        );
+    }
 
 }
