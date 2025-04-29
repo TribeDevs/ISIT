@@ -81,7 +81,7 @@ public class AuthService {
     }
 
     public JwtResponse signIn(@NonNull JwtRequest request) {
-        User user = userRepository.findByUsername(request.getLogin())
+        User user = userRepository.findByEmail(request.getLogin())
                 .orElseThrow(() -> new Exception(
                         "User with login '" + request.getLogin() + "' not found!"));
 
@@ -96,7 +96,7 @@ public class AuthService {
         String accessToken  = jwtProvider.generateAccessToken(user);
         String refreshToken = jwtProvider.generateRefreshToken(user);
 
-        refreshStorage.put(user.getUsername(), refreshToken);
+        refreshStorage.put(user.getEmail(), refreshToken);
         return new JwtResponse(accessToken, refreshToken);
     }
 
@@ -107,7 +107,7 @@ public class AuthService {
             final String login = claims.getSubject();
             final String saveRefreshToken = refreshStorage.get(login);
             if (saveRefreshToken != null && saveRefreshToken.equals(refreshToken)) {
-                final User user = userRepository.findByUsername(login)
+                final User user = userRepository.findByEmail(login)
                         .orElseThrow(() -> new Exception("User not found"));
                 final String accessToken = jwtProvider.generateAccessToken(user);
                 return new JwtResponse(accessToken, null);

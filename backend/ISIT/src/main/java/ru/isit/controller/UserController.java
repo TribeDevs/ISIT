@@ -1,13 +1,11 @@
 package ru.isit.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-import ru.isit.config.UserSecurity;
 import ru.isit.models.CustomUserDetails;
 import ru.isit.models.Role;
 import ru.isit.models.User;
@@ -68,6 +66,8 @@ public class UserController {
         }
         return ResponseEntity.ok().build();
     }
+
+
 
     @PutMapping("/{id}/giveRole")
     @PreAuthorize("hasAuthority('ADMIN')")
