@@ -2,13 +2,15 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Турниры</title>
 
     <link rel="icon" type="image/svg+xml" href="./images/Logo.svg" sizes="16x16">
     <link rel="icon" type="image/svg+xml" href="./images/Logo.svg" sizes="32x32">
     <link rel="icon" type="image/svg+xml" href="./images/Logo.svg" sizes="64x64">
 
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body class="tournaments-page">
@@ -27,15 +29,95 @@
                 <li><a href="teams.html" class="Teams">Команды</a></li>
                 <li><a href="rating.html" class="Rating">Рейтинг</a></li>
             </ul>
+            <div class="profile-section">
+                <a href="profile.html"><img src="./images/Profile-icon.svg" alt="Профиль" class="profile-icon"></a>
+            </div>
         </nav>
-        <a href="profile.html"><img src="./images/Profile-icon.svg" alt="Профиль" class="profile-icon"></a>
     </header>
-    <div class="page-title">
-        <h1>Турниры</h1>
+    <div class="tournaments-page-content">
+        <div class="page-title">
+            <h1>Турниры</h1>
+        </div>
+
+        <div class="tournaments-menu">
+            <div class="search-bar">
+                <input type="text" placeholder="Поиск по названию..." class="search-input">
+                <img src="./images/Search-icon.svg" alt="Search Icon" class="search-icon">
+            </div>
+                <div class="tournaments-tournaments-tabs">
+                <span class="tournament-divider"></span>
+                <span class="tab-past-tournaments">Прошедшие</span>
+                <span class="tab-future-tournaments">Актуальные</span>
+                <span class="tournament-divider"></span>
+            </div>
+            <div class="game-icons">
+                <img src="./images/Dota2-icon.svg" alt="Dota 2" class="game-icon" data-active="./images/Dota2-icon-active.svg">
+                <img src="./images/CS2-icon.svg" alt="CS2" class="game-icon active" data-active="./images/CS2-icon-active.svg">
+                <img src="./images/Valorant-icon.svg" alt="Valorant" class="game-icon" data-active="./images/Valorant-icon-active.svg">
+                <img src="./images/LoL-icon.svg" alt="LoL" class="game-icon" data-active="./images/LoL-icon-active.svg">
+            </div>
+        </div>
+
+
+
+        <div class="tournaments-list">
+
+            <div class="tournament-container">
+                <img src="./images/Tournament-image.svg" alt="Tournament Image" class="tournament-image">
+                <div class="tournament-info">
+                    <div class="tournament-header">
+                        <img src="./images/CS2-icon-active-50x50.svg" alt="CS2 Icon" class="game-icon-orange">
+                        <span class="tournament-name">SibFU Spring Cup 2076</span>
+                    </div>
+                    <div class="tournament-details">
+                        <span class="tournament-date">Дата проведения: 28.04.2077</span>
+                        <span class="tournament-divider"></span>
+                        <span class="tournament-participants">3/10 участников</span>
+                        <span class="tournament-divider"></span>
+                        <span class="tournament-format">5 vs 5, LAN</span>
+                    </div>
+                    <span class="tournament-current-stage">Завершён</span>
+                </div>
+            </div>
+
+            <div class="tournament-container">
+                <img src="./images/Tournament-image.svg" alt="Tournament Image" class="tournament-image">
+                <div class="tournament-info">
+                    <div class="tournament-header">
+                        <img src="./images/CS2-icon-active-50x50.svg" alt="CS2 Icon" class="game-icon-orange">
+                        <span class="tournament-name">SibFU Spring Cup 2076</span>
+                    </div>
+                    <div class="tournament-details">
+                        <span class="tournament-date">Дата проведения: 28.04.2077</span>
+                        <span class="tournament-divider"></span>
+                        <span class="tournament-participants">3/10 участников</span>
+                        <span class="tournament-divider"></span>
+                        <span class="tournament-format">5 vs 5, LAN</span>
+                    </div>
+                    <span class="tournament-current-stage">Регистрация</span>
+                </div>
+            </div>
+
+            <div class="tournament-container">
+                <img src="./images/Tournament-image.svg" alt="Tournament Image" class="tournament-image">
+                <div class="tournament-info">
+                    <div class="tournament-header">
+                        <img src="./images/CS2-icon-active-50x50.svg" alt="CS2 Icon" class="game-icon-orange">
+                        <span class="tournament-name">SibFU Spring Cup 2076</span>
+                    </div>
+                    <div class="tournament-details">
+                        <span class="tournament-date">Дата проведения: 28.04.2077</span>
+                        <span class="tournament-divider"></span>
+                        <span class="tournament-participants">3/10 участников</span>
+                        <span class="tournament-divider"></span>
+                        <span class="tournament-format">5 vs 5, LAN</span>
+                    </div>
+                    <span class="tournament-current-stage">Идёт</span>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="container">
-        <!-- Здесь будет контент главной страницы -->
-    </div>
-    <script src="./js/main.js"></script>
+
+    <script src="../js/main.js"></script>
 </body>
 </html>

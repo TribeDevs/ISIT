@@ -104,6 +104,37 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // Скрипты для страницы "Турниры"
+    if (bodyClass === 'tournaments-page') {
+        const gameIcons = document.querySelectorAll('.game-icon');
+
+        // Устанавливаем активную иконку при загрузке страницы
+        gameIcons.forEach(icon => {
+            if (icon.classList.contains('active')) {
+                icon.src = icon.getAttribute('data-active');
+            }
+        });
+
+        // Обработчик клика для смены иконок
+        gameIcons.forEach(icon => {
+            icon.addEventListener('click', () => {
+                if (icon.classList.contains('active')) {
+                    icon.classList.remove('active');
+                    icon.src = icon.src.replace('-active', '');
+                } else {
+                    gameIcons.forEach(i => {
+                        if (i !== icon) {
+                            i.classList.remove('active');
+                            i.src = i.src.replace('-active', '');
+                        }
+                    });
+                    icon.classList.add('active');
+                    icon.src = icon.getAttribute('data-active');
+                }
+            });
+        });
+    }
 });
 
 // Общие функции для всех страниц доступны в глобальной области видимости
@@ -131,7 +162,7 @@ function closeSuccessModal() {
 function copyInviteLink() {
     const inviteLink = document.querySelector(".invite-link").textContent;
     navigator.clipboard.writeText(inviteLink).then(() => {
-        alert("Ссылка скопирована в буфер обмена!");
+        // Ничего не делаем
     }).catch(err => {
         console.error("Ошибка при копировании ссылки: ", err);
     });
@@ -155,3 +186,20 @@ function selectPlayers(value) {
     dropdownSelected.setAttribute('data-value', value);
     document.getElementById('playersDropdown').classList.remove('active');
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const pastTab = document.querySelector('.tab-past-tournaments');
+    const futureTab = document.querySelector('.tab-future-tournaments');
+
+    // При клике на "Прошедшие"
+    pastTab.addEventListener('click', function() {
+        pastTab.classList.add('active');
+        futureTab.classList.remove('active');
+    });
+
+    // При клике на "Будущие"
+    futureTab.addEventListener('click', function() {
+        futureTab.classList.add('active');
+        pastTab.classList.remove('active');
+    });
+});
