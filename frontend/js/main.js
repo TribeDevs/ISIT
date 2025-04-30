@@ -104,6 +104,37 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // Скрипты для страницы "Турниры"
+    if (bodyClass === 'tournaments-page') {
+        const gameIcons = document.querySelectorAll('.game-icon');
+
+        // Устанавливаем активную иконку при загрузке страницы
+        gameIcons.forEach(icon => {
+            if (icon.classList.contains('active')) {
+                icon.src = icon.getAttribute('data-active');
+            }
+        });
+
+        // Обработчик клика для смены иконок
+        gameIcons.forEach(icon => {
+            icon.addEventListener('click', () => {
+                if (icon.classList.contains('active')) {
+                    icon.classList.remove('active');
+                    icon.src = icon.src.replace('-active', '');
+                } else {
+                    gameIcons.forEach(i => {
+                        if (i !== icon) {
+                            i.classList.remove('active');
+                            i.src = i.src.replace('-active', '');
+                        }
+                    });
+                    icon.classList.add('active');
+                    icon.src = icon.getAttribute('data-active');
+                }
+            });
+        });
+    }
 });
 
 // Общие функции для всех страниц доступны в глобальной области видимости
@@ -155,7 +186,6 @@ function selectPlayers(value) {
     dropdownSelected.setAttribute('data-value', value);
     document.getElementById('playersDropdown').classList.remove('active');
 }
-
 
 document.addEventListener('DOMContentLoaded', function() {
     const pastTab = document.querySelector('.tab-past-tournaments');

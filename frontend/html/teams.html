@@ -2,6 +2,8 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Команды</title>
 
     <link rel="icon" type="image/svg+xml" href="../images/Logo.svg" sizes="16x16">
@@ -11,6 +13,7 @@
     <link rel="stylesheet" href="../css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@100..900&display=swap" rel="stylesheet">
 </head>
+
 <body class="teams-page">
     <header>
         <nav>
@@ -27,141 +30,169 @@
                 <li><a href="teams.html" class="Teams">Команды</a></li>
                 <li><a href="rating.html" class="Rating">Рейтинг</a></li>
             </ul>
+            <div class="profile-section">
+                <a href="profile.html"><img src="../images/Profile-icon.svg" alt="Профиль" class="profile-icon"></a>
+            </div>
         </nav>
-        <a href="profile.html"><img src="../images/Profile-icon.svg" alt="Профиль" class="profile-icon"></a>
     </header>
-    <div class="page-title">
-        <h1>Команды</h1>
-    </div>
-    <div class="teams-container">
-        <div class="game-icons-section">
-            <div class="game-icons">
-                <img src="../images/Dota2-icon.svg" data-active="../images/Dota2-icon-active.svg" alt="Dota 2" class="game-icon">
-                <img src="../images/CS2-icon.svg" data-active="../images/CS2-icon-active.svg" alt="Counter-Strike 2" class="game-icon">
-                <img src="../images/Valorant-icon.svg" data-active="../images/Valorant-icon-active.svg" alt="Valorant" class="game-icon">
-                <img src="../images/LoL-icon.svg" data-active="../images/LoL-icon-active.svg" alt="League of Legends" class="game-icon">
-            </div>
-            <button class="create-team-btn" onclick="openModal()">Создать команду</button>
+
+
+
+    <div class="teams-page-content">
+
+        <div class="page-title">
+            <h1>Команды</h1>
         </div>
 
-        <div class="teams-list">
-            <div class="team-card">
-                <img src="../images/CS2-tournament.svg" alt="Counter-Strike 2" class="game-image">
-                <div class="team-content">
-                    <div class="team-header">
-                        <div class="team-info">
-                            <h2>Team's Name</h2>
-                            <p>Участники: 5/5</p>
-                        </div>
-                        <div class="more-options">⋯</div>
-                    </div>
-                    <div class="team-avatars">
-                        <a href="#">
-                            <div class="avatar">
-                                <img src="../images/Profile-icon.svg" alt="Player 1">
-                                <span>Player 1 (Лидер)</span>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="avatar">
-                                <img src="../images/Profile-icon.svg" alt="Player 3">
-                                <span>Player 3</span>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="avatar">
-                                <img src="../images/Profile-icon.svg" alt="Player 4">
-                                <span>Player 4</span>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="avatar">
-                                <img src="../images/Profile-icon.svg" alt="Player 5">
-                                <span>Player 5</span>
-                            </div>
-                        </a>
-                    </div>
+        <div class="teams-container">
+            <div class="game-icons-section">
+                <div class="game-icons">
+                    <img src="../images/Dota2-icon.svg" data-active="../images/Dota2-icon-active.svg" alt="Dota 2" class="game-icon">
+                    <img src="../images/CS2-icon.svg" data-active="../images/CS2-icon-active.svg" alt="Counter-Strike 2" class="game-icon">
+                    <img src="../images/Valorant-icon.svg" data-active="../images/Valorant-icon-active.svg" alt="Valorant" class="game-icon">
+                    <img src="../images/LoL-icon.svg" data-active="../images/LoL-icon-active.svg" alt="League of Legends" class="game-icon">
                 </div>
+                <button class="create-team-btn" onclick="openModal()">Создать команду</button>
             </div>
 
-            <div class="team-card">
-                <img src="../images/CS2-tournament.svg" alt="Counter-Strike 2" class="game-image">
-                <div class="team-content">
-                    <div class="team-header">
-                        <div class="team-info">
-                            <h2>Team's Name</h2>
-                            <p>Участники: 5/5</p>
+            <div class="teams-list">
+                <div class="team-card">
+                    <img src="../images/CS2-tournament.svg" alt="Counter-Strike 2" class="game-image">
+                    <div class="team-content">
+                        <div class="team-header">
+
+                            <div class="team-info">
+                                <div class="team-name">Team's name</div>
+                                <div class="players-section">
+                                    <div class="players-text">Участники:</div>
+                                    <div class="max-amount-of-players">4</div>
+                                    <div class="slash">/</div>
+                                    <div class="current-amount-of-players">5</div>
+                                </div>
+                            </div>
+
+                            <div class="more-options">•••</div>
                         </div>
-                        <div class="more-options">⋯</div>
-                    </div>
-                    <div class="team-avatars">
-                        <a href="#">
-                            <div class="avatar">
-                                <img src="../images/Profile-icon.svg" alt="Player 1">
-                                <span>Player 6 (Лидер)</span>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="avatar">
-                                <img src="../images/Profile-icon.svg" alt="Player 4">
-                                <span>Player 9</span>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="avatar">
-                                <img src="../images/Profile-icon.svg" alt="Player 5">
-                                <span>Player 10</span>
-                            </div>
-                        </a>
+                        <div class="team-avatars">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="../images/Profile-icon.svg" alt="Player 1">
+                                    <span>Player 1 (Лидер)</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="../images/Profile-icon.svg" alt="Player 3">
+                                    <span>Player 3</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="../images/Profile-icon.svg" alt="Player 4">
+                                    <span>Player 4</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="../images/Profile-icon.svg" alt="Player 5">
+                                    <span>Player 5</span>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="team-card">
-                <img src="../images/CS2-tournament.svg" alt="Counter-Strike 2" class="game-image">
-                <div class="team-content">
-                    <div class="team-header">
-                        <div class="team-info">
-                            <h2>Team's Name</h2>
-                            <p>Участники: 5/5</p>
+
+                <div class="team-card">
+                    <img src="../images/CS2-tournament.svg" alt="Counter-Strike 2" class="game-image">
+                    <div class="team-content">
+                        <div class="team-header">
+                            <div class="team-info">
+                                <div class="team-name">Team's name</div>
+                                <div class="players-section">
+                                    <div class="players-text">Участники:</div>
+                                    <div class="max-amount-of-players">3</div>
+                                    <div class="slash">/</div>
+                                    <div class="current-amount-of-players">5</div>
+                                </div>
+                            </div>
+                            <div class="more-options">•••</div>
                         </div>
-                        <div class="more-options">⋯</div>
+                        <div class="team-avatars">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="../images/Profile-icon.svg" alt="Player 1">
+                                    <span>Player 6 (Лидер)</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="../images/Profile-icon.svg" alt="Player 4">
+                                    <span>Player 9</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="../images/Profile-icon.svg" alt="Player 5">
+                                    <span>Player 10</span>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                    <div class="team-avatars">
-                        <a href="#">
-                            <div class="avatar">
-                                <img src="../images/Profile-icon.svg" alt="Player 1">
-                                <span>Player 11 (Лидер)</span>
+                </div>
+                <div class="team-card">
+                    <img src="../images/CS2-tournament.svg" alt="Counter-Strike 2" class="game-image">
+                    <div class="team-content">
+                        <div class="team-header">
+                            <div class="team-info">
+                                <div class="team-name">Team's name</div>
+                                <div class="players-section">
+                                    <div class="players-text">Участники:</div>
+                                    <div class="max-amount-of-players">5</div>
+                                    <div class="slash">/</div>
+                                    <div class="current-amount-of-players">5</div>
+                                </div>
                             </div>
-                        </a>
-                        <a href="#">
-                            <div class="avatar">
-                                <img src="../images/Profile-icon.svg" alt="Player 2">
-                                <span>Player 12</span>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="avatar">
-                                <img src="../images/Profile-icon.svg" alt="Player 3">
-                                <span>Player 13</span>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="avatar">
-                                <img src="../images/Profile-icon.svg" alt="Player 4">
-                                <span>Player 14</span>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="avatar">
-                                <img src="../images/Profile-icon.svg" alt="Player 5">
-                                <span>Player 15</span>
-                            </div>
-                        </a>
+                            <div class="more-options">•••</div>
+                        </div>
+                        <div class="team-avatars">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="../images/Profile-icon.svg" alt="Player 1">
+                                    <span>Player 11 (Лидер)</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="../images/Profile-icon.svg" alt="Player 2">
+                                    <span>Player 12</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="../images/Profile-icon.svg" alt="Player 3">
+                                    <span>Player 13</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="../images/Profile-icon.svg" alt="Player 4">
+                                    <span>Player 14</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="../images/Profile-icon.svg" alt="Player 5">
+                                    <span>Player 15</span>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
 
     <!-- Модальное окно для создания команды -->
     <div class="modal" id="createTeamModal">
