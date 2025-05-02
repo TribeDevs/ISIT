@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.isit.models.CustomUserDetails;
 import ru.isit.models.Role;
 import ru.isit.models.User;
-import ru.isit.repository.UserRepository;
 import ru.isit.service.UserService;
 
 import java.util.*;
@@ -19,12 +18,11 @@ import java.util.*;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
-    private final UserRepository userRepository;
 
 
     @GetMapping("/me")
     public ResponseEntity<?> getProfileDetails(@AuthenticationPrincipal CustomUserDetails userDetails) {
-        Optional<User> user = userRepository.findById(userDetails.getId());
+        Optional<User> user = userService.getUserById(userDetails.getId());
 
         return ResponseEntity.ok(user.get().toResponse());
     }

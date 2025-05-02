@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.isit.dto.request.ChangePassword;
 import ru.isit.dto.request.JwtRequest;
 import ru.isit.dto.request.RefreshJwtRequest;
 import ru.isit.dto.request.SignUpRequest;
