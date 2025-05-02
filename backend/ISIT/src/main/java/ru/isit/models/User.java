@@ -45,8 +45,6 @@ public class User {
 
     private String avatarUrl;
     private boolean verified = false;
-    private boolean enable = false;
-
 
     public UserResponse toResponse() {
         return new UserResponse(

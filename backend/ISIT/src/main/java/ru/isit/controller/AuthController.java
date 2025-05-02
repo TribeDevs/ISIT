@@ -4,10 +4,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import ru.isit.dto.request.ChangePassword;
 import ru.isit.dto.request.JwtRequest;
 import ru.isit.dto.request.RefreshJwtRequest;
 import ru.isit.dto.request.SignUpRequest;
@@ -26,8 +24,7 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<?> signUp(@RequestBody @Valid SignUpRequest request) {
         User user = authService.signUp(request);
-        authService.sendConfirmationEmail(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body("На вашу почту отправлено письмо для подтверждения!");
+        return ResponseEntity.status(HttpStatus.CREATED).body("Аккаунт создан!");
     }
 
     @PostMapping("/signin")
