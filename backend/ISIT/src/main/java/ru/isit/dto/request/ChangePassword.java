@@ -11,9 +11,11 @@ public class ChangePassword {
     private String email;
 
     @NotBlank
-    private String oldPassword;
+    private String code;
 
     @Size(min = 8, max = 100)
     private String newPassword;
+
+
 
 }
