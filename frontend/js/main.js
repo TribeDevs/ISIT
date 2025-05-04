@@ -32,11 +32,29 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        // Проверка введённых данных при клике на кнопку "Войти"
+        const emailInput = loginModal.querySelector('.login-modal-input input');
+        const loginSubmitBtn = loginModal.querySelector('.login-modal-submit-btn');
+        const errorContainerData = loginModal.querySelector('.login-modal .error-container .wrong-data-error').parentElement;
+
+        loginSubmitBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const enteredEmail = emailInput.value.trim();
+            const enteredPassword = passwordInput.value.trim();
+
+            if (enteredEmail === 'test@example.com' && enteredPassword === 'password123') {
+                errorContainerData.classList.remove('visible');
+                window.location.href = 'profile.html';
+            } else {
+                errorContainerData.classList.add('visible');
+            }
+        });
+
         // Открытие модального окна регистрации при клике на "Зарегистрируйтесь"
         const openRegisterModalBtn = loginModal.querySelector('#openRegisterModal');
         openRegisterModalBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            loginModal.classList.remove('active'); // Закрываем модальное окно входа
+            loginModal.classList.remove('active');
             const registerModal = document.querySelector('#registerModal');
             registerModal.classList.add('active');
         });
@@ -48,21 +66,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const closeRegisterModalBtn = registerModal.querySelector('.modal-close');
         const registerModalOverlay = registerModal.querySelector('.modal-overlay');
 
-        // Закрытие модального окна при клике на кнопку закрытия
         closeRegisterModalBtn.addEventListener('click', () => {
             registerModal.classList.remove('active');
         });
 
-        // Закрытие модального окна при клике на оверлей
         registerModalOverlay.addEventListener('click', () => {
             registerModal.classList.remove('active');
         });
 
-        // Переключение видимости пароля в модальном окне регистрации (для обоих полей пароля)
-        const passwordInputs = registerModal.querySelectorAll('.password-input input');
-        const passwordToggleIcons = registerModal.querySelectorAll('.password-toggle-icon');
-        passwordInputs.forEach((input, index) => {
-            const toggleIcon = passwordToggleIcons[index];
+        const passwordFields = registerModal.querySelectorAll('.password-input');
+        passwordFields.forEach(field => {
+            const input = field.querySelector('input');
+            const toggleIcon = field.querySelector('.password-toggle-icon');
             if (input && toggleIcon) {
                 toggleIcon.addEventListener('click', () => {
                     const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
@@ -71,21 +86,98 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         });
+
+        const openLoginModalBtn = registerModal.querySelector('#loginModal');
+        openLoginModalBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            registerModal.classList.remove('active');
+            loginModal.classList.add('active');
+        });
+
+        const sendCodeBtn = registerModal.querySelector('.send-code-btn');
+        if (sendCodeBtn) {
+            sendCodeBtn.addEventListener('click', () => {
+                const buttonText = sendCodeBtn.querySelector('.button-text');
+                const verifiedIcon = sendCodeBtn.querySelector('.verified-icon');
+                if (buttonText && verifiedIcon) {
+                    buttonText.classList.add('hidden');
+                    verifiedIcon.classList.add('visible');
+                    sendCodeBtn.classList.add('shrunk');
+                }
+            });
+        }
+
+        const codeInput = registerModal.querySelector('.register-code-input input');
+        const errorContainerCode = registerModal.querySelector('.register-modal .error-container .wrong-code-error').parentElement;
+
+        codeInput.addEventListener('input', () => {
+            const enteredCode = codeInput.value.trim();
+            if (enteredCode === 'TESTTT') {
+                errorContainerCode.classList.remove('visible');
+            } else {
+                errorContainerCode.classList.add('visible');
+            }
+        });
+
+        const nicknameInput = registerModal.querySelector('.register-nickname-input input[placeholder="Можно изменить позже"]');
+        const errorContainerNickname = registerModal.querySelector('.register-modal .error-container .wrong-nickname-error').parentElement;
+
+        nicknameInput.addEventListener('input', () => {
+            const enteredNickname = nicknameInput.value.trim();
+            if (enteredNickname === 'TESTTT') {
+                errorContainerNickname.classList.add('visible');
+            } else {
+                errorContainerNickname.classList.remove('visible');
+            }
+        });
+
+        const passwordInput = registerModal.querySelector('.password-input input[placeholder="Введите пароль..."]');
+        const confirmPasswordInput = registerModal.querySelector('.password-input input[placeholder="Повторите пароль"]');
+        const errorContainerPassword = registerModal.querySelector('.register-modal .error-container .wrong-password-input-error').parentElement;
+
+        const checkPasswordsMatch = () => {
+            const password = passwordInput.value.trim();
+            const confirmPassword = confirmPasswordInput.value.trim();
+            if (password === '' || confirmPassword === '') {
+                errorContainerPassword.classList.remove('visible');
+            } else if (password !== confirmPassword) {
+                errorContainerPassword.classList.add('visible');
+            } else {
+                errorContainerPassword.classList.remove('visible');
+            }
+        };
+
+        passwordInput.addEventListener('input', checkPasswordsMatch);
+        confirmPasswordInput.addEventListener('input', checkPasswordsMatch);
+
+        const registerSubmitBtn = registerModal.querySelector('.register-modal-submit-btn');
+        registerSubmitBtn.addEventListener('click', () => {
+            const password = passwordInput.value.trim();
+            const confirmPassword = confirmPasswordInput.value.trim();
+
+            if (password !== confirmPassword) {
+                errorContainerPassword.classList.add('visible');
+            } else {
+                errorContainerPassword.classList.remove('visible');
+                const toast = registerModal.querySelector('.register-modal .toast');
+                if (toast) {
+                    toast.classList.add('active');
+                    setTimeout(() => {
+                        toast.classList.remove('active');
+                    }, 5000);
+                }
+            }
+        });
     }
 
-    // Скрипты, специфичные для страниц
-    const bodyClass = document.body.className;
-
     // Скрипты для страницы "Команды"
-    if (bodyClass === 'teams-page') {
+    if (document.body.className === 'teams-page') {
         const gameIcons = document.querySelectorAll('.game-icon');
-
         gameIcons.forEach(icon => {
             if (icon.classList.contains('active')) {
                 icon.src = icon.getAttribute('data-active');
             }
         });
-
         gameIcons.forEach(icon => {
             icon.addEventListener('click', () => {
                 if (icon.classList.contains('active')) {
@@ -106,17 +198,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Скрипты для страницы "Турниры"
-    if (bodyClass === 'tournaments-page') {
+    if (document.body.className === 'tournaments-page') {
         const gameIcons = document.querySelectorAll('.game-icon');
-
-        // Устанавливаем активную иконку при загрузке страницы
         gameIcons.forEach(icon => {
             if (icon.classList.contains('active')) {
                 icon.src = icon.getAttribute('data-active');
             }
         });
-
-        // Обработчик клика для смены иконок
         gameIcons.forEach(icon => {
             icon.addEventListener('click', () => {
                 if (icon.classList.contains('active')) {
@@ -134,10 +222,83 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+        const createTournamentBtn = document.querySelector('.create-tournament-btn');
+        const createTournamentModal = document.querySelector('#createTournamentModal');
+        if (createTournamentBtn && createTournamentModal) {
+            const closeModalBtn = createTournamentModal.querySelector('.modal-close');
+            const modalOverlay = createTournamentModal.querySelector('.modal-overlay');
+            createTournamentBtn.addEventListener('click', () => {
+                createTournamentModal.classList.add('active');
+            });
+            closeModalBtn.addEventListener('click', () => {
+                createTournamentModal.classList.remove('active');
+            });
+            modalOverlay.addEventListener('click', () => {
+                createTournamentModal.classList.remove('active');
+            });
+            const gameDropdown = createTournamentModal.querySelector('#tournamentGameDropdown');
+            const dropdownSelected = createTournamentModal.querySelector('.dropdown-selected');
+            const dropdownArrow = createTournamentModal.querySelector('.dropdown-arrow');
+            dropdownArrow.addEventListener('click', () => {
+                gameDropdown.classList.toggle('active');
+            });
+        }
+    }
+
+    // Переключение вкладок "Прошедшие" и "Будущие" на главной странице
+    const pastTab = document.querySelector('.tab-past-tournaments');
+    const futureTab = document.querySelector('.tab-future-tournaments');
+    if (pastTab && futureTab) {
+        pastTab.addEventListener('click', () => {
+            pastTab.classList.add('active');
+            futureTab.classList.remove('active');
+        });
+        futureTab.addEventListener('click', () => {
+            futureTab.classList.add('active');
+            pastTab.classList.remove('active');
+        });
+    }
+
+    // Управление модальным окном верификации
+    const verifyAccountBtn = document.querySelector('.verify-account-btn');
+    const verifyAccountModal = document.querySelector('#verifyAccountModal');
+    if (verifyAccountBtn && verifyAccountModal) {
+        const closeModalBtn = verifyAccountModal.querySelector('.modal-close');
+        const modalOverlay = verifyAccountModal.querySelector('.modal-overlay');
+
+        verifyAccountBtn.addEventListener('click', () => {
+            verifyAccountModal.classList.add('active');
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            verifyAccountModal.classList.remove('active');
+        });
+
+        modalOverlay.addEventListener('click', () => {
+            verifyAccountModal.classList.remove('active');
+        });
+
+        // Проверка введённых данных при клике на кнопку "Верифицировать"
+        const loginInput = verifyAccountModal.querySelector('.verify-modal-input input[placeholder="Введите ваш логин СФУ..."]');
+        const passwordInput = verifyAccountModal.querySelector('.verify-modal-input input[placeholder="Введите ваш пароль СФУ..."]');
+        const verifySubmitBtn = verifyAccountModal.querySelector('.verify-modal-submit-btn');
+        const errorContainerSfuData = verifyAccountModal.querySelector('.modal .error-container .wrong-sfu-data-error').parentElement;
+
+        verifySubmitBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const enteredLogin = loginInput.value.trim();
+            const enteredPassword = passwordInput.value.trim();
+
+            if (enteredLogin === 'test@example.com' && enteredPassword === 'password123') {
+                errorContainerSfuData.classList.add('visible');
+            } else {
+                errorContainerSfuData.classList.remove('visible');
+            }
+        });
     }
 });
 
-// Общие функции для всех страниц доступны в глобальной области видимости
+// Общие функции для всех страниц
 function openModal() {
     const modal = document.getElementById('createTeamModal');
     modal.classList.add('active');
@@ -162,7 +323,6 @@ function closeSuccessModal() {
 function copyInviteLink() {
     const inviteLink = document.querySelector(".invite-link").textContent;
     navigator.clipboard.writeText(inviteLink).then(() => {
-        // Ничего не делаем
     }).catch(err => {
         console.error("Ошибка при копировании ссылки: ", err);
     });
@@ -187,19 +347,9 @@ function selectPlayers(value) {
     document.getElementById('playersDropdown').classList.remove('active');
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const pastTab = document.querySelector('.tab-past-tournaments');
-    const futureTab = document.querySelector('.tab-future-tournaments');
-
-    // При клике на "Прошедшие"
-    pastTab.addEventListener('click', function() {
-        pastTab.classList.add('active');
-        futureTab.classList.remove('active');
-    });
-
-    // При клике на "Будущие"
-    futureTab.addEventListener('click', function() {
-        futureTab.classList.add('active');
-        pastTab.classList.remove('active');
-    });
-});
+function selectTournamentGame(value, text) {
+    const dropdownSelected = document.querySelector('#tournamentGameDropdown').parentElement.querySelector('.dropdown-selected');
+    dropdownSelected.textContent = text;
+    dropdownSelected.setAttribute('data-value', value);
+    document.getElementById('tournamentGameDropdown').classList.remove('active');
+}

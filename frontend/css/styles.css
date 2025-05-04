@@ -717,23 +717,15 @@ nav .active a {
 
 /* Стили для невидимого окна с играми на главной странице */
 .main-page .games-window {
-    width: 440px; /* Фиксированная ширина, не меняется */
-    height: 557px; /* Высота окна 557px */
-    display: grid;                                                                                      /* flex-direction: wrap */
-    grid-template-columns: repeat(3, 200px); /* Две колонки по 200px (ширина картинки) */
-    grid-template-rows: repeat(2, 250px); /* Две строки по 250px (высота картинки) */
-    gap: 57px 40px; /* Отступы: 57px между строками, 40px между колонками */
-    align-content: space-between; /* Распределяем строки с учётом gap */
-    justify-content: space-between; /* Распределяем колонки с учётом gap */
-    flex-shrink: 0; /* Не сжимаем блок */
+    width: auto;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    grid-template-rows: repeat(2, 250px);
+    gap: 57px 40px;
+    align-content: space-between;
+    justify-content: space-between;
 }
-
-.main-page {
-    min-height: 900px;
-    max-height:3000px;
-    min-width:1440px;
-}
-
 
 .main-page .game-item {
     display: flex;
@@ -769,18 +761,6 @@ nav .active a {
     line-height: normal;
     margin-top: 10px; /* Небольшой отступ между картинкой и текстом */
     text-align: center;
-}
-
-/* Стили для фрейма турниров */
-.tournaments-window {
-    width: 100%; /* Растягиваем на всю доступную ширину */
-    flex-grow: 1; /* Растягиваем до правого края */
-    height: auto;
-    flex-shrink: 0;
-    border-radius: 20px;
-    background: #272727;
-    display: flex; /* Добавляем display: flex для правильной компоновки */
-    flex-direction: column;
 }
 
 /* Стили для шапки турниров */
@@ -1084,68 +1064,8 @@ nav .active a {
 
 
 
-/* Общие стили для модальных окон */
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55), visibility 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-}
-
-.modal.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1001;
-    opacity: 0;
-    transition: opacity 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-}
-
-.modal.active .modal-overlay {
-    opacity: 1;
-}
-
-.modal-content {
-    position: relative;
-    width: 610px;
-    height: 420px;
-    flex-shrink: 0;
-    border-radius: 20px;
-    background: #272727;
-    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.25);
-    z-index: 1002;
-    top: 50%;
-    left: 50%;
-    padding: 20px;
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.1);
-    transition: opacity 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55), transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
 
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 570px;
-    margin-bottom: 26px;
-}
 
 .modal-header h2.success-modal-header {
     font-size: 24px;
@@ -1435,22 +1355,6 @@ nav .active a {
     opacity: 0.8;
 }
 
-/* Стили для невидимого окна с играми на главной странице */
-.main-page .games-window {
-    width: auto; 
-    height: auto; 
-    display: grid;
-    grid-template-columns: repeat(3, 200px); /* Две колонки по 200px (ширина картинки) */
-    grid-template-rows: repeat(2, 250px); /* Две строки по 250px (высота картинки) */
-    gap: 57px 40px; /* Отступы: 57px между строками, 40px между колонками */
-    align-content: space-between; /* Распределяем строки с учётом gap */
-    justify-content: space-between; /* Распределяем колонки с учётом gap */
-}
-
-.main-page {
-    max-height: 3000px;
-    min-width: 1440px;
-}
 
 .main-page .game-item {
     display: flex;
@@ -1511,12 +1415,13 @@ nav .active a {
 /* Стили для фрейма турниров */
 .tournaments-window {
     width: auto;
-    max-height: 557px; /* Совпадает с высотой .games-window для визуальной гармонии */
+    max-height: 557px;
     flex-shrink: 1;
     border-radius: 20px;
     background: #272727;
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
 }
 
 /* Стили для списка турниров */
@@ -1958,6 +1863,148 @@ nav .active a {
     text-align: center;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+/* Стили для модального окна верификации */
+#verifyAccountModal .modal-content {
+    width: 610px;
+    height: auto;
+    border-radius: 20px;
+    background: #272727;
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#verifyAccountModal .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 570px;
+    margin-bottom: 26px;
+}
+
+#verifyAccountModal .verify-modal-header {
+    color: #9E9D9D;
+    font-family: "Roboto Flex";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin: 0;
+}
+
+#verifyAccountModal .modal-close {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+#verifyAccountModal .modal-close:hover {
+    opacity: 0.8;
+}
+
+#verifyAccountModal .verify-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 570px;
+}
+
+#verifyAccountModal .verify-modal-label {
+    color: #FFF;
+    font-family: "Roboto Flex";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    align-self: flex-start;
+    margin-bottom: 6px;
+}
+
+#verifyAccountModal .verify-modal-input {
+    display: flex;
+    width: 570px;
+    height: 60px;
+    padding: 18px 251px 19px 18px;
+    align-items: center;
+    border-radius: 15px;
+    background: #161616;
+    margin-bottom: 20px;
+}
+
+#verifyAccountModal .verify-modal-input input {
+    width: 100%;
+    background: none;
+    border: none;
+    color: #9E9D9D;
+    font-family: "Roboto Flex";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 100;
+    line-height: normal;
+    outline: none;
+}
+
+#verifyAccountModal .verify-modal-input input::placeholder {
+    color: #9E9D9D;
+    font-family: "Roboto Flex";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 100;
+    line-height: normal;
+}
+
+#verifyAccountModal .verify-modal-submit-btn {
+    display: flex;
+    width: 570px;
+    height: 70px;
+    padding: 21px 187px 21px 188px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 15px;
+    background: #FB6704;
+    border: none;
+    color: #FFF;
+    font-family: "Roboto Flex";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+#verifyAccountModal .verify-modal-submit-btn:hover {
+    opacity: 0.8;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .edit-icon {
     width: 20px;
     height: 20px;
@@ -2102,7 +2149,6 @@ nav .active a {
     width: 100%; /* Убедимся, что тире занимает всю доступную ширину */
 }
 
-/* Медиа-запрос для зума (эффективная ширина < 960px) */
 @media (max-width: 1300px) {
     .profile-tournament-dates {
         flex-direction: column; /* Меняем на столбец при зуме */
@@ -2412,8 +2458,93 @@ nav .active a {
     align-items: center;
     border-radius: 15px;
     background: #161616;
-    margin-bottom: 30px;
+    margin-bottom: 14px;
 }
+
+
+
+
+
+.send-code-btn {
+    display: flex;
+    height: 35px;
+    padding: 9px 4px 8px 5px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background: #FB6704;
+    text-align: center;
+    color: #FFF;
+    text-align: center;
+    font-family: "Roboto Flex";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    justify-content: center; 
+    margin-right: 12px;
+    border: none; 
+    outline: none; 
+    cursor: pointer;
+
+    transition: padding 0.4s ease, border-radius 0.4s ease; /* Плавное изменение отступов и скругления */}
+
+/* Состояние кнопки после клика (уменьшенные отступы для иконки) */
+.send-code-btn.shrunk {
+    padding: 0 10px; /* Уменьшаем отступы, чтобы кнопка "сжалась" вокруг иконки */
+    border-radius: 20px; /* Увеличиваем скругление, чтобы кнопка стала более круглой */
+}
+
+.send-code-btn .verified-icon {
+    width: 20px;
+    height: 20px;
+    display: none; /* Иконка изначально скрыта и не занимает место */
+    vertical-align: middle; /* Центрируем иконку по вертикали */
+    transition: opacity 0.3s ease 0.2s, visibility 0s 0.2s; /* Плавное появление с задержкой */}
+
+.send-code-btn .verified-icon.visible {
+    display: inline-block; /* Показываем иконку */
+    opacity: 1; /* Для плавного появления */
+}
+
+
+/* Скрываем текст кнопки, когда иконка видима */
+.send-code-btn .button-text {
+    color: #FFF;
+    text-align: center;
+    font-family: "Roboto Flex";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    display: inline-block; /* Чтобы текст вёл себя как блочный элемент */
+    vertical-align: middle; /* Центрируем текст по вертикали */
+    transition: opacity 0.3s ease;
+}
+
+/* Когда текст скрыт */
+.send-code-btn .button-text.hidden {
+    display: none; /* Скрываем текст и убираем его из потока */
+}
+
+
+
+
+.send-code-btn:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+
+
+
+
+
+
+
+
+
 
 .login-modal-input input {
     width: 100%;
@@ -2474,7 +2605,7 @@ nav .active a {
     line-height: normal;
     cursor: pointer;
     margin-bottom: 30px;
-    margin-top: 10px;
+    margin-top: 14px;
     transition: opacity 0.3s ease;
 }
 
@@ -2491,6 +2622,7 @@ nav .active a {
     height: 2px;
     background: #4C4B4B;
     margin-bottom: 30px;
+    border: 1px solid #4C4B4B; /* Яркая граница для отладки */
 }
 
 /* Стили для кликабельной ссылки */
@@ -2531,7 +2663,7 @@ nav .active a {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 5px; /* Небольшой отступ между "Нет аккаунта?" и "Зарегистрируйтесь" */
+    gap: 5px; 
 }
 
 /* Стили для некликабельного текста */
@@ -2559,7 +2691,7 @@ nav .active a {
 /* Стили для модального окна регистрации */
 .register-modal .modal-content {
     width: 470px;
-    height: 660px;
+    min-height: 660px;
     flex-shrink: 0;
     border-radius: 20px;
     background: #272727;
@@ -2639,10 +2771,22 @@ nav .active a {
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    margin-bottom: 10px;
+    margin-top: 20px;
     margin-left: 10px;
     align-self: flex-start;
 }
+
+.register-modal-label-nickname {
+    color: #FFF;
+    font-family: "Roboto Flex";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: 14px;
+    margin-left: 10px;
+    align-self: flex-start;
+}   
 
 .register-modal-input {
     display: flex;
@@ -2652,7 +2796,61 @@ nav .active a {
     align-items: center;
     border-radius: 15px;
     background: #161616;
-    margin-bottom: 30px;
+    margin-bottom: 7px;
+    margin-top: 7px;
+    outline: none;
+}
+
+.register-code-input {
+    display: flex;
+    width: 246px;
+    height: 40px;
+    padding: 18px 0px 19px 18px;
+    align-items: center;
+    border-radius: 15px;
+    background: #161616;
+    margin-bottom: 14px;
+    align-self: flex-start;
+}
+
+.register-nickname-input {
+    display: flex;
+    width: 410px;
+    height: 60px;
+    padding: 18px 0px 19px 18px;
+    align-items: center;
+    border-radius: 15px;
+    background: #161616;
+    color: #9E9D9D;
+    margin-bottom: 14px;
+    margin-top: 7px;
+}
+
+.register-nickname-input input {
+    width: 100%;
+    background: none;
+    border: none;
+    font-family: "Roboto Flex";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 100;
+    line-height: normal;
+    color: #9E9D9D;
+    align-items: center;
+}
+
+.register-code-input input {
+    width: 100%;
+    background: none;
+    border: none;
+    color: #9E9D9D;
+    font-family: "Roboto Flex";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 100;
+    line-height: normal;
+    outline: none;
+    align-items: center;
 }
 
 .register-modal-input input {
@@ -2669,14 +2867,84 @@ nav .active a {
     align-items: center;
 }
 
-.register-modal-input input::placeholder {
+.password-input:nth-of-type(2n) {
+    margin-bottom: 14px;
+}
+
+
+
+/* Стили для контейнера ошибки */
+.register-modal .error-container,
+.login-modal .error-container,
+.modal .error-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+    margin-left: 10px; /* Выравниваем с полем ввода */
+    display: none; /* Скрыто по умолчанию */
+}
+
+/* Показываем контейнер, если есть класс .visible */
+.register-modal .error-container.visible, 
+.login-modal .error-container.visible,
+.modal .error-container.visible {
+    display: flex;
+}
+
+/* Стили для иконки ошибки */
+.register-modal .error-icon, 
+.login-modal .error-icon,
+.modal .error-icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* Стили для текста ошибки */
+.register-modal .wrong-code-error, .register-modal .wrong-nickname-error, .register-modal .wrong-password-input-error, 
+.login-modal .wrong-data-error, .modal .wrong-sfu-data-error {
+    color: #F97676;
+    font-family: "Roboto Flex";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.75px;
+}
+
+
+
+
+
+
+
+.register-modal-input input[type="password"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    &::-ms-reveal,
+    &::-ms-clear {
+        display: none; /* Убираем значок в Edge */
+    }
+    &::-webkit-credential-auto-fill-button,
+    &::-webkit-clear-button,
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        display: none; /* Убираем дополнительные элементы в WebKit */
+    }
+}
+
+.register-modal-input input::placeholder,
+.register-code-input input::placeholder,
+.register-nickname-input input::placeholder {
     color: #9E9D9D;
     font-family: "Roboto Flex";
     font-size: 20px;
     font-style: normal;
     font-weight: 100;
     line-height: normal;
-    letter-spacing: 0.3px;
+    outline: none;
+    border: none;
 }
 
 .register-modal-submit-btn {
@@ -2696,14 +2964,49 @@ nav .active a {
     font-weight: 600;
     line-height: normal;
     cursor: pointer;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    transition: opacity 0.3s ease;
+    margin-top: 14px;
+}
+
+/* Максимально специфичный селектор с отладочными стилями */
+.register-modal-divider {
+    width: 410px;
+    background: #4C4B4B;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    border: 1px solid #4C4B4B; /* Яркая граница для отладки */
 }
 
 .register-modal-submit-btn:hover {
     opacity: 0.8;
+    transition: opacity 0.3s ease;
 }
+
+.register-modal-text {
+    color: #FFF;
+    text-align: center;
+    font-family: "Roboto Flex";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: normal;
+    opacity: 0.6;
+}
+
+.register-modal-login-link {
+    color: rgb(251, 103, 4);
+    text-align: center;
+    font-family: "Roboto Flex";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: normal;
+}
+
+.register-modal-login-link:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
 
 
 
@@ -2728,12 +3031,20 @@ nav .active a {
 
 
 
+
+
+
+
+
+
+
 /* Стили для меню турниров */
 .tournaments-menu {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 24px;
+    flex-wrap: wrap;
 }
 
 /* Стили для поисковой строки */
@@ -2785,7 +3096,32 @@ nav .active a {
     background: white;
     width: 1px;
     height: 54px; /* Соответствует высоте текста вкладок */
+}
 
+.create-tournament-btn {
+    display: flex;
+    width: auto;
+    height: 35px;
+    padding: 7px 18px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #FB6704;
+    color: #FFF;
+    font-family: "Roboto Flex";
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    border: none; 
+    outline: none; 
+    cursor: pointer; 
+}
+
+.create-tournament-btn:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
 }
 
 /* Стили для вкладок */
@@ -2858,6 +3194,7 @@ nav .active a {
     align-items: center;
     padding: 20px; /* Внутренние отступы */
     gap: 20px; /* Отступ между изображением и заголовком */
+    position: relative;
 }
 
 /* Стили для изображения турнира */
@@ -2891,7 +3228,7 @@ nav .active a {
 .game-icon-orange:hover {
     cursor: pointer;
     opacity: 0.8;
-    transition: opacity 0.3s ease;
+    transition: 0.3s ease;
 }
 
 /* Скорректируем tournament-container для правильного расположения элементов */
@@ -2921,6 +3258,7 @@ nav .active a {
 .tournament-details {
     display: flex;
     gap: 5px; /* Отступ между строками деталей */
+    flex-wrap: wrap;
 
 }
 
@@ -2950,8 +3288,8 @@ nav .active a {
     font-weight: 200;
     line-height: normal;
     position: absolute;
-    top: -30px;
-    right: -10px; 
+    top: 10px;
+    right: 10px; 
 }
 
 .tournament-container .tournament-divider {
@@ -2965,18 +3303,6 @@ nav .active a {
     animation: pulse 0.4s ease-out; 
 }
 
-/* Анимация пульсации */
-@keyframes pulse {
-    0% { transform: scale(1); }
-    10% { transform: scale(1.03); }
-    20% { transform: scale(1.08); }
-    30% { transform: scale(1.12); }
-    40% { transform: scale(1.15); }
-    50% { transform: scale(1.1); }
-    60% { transform: scale(1.05); }
-    70% { transform: scale(1.04); }
-    80% { transform: scale(1.03); }
-    90% { transform: scale(1.02); }
-    95% { transform: scale(1.01); }
-    100% { transform: scale(1); }
-}
+
+
+

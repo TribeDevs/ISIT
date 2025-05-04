@@ -44,7 +44,7 @@
                 <input type="text" placeholder="Поиск по названию..." class="search-input">
                 <img src="../images/Search-icon.svg" alt="Search Icon" class="search-icon">
             </div>
-                <div class="tournaments-tournaments-tabs">
+            <div class="tournaments-tournaments-tabs">
                 <span class="tournament-divider"></span>
                 <span class="tab-past-tournaments">Прошедшие</span>
                 <span class="tab-future-tournaments">Актуальные</span>
@@ -56,13 +56,67 @@
                 <img src="../images/Valorant-icon.svg" alt="Valorant" class="game-icon" data-active="../images/Valorant-icon-active.svg">
                 <img src="../images/LoL-icon.svg" alt="LoL" class="game-icon" data-active="../images/LoL-icon-active.svg">
             </div>
+
+
+            <!-- Кнопка для открытия модального окна -->
+            <button class="create-tournament-btn">Создать турнир</button>
+
+
+
+            <!-- Модальное окно для создания турнира -->
+            <div class="modal" id="createTournamentModal">
+                <div class="modal-overlay"></div>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="success-modal-header">Создать турнир</h2>
+                        <img src="../images/Close-button.svg" alt="Закрыть" class="modal-close">
+                    </div>
+
+                    
+                    <div class="tournament-creation-form">
+
+
+                        <label class="tournament-modal-label">Регистрация закрывается:</label>
+                        <input type="date" class="tournament-date-input" value="2077-04-27">
+
+                        
+                        <label class="tournament-modal-label">Дата проведения:</label>
+                        <input type="date" class="tournament-date-input" value="2077-04-28">
+
+
+                        <label class="tournament-modal-label">Формат:</label>
+                        <input type="text" class="tournament-format-input" placeholder="5 vs 5, Best of 3, LAN">
+
+
+                        <label class="tournament-modal-label">Максимальное количество команд:</label>
+                        <input type="number" class="tournament-teams-input" value="10" min="1">
+
+
+                        <label class="tournament-modal-label">Место проведения:</label>
+                        <input type="text" class="tournament-location-input" placeholder="НИКТ, СибГУ им. Хаб">
+
+
+                        <label class="tournament-modal-label">Трансляция:</label>
+                        <input type="text" class="tournament-stream-input" placeholder="twitch.tv/sfudotandva">
+
+
+                        <label class="tournament-modal-label tournament-network-label">
+                            <input type="checkbox" class="tournament-network-checkbox" checked>
+                            Турнирная сетка
+                        </label>
+
+
+                        <button class="modal-create-tournament-btn">Создать</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
 
 
         <div class="tournaments-list">
-
             <div class="tournament-container">
+                <span class="tournament-current-stage">Завершён</span>
                 <img src="../images/Tournament-image.svg" alt="Tournament Image" class="tournament-image">
                 <div class="tournament-info">
                     <div class="tournament-header">
@@ -76,11 +130,11 @@
                         <span class="tournament-divider"></span>
                         <span class="tournament-format">5 vs 5, LAN</span>
                     </div>
-                    <span class="tournament-current-stage">Завершён</span>
                 </div>
             </div>
 
             <div class="tournament-container">
+                <span class="tournament-current-stage">Регистрация</span>
                 <img src="../images/Tournament-image.svg" alt="Tournament Image" class="tournament-image">
                 <div class="tournament-info">
                     <div class="tournament-header">
@@ -94,11 +148,11 @@
                         <span class="tournament-divider"></span>
                         <span class="tournament-format">5 vs 5, LAN</span>
                     </div>
-                    <span class="tournament-current-stage">Регистрация</span>
                 </div>
             </div>
 
             <div class="tournament-container">
+                <span class="tournament-current-stage">Идёт</span>
                 <img src="../images/Tournament-image.svg" alt="Tournament Image" class="tournament-image">
                 <div class="tournament-info">
                     <div class="tournament-header">
@@ -112,12 +166,9 @@
                         <span class="tournament-divider"></span>
                         <span class="tournament-format">5 vs 5, LAN</span>
                     </div>
-                    <span class="tournament-current-stage">Идёт</span>
                 </div>
             </div>
         </div>
     </div>
 
     <script src="../js/main.js"></script>
-</body>
-</html>
