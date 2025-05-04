@@ -225,47 +225,6 @@
         </div>
     </div>
 
-    <!-- Модальное окно входа -->
-    <div class="modal login-modal" id="loginModal">
-        <div class="modal-overlay"></div>
-        <div class="modal-content">
-            <div class="login-modal-header">
-                <div class="login-modal-logo">
-                    <div class="logo-section">
-                        <img src="../images/Logo.svg" alt="ISIT GAMING Logo" class="logo">
-                        <div class="site-name">
-                            <span class="logo-large">ISIT</span><span class="logo-small">.GAMING</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="close-button">
-                    <img src="../images/Close-button.svg" alt="Закрыть" class="modal-close">
-                </div>
-            </div>
-            <h2 class="login-modal-title">Вход в аккаунт</h2>
-            <label class="login-modal-label">Почта</label>
-            <div class="login-modal-input">
-                <input type="text" placeholder="Введите вашу почту..." minlength="10" maxlength="40">
-            </div>
-            <label class="login-modal-label">Пароль</label>
-            <div class="login-modal-input password-input">
-                <input type="password" placeholder="Введите ваш пароль..." minlength="8" maxlength="20">
-                <svg class="password-toggle-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 4.5C7 4.5 2.73 7.61 1 12C2.73 16.39 7 19.5 12 19.5C17 19.5 21.27 16.39 23 12C21.27 7.61 17 4.5 12 4.5ZM12 17C9.24 17 7 14.76 7 12C7 9.24 9.24 7 12 7C14.76 7 17 9.24 17 12C17 14.76 14.76 17 12 17ZM12 9C10.34 9 9 10.34 9 12C9 13.66 10.34 15 12 15C13.66 15 15 13.66 15 12C15 10.34 13.66 9 12 9Z" fill="currentColor"/>
-                </svg>
-            </div>
-            <a href="profile.html" class="login-modal-submit-link">
-                <button class="login-modal-submit-btn">Войти</button>
-            </a>
-            <div class="login-modal-divider"></div>
-            <div class="login-modal-footer">
-                <span class="login-modal-text">Нет аккаунта?</span>
-                <a href="#" class="login-modal-register-link" id="openRegisterModal">Зарегистрируйтесь</a>
-            </div>
-        </div>
-    </div>
-
-
     <!---- Модальное окно входа ---->
     <div class="modal login-modal" id="loginModal">
         <div class="modal-overlay"></div>
@@ -295,6 +254,12 @@
                     <path d="M12 4.5C7 4.5 2.73 7.61 1 12C2.73 16.39 7 19.5 12 19.5C17 19.5 21.27 16.39 23 12C21.27 7.61 17 4.5 12 4.5ZM12 17C9.24 17 7 14.76 7 12C7 9.24 9.24 7 12 7C14.76 7 17 9.24 17 12C17 14.76 14.76 17 12 17ZM12 9C10.34 9 9 10.34 9 12C9 13.66 10.34 15 12 15C13.66 15 15 13.66 15 12C15 10.34 13.66 9 12 9Z" fill="currentColor"/>
                 </svg>
             </div>
+
+            <div class="error-container">
+                <img src="../images/Error-icon.svg" alt="Error" class="error-icon">
+                <span class="wrong-data-error">Ошибка! Неверная почта или пароль.</span>
+            </div>
+
             <a href="profile.html" class="login-modal-submit-link">
                 <button class="login-modal-submit-btn">Войти</button>
             </a>
@@ -323,32 +288,77 @@
                     <img src="../images/Close-button.svg" alt="Закрыть" class="modal-close">
                 </div>
             </div>
+
+
             <h2 class="register-modal-title">Регистрация</h2>
             <label class="register-modal-label">E-mail</label>
+
             <div class="register-modal-input">
                 <input type="email" placeholder="Введите вашу почту..." minlength="10" maxlength="40">
+                <button class="send-code-btn">
+                    <span class="button-content">
+                        <span class="button-text">Отправить</span>
+                        <img src="../images/Verified-icon-white.svg" alt="Verified" class="verified-icon">
+                    </span>
+                </button>
             </div>
-            <label class="register-modal-label">Никнейм</label>
-            <div class="register-modal-input">
-                <input type="text" placeholder="Можно изменить позже" minlength="3" maxlength="20">
+
+            <div class="register-code-input">
+                <input type="text" placeholder="Код из письма" minlength="1" maxlength="6">
             </div>
+
+            <div class="error-container">
+                <img src="../images/Error-icon.svg" alt="Error" class="error-icon">
+                <span class="wrong-code-error">Ошибка! Неверный код.</span>
+            </div>
+
+            <label class="register-modal-label-nickname">Никнейм</label>
+
+            <div class="register-nickname-input">
+                <input type="text" placeholder="Можно изменить позже" minlength="3" maxlength="16">
+            </div>
+
+            <div class="error-container">
+                <img src="../images/Error-icon.svg" alt="Error" class="error-icon">
+                <span class="wrong-nickname-error">Ошибка! Такой никнейм уже используется.</span>
+            </div>
+
             <label class="register-modal-label">Пароль</label>
+
             <div class="register-modal-input password-input">
                 <input type="password" placeholder="Введите пароль..." minlength="8" maxlength="20">
                 <svg class="password-toggle-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 4.5C7 4.5 2.73 7.61 1 12C2.73 16.39 7 19.5 12 19.5C17 19.5 21.27 16.39 23 12C21.27 7.61 17 4.5 12 4.5ZM12 17C9.24 17 7 14.76 7 12C7 9.24 9.24 7 12 7C14.76 7 17 9.24 17 12C17 14.76 14.76 17 12 17ZM12 9C10.34 9 9 10.34 9 12C9 13.66 10.34 15 12 15C13.66 15 15 13.66 15 12C15 10.34 13.66 9 12 9Z" fill="currentColor"/>
                 </svg>
             </div>
+
             <label class="register-modal-label">Повторите пароль</label>
+
             <div class="register-modal-input password-input">
                 <input type="password" placeholder="Повторите пароль" minlength="8" maxlength="20">
                 <svg class="password-toggle-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 4.5C7 4.5 2.73 7.61 1 12C2.73 16.39 7 19.5 12 19.5C17 19.5 21.27 16.39 23 12C21.27 7.61 17 4.5 12 4.5ZM12 17C9.24 17 7 14.76 7 12C7 9.24 9.24 7 12 7C14.76 7 17 9.24 17 12C17 14.76 14.76 17 12 17ZM12 9C10.34 9 9 10.34 9 12C9 13.66 10.34 15 12 15C13.66 15 15 13.66 15 12C15 10.34 13.66 9 12 9Z" fill="currentColor"/>
                 </svg>
             </div>
+
+            <div class="error-container">
+                <img src="../images/Error-icon.svg" alt="Error" class="error-icon">
+                <span class="wrong-password-input-error">Ошибка! Пароли не совпадают.</span>
+            </div>
+
             <button class="register-modal-submit-btn">Зарегистрироваться</button>
+
+            <div class="register-modal-divider"></div>
+
+            <div class="login-modal-footer">
+                <span class="register-modal-text">Уже есть аккаунт?</span>
+                <a href="#" class="register-modal-login-link" id="loginModal">Войти</a>
+            </div>
+
         </div>
     </div>
+
+
     
     <script src="../js/main.js"></script>
 </body>
