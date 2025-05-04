@@ -101,13 +101,14 @@ public class AuthService {
     }
 
     @Transactional
-    public boolean changePassword(@NonNull ChangePasswordRequest request) {
+    public void changePassword(@NonNull ChangePasswordRequest request) {
         if (!userRepository.existsByEmail(request.getEmail())) {
             throw new Exception("Неверная почта!");
         }
         if (!confirmationCodeService.validateCode(request.getEmail(), request.getCode())) {
             throw new Exception("Ошибка проверки кода!");
         }
+
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new Exception("Пользователь не найден!: "));
         user.setPassword(
@@ -115,8 +116,6 @@ public class AuthService {
         );
 
         userRepository.save(user);
-
-        return true;
     }
 
 
