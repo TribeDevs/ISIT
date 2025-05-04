@@ -9,6 +9,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StreamUtils;
 import ru.isit.dto.request.ChangePasswordRequest;
 import ru.isit.dto.request.JwtRequest;
@@ -25,8 +26,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
 
 
 @Service
@@ -46,6 +45,7 @@ public class AuthService {
     @Value("${server.port}")
     private int serverPort;
 
+    @Transactional
     public JwtResponse signIn(@NonNull JwtRequest request) {
         User user = userRepository.findByEmail(request.getLogin())
                 .orElseThrow(() -> new Exception(
@@ -62,6 +62,7 @@ public class AuthService {
         return new JwtResponse(accessToken, refreshToken);
     }
 
+    @Transactional
     public User signUp(@NonNull SignUpRequest request) {
         if (userRepository.existsByUsername(request.getUsername())) {
             throw new Exception("Имя пользователя уже занято!");
@@ -85,6 +86,7 @@ public class AuthService {
         return userRepository.save(user);
     }
 
+    @Transactional
     public void sendConfirmationEmail(String email, String textTitle) throws MessagingException, IOException {
         String confirmationCode = confirmationCodeService.saveConfirmationCode(email);
 
@@ -98,8 +100,21 @@ public class AuthService {
         emailService.sendMessage(email, title, htmlTemplate);
     }
 
-    public Boolean changePassword(@NonNull ChangePasswordRequest request) {
+    @Transactional
+    public boolean changePassword(@NonNull ChangePasswordRequest request) {
+        if (!userRepository.existsByEmail(request.getEmail())) {
+            throw new Exception("Неверная почта!");
+        }
+        if (!confirmationCodeService.validateCode(request.getEmail(), request.getCode())) {
+            throw new Exception("Ошибка проверки кода!");
+        }
+        User user = userRepository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new Exception("Пользователь не найден!: "));
+        user.setPassword(
+                passwordEncoder.encode(request.getNewPassword())
+        );
 
+        userRepository.save(user);
 
         return true;
     }

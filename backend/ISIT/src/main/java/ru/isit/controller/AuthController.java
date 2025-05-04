@@ -5,11 +5,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.isit.dto.request.JwtRequest;
-import ru.isit.dto.request.RefreshJwtRequest;
-import ru.isit.dto.request.SignUpRequest;
+import ru.isit.dto.request.*;
 import ru.isit.dto.response.JwtResponse;
-import ru.isit.models.User;
 import ru.isit.service.AuthService;
 
 
@@ -22,22 +19,25 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> signUp(@RequestBody @Valid SignUpRequest request) {
-        User user = authService.signUp(request);
+        authService.signUp(request);
         return ResponseEntity.status(HttpStatus.CREATED).body("Аккаунт создан!");
     }
 
     @PostMapping("/signin")
     public ResponseEntity<JwtResponse> signIn(@RequestBody @Valid JwtRequest request) {
         final JwtResponse token = authService.signIn(request);
-
         return ResponseEntity.ok(token);
     }
 
+    @PostMapping("/forgotPassword")
+    public ResponseEntity<?> forgotPassword(@RequestBody @Valid ChangePasswordRequest request) {
+        authService.changePassword(request);
+        return ResponseEntity.ok("");
+    }
 
     @PostMapping("/token")
     public ResponseEntity<JwtResponse> getNewAccessToken(@RequestBody @Valid RefreshJwtRequest request) {
         final JwtResponse token = authService.getAccessToken(request.getRefreshToken());
-
         return ResponseEntity.ok(token);
     }
 
