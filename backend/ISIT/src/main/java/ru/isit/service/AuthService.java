@@ -2,24 +2,20 @@ package ru.isit.service;
 
 import io.jsonwebtoken.Claims;
 import jakarta.mail.MessagingException;
-import jakarta.mail.internet.MimeMessage;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StreamUtils;
-import ru.isit.dto.request.ChangePassword;
+import ru.isit.dto.request.ChangePasswordRequest;
 import ru.isit.dto.request.JwtRequest;
 import ru.isit.dto.request.SignUpRequest;
 import ru.isit.dto.response.JwtResponse;
 import ru.isit.exception.Exception;
-import ru.isit.models.ConfirmationCode;
 import ru.isit.models.Role;
-import ru.isit.repository.ConfirmationCodeRepository;
 import ru.isit.repository.UserRepository;
 import ru.isit.security.JwtAuthentication;
 import ru.isit.models.User;
@@ -27,7 +23,6 @@ import ru.isit.security.JwtProvider;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -91,7 +86,6 @@ public class AuthService {
     }
 
     public void sendConfirmationEmail(String email, String textTitle) throws MessagingException, IOException {
-        String token = UUID.randomUUID().toString();
         String confirmationCode = confirmationCodeService.saveConfirmationCode(email);
 
         String title = "[ISIT] - " + textTitle;
@@ -99,18 +93,15 @@ public class AuthService {
         ClassPathResource resource = new ClassPathResource("templates/email-confirmation.html");
         String htmlTemplate = StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
 
-        htmlTemplate = htmlTemplate.replace("X7FgH2q9Lp", confirmationCode);
+        htmlTemplate = htmlTemplate.replace("[CODE]", confirmationCode);
 
         emailService.sendMessage(email, title, htmlTemplate);
     }
 
-    public String changePassword(@NonNull ChangePassword request) {
-        Optional<User> user = userRepository.findByEmail(request.getEmail());
-        if (user.get().getPassword().equals(request.getOldPassword())) {
-            return "Неправильный изначальный пароль!";
-        }
-//        user.get().setPassword();
-        return  "f";
+    public Boolean changePassword(@NonNull ChangePasswordRequest request) {
+
+
+        return true;
     }
 
 
