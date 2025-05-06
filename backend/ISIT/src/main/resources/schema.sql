@@ -5,7 +5,6 @@ CREATE TABLE IF NOT EXISTS users (
                                      email VARCHAR(100) UNIQUE NOT NULL,
                                      avatar_url VARCHAR(255),
                                      verified BOOL,
-                                     enable BOOL,
                                      created_at TIMESTAMP
 );
 
@@ -20,20 +19,14 @@ ALTER TABLE user_roles
             REFERENCES users(id)
             ON DELETE CASCADE;
 
-CREATE TABLE IF NOT EXISTS tokens (
+CREATE TABLE IF NOT EXISTS codes (
                                       id UUID PRIMARY KEY,
-                                      user_id UUID,
-                                      token VARCHAR,
+                                      email VARCHAR(100),
+                                      code VARCHAR,
                                       created_at TIMESTAMP,
                                       expires_at TIMESTAMP,
-                                      confirmed_at TIMESTAMP
+                                      used BOOLEAN
 );
-
-ALTER TABLE tokens
-    ADD CONSTRAINT fk_tokens_user
-        FOREIGN KEY (user_id)
-            REFERENCES users(id)
-            ON DELETE CASCADE;
 
 CREATE TABLE IF NOT EXISTS bind_platform (
                                              id UUID PRIMARY KEY,

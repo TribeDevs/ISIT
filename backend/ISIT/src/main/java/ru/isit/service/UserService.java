@@ -18,16 +18,16 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Transactional
-    public User grantRole(UUID userId, Role role) {
+    public void grantRole(UUID userId, Role role) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new Exception("User not found"));
 
         user.getRoles().add(role);
-        return userRepository.save(user);
+        userRepository.save(user);
     }
 
     @Transactional
-    public User revokeRole(UUID userId, Role role) {
+    public void revokeRole(UUID userId, Role role) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new Exception("User not found"));
 
@@ -36,7 +36,7 @@ public class UserService {
             throw new Exception("User  does not have role: " + role);
         }
 
-        return userRepository.save(user);
+        userRepository.save(user);
     }
 
     public List<User> getAllUsers() {

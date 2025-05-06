@@ -5,7 +5,6 @@ import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import ru.isit.models.Role;
 
 import java.util.Collection;
 import java.util.Set;
@@ -19,10 +18,6 @@ public class CustomUserDetails implements UserDetails {
     private UUID id;
     private String username;
     private Set<Role> roles;
-
-    public UUID getId() {
-        return id;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

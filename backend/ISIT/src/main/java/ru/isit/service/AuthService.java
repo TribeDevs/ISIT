@@ -1,27 +1,31 @@
 package ru.isit.service;
 
 import io.jsonwebtoken.Claims;
+import jakarta.mail.MessagingException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StreamUtils;
+import ru.isit.dto.request.ChangePasswordRequest;
 import ru.isit.dto.request.JwtRequest;
 import ru.isit.dto.request.SignUpRequest;
 import ru.isit.dto.response.JwtResponse;
 import ru.isit.exception.Exception;
-import ru.isit.models.ConfirmationToken;
 import ru.isit.models.Role;
 import ru.isit.repository.UserRepository;
 import ru.isit.security.JwtAuthentication;
 import ru.isit.models.User;
 import ru.isit.security.JwtProvider;
 
-import java.time.LocalDateTime;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 
 @Service
@@ -32,7 +36,7 @@ public class AuthService {
     private final Map<String, String> refreshStorage = new HashMap<>();
     private final JwtProvider jwtProvider;
     private final PasswordEncoder passwordEncoder;
-    private final ConfirmationTokenService confirmationTokenService;
+    private final ConfirmationCodeService confirmationCodeService;
     private final EmailService emailService;
 
     @Value("${server.address}")
@@ -41,12 +45,34 @@ public class AuthService {
     @Value("${server.port}")
     private int serverPort;
 
+    @Transactional
+    public JwtResponse signIn(@NonNull JwtRequest request) {
+        User user = userRepository.findByEmail(request.getLogin())
+                .orElseThrow(() -> new Exception(
+                        "User with login '" + request.getLogin() + "' not found!"));
+
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            throw new Exception("Invalid login or password!");
+        }
+
+        String accessToken  = jwtProvider.generateAccessToken(user);
+        String refreshToken = jwtProvider.generateRefreshToken(user);
+
+        refreshStorage.put(user.getEmail(), refreshToken);
+        return new JwtResponse(accessToken, refreshToken);
+    }
+
+    @Transactional
     public User signUp(@NonNull SignUpRequest request) {
         if (userRepository.existsByUsername(request.getUsername())) {
             throw new Exception("Имя пользователя уже занято!");
         }
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new Exception("Почта уже занята!");
+        }
+
+        if (!confirmationCodeService.validateCode(request.getEmail(), request.getCode())) {
+            throw new Exception("Ошибка проверки кода!");
         }
 
         User user = new User();
@@ -60,44 +86,36 @@ public class AuthService {
         return userRepository.save(user);
     }
 
-    public void sendConfirmationEmail(User user) {
-        String token = UUID.randomUUID().toString();
-        ConfirmationToken confirmationToken = new ConfirmationToken(
-                token,
-                LocalDateTime.now(),
-                LocalDateTime.now().plusMinutes(15),
-                user
-        );
+    @Transactional
+    public void sendConfirmationEmail(String email, String textTitle) throws MessagingException, IOException {
+        String confirmationCode = confirmationCodeService.saveConfirmationCode(email);
 
-        String title = "[ISIT] - подтверждение регистрации";
-        String confirmationUrl = "https://" + serverAddress + "/confirm?token=" + token;
+        String title = "[ISIT] - " + textTitle;
 
-        confirmationTokenService.saveConfirmationToken(confirmationToken);
-        emailService.sendConfirmationEmail(
-                user.getEmail(),
-                title,
-                confirmationUrl
-        );
+        ClassPathResource resource = new ClassPathResource("templates/email-confirmation.html");
+        String htmlTemplate = StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
+
+        htmlTemplate = htmlTemplate.replace("[CODE]", confirmationCode);
+
+        emailService.sendMessage(email, title, htmlTemplate);
     }
 
-    public JwtResponse signIn(@NonNull JwtRequest request) {
-        User user = userRepository.findByUsername(request.getLogin())
-                .orElseThrow(() -> new Exception(
-                        "User with login '" + request.getLogin() + "' not found!"));
-
-        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            throw new Exception("Invalid login or password!");
+    @Transactional
+    public void changePassword(@NonNull ChangePasswordRequest request) {
+        if (!userRepository.existsByEmail(request.getEmail())) {
+            throw new Exception("Неверная почта!");
+        }
+        if (!confirmationCodeService.validateCode(request.getEmail(), request.getCode())) {
+            throw new Exception("Ошибка проверки кода!");
         }
 
-        if (!user.isEnable()) {
-            throw new Exception("Confirmed your email address!");
-        }
+        User user = userRepository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new Exception("Пользователь не найден!: "));
+        user.setPassword(
+                passwordEncoder.encode(request.getNewPassword())
+        );
 
-        String accessToken  = jwtProvider.generateAccessToken(user);
-        String refreshToken = jwtProvider.generateRefreshToken(user);
-
-        refreshStorage.put(user.getUsername(), refreshToken);
-        return new JwtResponse(accessToken, refreshToken);
+        userRepository.save(user);
     }
 
 
@@ -107,7 +125,7 @@ public class AuthService {
             final String login = claims.getSubject();
             final String saveRefreshToken = refreshStorage.get(login);
             if (saveRefreshToken != null && saveRefreshToken.equals(refreshToken)) {
-                final User user = userRepository.findByUsername(login)
+                final User user = userRepository.findByEmail(login)
                         .orElseThrow(() -> new Exception("User not found"));
                 final String accessToken = jwtProvider.generateAccessToken(user);
                 return new JwtResponse(accessToken, null);

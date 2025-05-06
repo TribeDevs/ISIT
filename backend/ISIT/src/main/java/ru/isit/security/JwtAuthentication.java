@@ -6,10 +6,8 @@ import lombok.Setter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import ru.isit.models.CustomUserDetails;
-import ru.isit.models.Role;
 
 import java.util.Collection;
-import java.util.Set;
 
 @Getter
 @Setter

@@ -7,6 +7,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,6 +16,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.filter.GenericFilterBean;
 import ru.isit.models.CustomUserDetails;
 import ru.isit.service.CustomUserDetailsService;
+import ru.isit.service.TokenBlacklistService;
 
 import java.io.IOException;
 
@@ -27,11 +29,19 @@ public class JwtFilter extends GenericFilterBean {
 
     private final JwtProvider jwtProvider;
     private final CustomUserDetailsService userDetailsService;
+    private final TokenBlacklistService blacklistService;
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain fc)
             throws IOException, ServletException {
         final String token = getTokenFromRequest((HttpServletRequest) request);
+
+        if (token != null && blacklistService.isTokenBlacklisted(token)) {
+            HttpServletResponse httpResponse = (HttpServletResponse) response;
+            httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Token revoked");
+            return;
+        }
+
         if (token != null && jwtProvider.validateAccessToken(token)) {
             final Claims claims = jwtProvider.getAccessClaims(token);
 

@@ -4,17 +4,9 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class SignUpRequest {
+public class SendCodeRequest {
 
     @NotBlank
     private String email;
-
-    @NotBlank String code;
-
-    @NotBlank
-    private String username;
-
-    @NotBlank
-    private String password;
 
 }

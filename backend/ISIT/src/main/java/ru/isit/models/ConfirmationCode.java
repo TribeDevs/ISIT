@@ -7,36 +7,34 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 
-@Table(name = "tokens")
+@Table(name = "codes")
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ConfirmationToken {
+public class ConfirmationCode {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    private String token;
+    private String code;
     private LocalDateTime createdAt;
     private LocalDateTime expiresAt;
-    private LocalDateTime confirmedAt;
+    private String email;
+    private boolean used;
 
-    @ManyToOne
-    private User user;
-
-    public ConfirmationToken(
-            String token,
+    public ConfirmationCode(
             LocalDateTime createdAt,
             LocalDateTime expiresAt,
-            User user
+            String email,
+            String code
     ) {
-        this.token = token;
         this.createdAt = createdAt;
         this.expiresAt = expiresAt;
-        this.user = user;
+        this.email = email;
+        this.code = code;
     }
 
 }
