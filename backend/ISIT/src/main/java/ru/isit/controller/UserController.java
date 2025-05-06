@@ -1,5 +1,6 @@
 package ru.isit.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,8 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import ru.isit.models.CustomUserDetails;
 import ru.isit.models.Role;
 import ru.isit.models.User;
+import ru.isit.service.TokenBlacklistService;
 import ru.isit.service.UserService;
 
+import java.time.Duration;
 import java.util.*;
 
 @RestController
@@ -18,6 +21,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
+    private final TokenBlacklistService blacklistService;
 
 
     @GetMapping("/me")
@@ -38,7 +42,26 @@ public class UserController {
     public ResponseEntity<?> getUserById(@PathVariable UUID id) {
         Optional<User> user = userService.getUserById(id);
         return ResponseEntity.ok(user.get().toResponse());
+    }
 
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletRequest request) {
+        String token = extractToken(request);
+
+        if (token == null) {
+            return ResponseEntity.badRequest().body("Токен не может быть пустым!");
+        }
+
+        blacklistService.addToBlacklist(token);
+        return ResponseEntity.ok("Выход прошел успешно!");
+    }
+
+    private String extractToken(HttpServletRequest request) {
+        String header = request.getHeader("Authorization");
+        if (header != null && header.startsWith("Bearer ")) {
+            return header.substring(7);
+        }
+        return null;
     }
 
     @PutMapping("/{id}")
@@ -49,7 +72,7 @@ public class UserController {
             return ResponseEntity.ok(updatedUser);
         }
 
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build(); // TODO
     }
 
     @DeleteMapping("/{id}")
