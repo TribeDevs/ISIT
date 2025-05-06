@@ -13,7 +13,6 @@ import ru.isit.models.User;
 import ru.isit.service.TokenBlacklistService;
 import ru.isit.service.UserService;
 
-import java.time.Duration;
 import java.util.*;
 
 @RestController
