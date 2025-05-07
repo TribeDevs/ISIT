@@ -1,0 +1,200 @@
+/* Стили для меню турниров */
+.tournaments-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.tournaments-page .Tournaments {
+    color: rgb(251, 103, 4);
+}
+
+
+/* Стили для разделителей */
+.tournament-divider {
+    background: white;
+    width: 1px;
+    height: 54px; /* Соответствует высоте текста вкладок */
+}
+
+.create-tournament-btn {
+    display: flex;
+    width: auto;
+    height: 35px;
+    padding: 7px 18px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #FB6704;
+    color: #FFF;
+    font-family: "Roboto Flex";
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    border: none; 
+    outline: none; 
+    cursor: pointer; 
+}
+
+.create-tournament-btn:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+/* Стили для вкладок */
+.tournaments-tournaments-tabs {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    padding-bottom: 10px;
+    width: auto;
+}
+
+/* Скорректируем tournament-container для правильного расположения элементов */
+.tournament-container {
+    border-radius: 20px;
+    border: 1px solid #FB6704;
+    background: #272727;
+    display: flex;
+    align-items: center; /* Выравниваем элементы по верхнему краю */
+    padding: 20px;
+    gap: 20px;
+    box-sizing: border-box; /* Убедимся, что padding не увеличивает ширину */
+}
+
+
+
+/* Контейнер для информации о турнире */
+.tournaments-page .tournament-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Растягиваем на оставшееся пространство */
+    position: relative;
+    align-items: flex-start; /* Выравниваем текст слева */
+}
+
+/* Контейнер для деталей турнира */
+.tournament-details {
+    display: flex;
+    gap: 5px; /* Отступ между строками деталей */
+    flex-wrap: wrap;
+
+}
+
+/* Стили для даты, участников и формата */
+.tournaments-page .tournament-date,
+.tournaments-page .tournament-participants,
+.tournaments-page .tournament-format {
+    color: #FFF;
+    font-family: "Roboto Flex";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.tournament-current-stage {
+    display: inline-flex;
+    padding: 6px 28px 5px 29px;
+    justify-content: center;
+    border-radius: 10px;
+    background: #161616;
+    color: #FFF;
+    text-align: center;
+    font-family: "Roboto Flex";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: normal;
+    position: absolute;
+    top: 10px;
+    right: 10px; 
+}
+
+.tournament-container .tournament-divider {
+    height: 21px;
+    width: 1px;
+}
+
+/* Стили для списка турниров */
+.tournaments-page .tournaments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Отступ между турнирами */
+    padding: 20px 0; /* Внутренние отступы */
+    margin: 0;
+    min-width: fit-content; /* Убедимся, что контейнер подстраивается под содержимое */
+    width: 100%;
+}
+
+
+/* Стили для контейнера турнира */
+.tournament-container {
+    border-radius: 20px;
+    border: 1px solid #FB6704;
+    background: #272727;
+    display: flex;
+    align-items: center;
+    padding: 20px; /* Внутренние отступы */
+    gap: 20px; /* Отступ между изображением и заголовком */
+    position: relative;
+}
+
+/* Стили для изображения турнира */
+.tournament-image {
+    width: 200px;
+    height: 110px;
+    flex-shrink: 0;
+    aspect-ratio: 20/11;
+    object-fit: cover; /* Для корректного отображения изображения */
+}
+
+/* Стили для заголовка турнира */
+.tournament-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Стили для названия турнира (уже есть в коде, но добавим для полноты) */
+.tournaments-page .tournament-name {
+    color: #FFF;
+    font-family: "Roboto Flex";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    display: block;
+    align-items: center;
+}
+
+.tournament-page, .game-icons {
+    gap: 20px;
+    display: flex;
+}
+
+
+.tournaments-tournaments-tabs .tab-past-tournaments,
+.tournaments-tournaments-tabs .tab-future-tournaments {
+    color: white; /* Базовый цвет — белый */
+    font-family: "Roboto Flex";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 6px;
+    transition: color 0.4s ease, opacity 0.1s ease; /* Плавное изменение цвета и прозрачности */
+}
+
+/* Стили для даты начала и окончания */
+.main-tournament-start-date,
+.main-tournament-end-date {
+    text-align: right; /* Даты выровнены по правому краю */
+}

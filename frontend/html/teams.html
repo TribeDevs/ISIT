@@ -10,32 +10,47 @@
     <link rel="icon" type="image/svg+xml" href="../images/Logo.svg" sizes="32x32">
     <link rel="icon" type="image/svg+xml" href="../images/Logo.svg" sizes="64x64">
 
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/common.blocks/header.blocks/__logo.css">
+    <link rel="stylesheet" href="../css/common.blocks/header.blocks/__page_title.css">
+    <link rel="stylesheet" href="../css/common.blocks/header.blocks/__profile_icon.css">
+    <link rel="stylesheet" href="../css/common.blocks/header.blocks/__site_name.css">
+    <link rel="stylesheet" href="../css/common.blocks/auth.blocks/login.blocks/__login_popup.css">
+    <link rel="stylesheet" href="../css/common.blocks/auth.blocks/register.blocks/__register_popup.css">
+    <link rel="stylesheet" href="../css/common.blocks/auth.blocks/register.blocks/__send_code_btn.css">
+    <link rel="stylesheet" href="../css/common.blocks/auth.blocks/__password_toggle_icon.css">
+    <link rel="stylesheet" href="../css/common.blocks/modal.blocks/__modals.css">
+    <link rel="stylesheet" href="../css/common.blocks/modal.blocks/__error.css">
+    <link rel="stylesheet" href="../css/common.blocks/general_styles.css">
+    <link rel="stylesheet" href="../css/common.blocks/__search.css">
+    
+    <link rel="stylesheet" href="../css/teams.blocks/__teams_list.css">
+
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@100..900&display=swap" rel="stylesheet">
 </head>
 
 <body class="teams-page">
     <header>
         <nav>
-            <div class="logo-section">
-                <a href="index.html">
-                    <img src="../images/Logo.svg" alt="ISIT GAMING Logo" class="logo">
-                </a>
-                <a href="index.html" class="site-name">
-                    <span class="logo-large">ISIT</span><span class="logo-small">.GAMING</span>
-                </a>
-            </div>
+            <a href = "index.html">
+                <div class="logo-section">
+                    <div class = "ls-left">
+                        <img src="../images/Logo.svg" alt="ISIT GAMING Logo" class="logo">
+                    </div>
+                    <div class = ls-right>
+                        <span class="logo-large">ISIT</span><span class="logo-small">.GAMING</span>
+                    </div>
+                </div>
+            </a>
             <ul class="Menu">
                 <li><a href="tournaments.html" class="Tournaments">Турниры</a></li>
                 <li><a href="teams.html" class="Teams">Команды</a></li>
                 <li><a href="rating.html" class="Rating">Рейтинг</a></li>
             </ul>
             <div class="profile-section">
-                <a href="profile.html"><img src="../images/Profile-icon.svg" alt="Профиль" class="profile-icon"></a>
+                <a href="profile.html"><img href="profile.html" src="../images/Profile-icon.svg" alt="Профиль" class="profile-icon"></a>
             </div>
         </nav>
     </header>
-
 
 
     <div class="teams-page-content">
@@ -200,7 +215,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="success-modal-header">Создание команды</h2>
-                <img src="../images/Close-button.svg" alt="Close" class="modal-close" onclick="closeModal()">
+                <img src="../images/Close-button.svg" alt="Close" class="modal-close-btn" onclick="closeModal()">
             </div>
             <div class="team-name-input">
                 <input type="text" placeholder="Введите название команды..." required>
@@ -249,7 +264,7 @@
         <div class="modal-content success-modal-content">
             <div class="modal-header">
                 <h2 class="success-modal-header">Создание команды</h2>
-                <img src="../images/Close-button.svg" alt="Close" class="modal-close" onclick="closeSuccessModal()">
+                <img src="../images/Close-button.svg" alt="Close" class="modal-close-btn" onclick="closeSuccessModal()">
             </div>
             <div class="success-message">
                 Команда NAME успешно создана!

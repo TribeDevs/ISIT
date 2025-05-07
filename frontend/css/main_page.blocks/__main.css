@@ -1,0 +1,10 @@
+/* Новый контейнер для .games-window и .tournaments-window */
+.main-content {
+    display: flex;
+    flex-direction: row;
+    width: 100%; /* Растягиваем на всю ширину страницы */
+    padding: 0; /* Убираем внутренние отступы */
+    gap: 40px; /* Расстояние между блоками 40px */
+    box-sizing: border-box;
+}
+

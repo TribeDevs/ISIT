@@ -1,0 +1,243 @@
+/* Стили для списка турниров */
+.tournaments-list {
+    flex: 1; /* Растягиваем, чтобы занять доступное пространство */
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 10px 30px 25px;
+    margin-right: 30px; /* Отступ справа для скроллбара */
+}
+
+/* Стили для кастомного скроллбара */
+.tournaments-list::-webkit-scrollbar {
+    width: 4px; /* Тонкий скроллбар */
+}
+
+.tournaments-list::-webkit-scrollbar-track {
+    background: #272727; /* Сливается с фоном */
+    margin-right: 30px;
+    margin-left: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.tournaments-list::-webkit-scrollbar-thumb {
+    background: #D9D9D9; /* Серый ползунок */
+    border-radius: 3px;
+}
+
+/* Стили для шапки турниров */
+.tournaments-header {
+    width: auto;
+    height: 68px;
+    flex-shrink: 0;
+    background: #4C4B4B;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    display: flex;
+    align-items: center;
+}
+
+/* Стили для мини-шапки с вкладками */
+.tournaments-tabs {
+    height: 35px;
+    flex-shrink: 0;
+    display: flex;
+    gap: 20px; /* Отступ между вкладками */
+    align-items: center; /* Центрируем текст по вертикали */
+    padding-bottom: 13px;
+    padding-right: 30px; /* Отступ справа для текста */
+    border-bottom: 1px solid white; /* Линия */
+    width: calc(100% - 60px); /* Учитываем отступы слева и справа (30px + 30px) */
+    max-width: calc(100% - 60px); /* Ограничиваем ширину линии */
+    margin: 0 auto; /* Центрируем блок */
+}
+
+.tournaments-page .Tournaments {
+    color: rgb(251, 103, 4);
+}
+
+/* Добавляем transition для плавного изменения opacity */
+.tournaments-tabs,
+.tab {
+    transition: opacity 0.3s ease;
+}
+
+/* Эффект при наведении на .tournament-item */
+.tournaments-tabs:hover .tab {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+/* Стили для элементов турниров */
+.tournament-item {
+    width: 100%;
+    min-height: 70px;
+    max-height: 180px;
+    flex-shrink: 1;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(112, 110, 110, 1); /* Разделяющая линия */
+}
+
+/* Удаляем стиль, убирающий линию у последнего элемента */
+.tournament-item:last-child {
+    border-bottom: 1px solid rgba(112, 110, 110, 1); /* Линия остаётся */
+}
+
+/* Стили для названия турнира */
+.tournament-name {
+    color: #FFF;
+    font-family: "Roboto Flex";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    display: block; /* Для корректного отображения на новой строке */
+}
+
+/* Стили для формата турнира */
+.tournament-format {
+    color: #706E6E;
+    font-family: "Roboto Flex";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    display: block;
+}
+
+/* Стили для кнопки "Все турниры" */
+.all-tournaments-btn {
+    display: inline-flex;
+    padding: 14px 85px 13px 85px;
+    justify-content: center; /* Изменяем на center, так как кнопка должна быть по центру */
+    align-items: center;
+    border-radius: 15px;
+    background: #FB6704;
+    color: #FFF;
+    text-align: center;
+    min-width: 40%;
+    font-family: "Roboto Flex";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-decoration: none; 
+    width: fit-content; /* Ширина подстраивается под содержимое */
+    cursor: pointer; 
+    margin: 0 auto; 
+    display: block; 
+}
+/* Эффект при наведении */
+.all-tournaments-btn:hover {
+    opacity: 0.8;
+}
+
+/* Убираем подчёркивание у всех ссылок внутри .tournament-item */
+.tournament-item a {
+    text-decoration: none;
+}
+
+/* Эффект при наведении на .tournament-item */
+.tournament-item:hover .game-icon-50x50,
+.tournament-item:hover .tournament-name {
+    opacity: 0.8;
+    cursor: pointer;
+}
+.tournament-info {
+    flex: 1; /* Занимает доступное пространство */
+}
+
+/* Стили для дат турнира */
+.tournament-date {
+    color: #FFF;
+    text-align: right;
+    font-family: "Roboto Flex";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.5px;
+    width: fit-content; /* Динамическая ширина под содержимое */
+    flex-shrink: 0; /* Предотвращаем сжатие блока */
+    margin-left: auto; /* Прижимаем даты к правому краю */
+    display: flex; /* Включаем flex для управления расположением */
+    flex-direction: row; /* По умолчанию элементы в ряд */
+}
+
+/* Стили для кнопки "Все турниры" */
+.all-tournaments-btn {
+    display: inline-flex;
+    padding: 14px 85px 13px 85px;
+    justify-content: center; /* Изменяем на center, так как кнопка должна быть по центру */
+    align-items: center;
+    border-radius: 15px;
+    background: #FB6704;
+    color: #FFF;
+    text-align: center;
+    font-family: "Roboto Flex";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-decoration: none; 
+    width: fit-content; /* Ширина подстраивается под содержимое */
+    cursor: pointer; 
+    margin: 0 auto; 
+    display: block; 
+}
+
+/* Стили для контейнера кнопки */
+.tournaments-footer {
+    display: flex;
+    justify-content: center; /* Центрируем кнопку */
+    margin-bottom: 22px;
+    margin-top: 15px;
+}
+
+/* Стили для вкладок */
+.tournaments-tabs .tab-past-tournaments,
+.tournaments-tabs .tab-future-tournaments {
+    color: white; /* Базовый цвет — белый */
+    font-family: "Roboto Flex";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    cursor: pointer;
+    margin-top: 16px;
+    transition: color 0.4s ease, opacity 0.1s ease; /* Плавное изменение цвета и прозрачности */
+}
+
+/* Стили для активной вкладки */
+.tournaments-tabs .active {
+    color: rgb(251, 103, 4); /* Оранжевый цвет для активной вкладки */
+}
+
+
+/* Эффект при наведении на .tab-past-tournaments */
+.tab-past-tournaments:hover,
+.tab-future-tournaments:hover {
+    opacity: 0.8;
+}
+
+.tournaments-header h2 {
+    color: white;
+    font-family: "Roboto Flex";
+    font-size: 22px;
+    font-weight: 300;
+    margin-left: 30px;
+}
+
+
+/* Стили для фрейма турниров */
+.tournaments-window {
+    width: auto;
+    max-height: 557px;
+    flex-shrink: 1;
+    border-radius: 20px;
+    background: #272727;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}

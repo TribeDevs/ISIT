@@ -1,0 +1,70 @@
+.send-code-btn {
+    display: flex;
+    height: 35px;
+    padding: 9px 4px 8px 5px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background: #FB6704;
+    text-align: center;
+    color: #FFF;
+    text-align: center;
+    font-family: "Roboto Flex";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    justify-content: center; 
+    margin-right: 12px;
+    border: none; 
+    outline: none; 
+    cursor: pointer;
+
+    transition: padding 0.4s ease, border-radius 0.4s ease; /* Плавное изменение отступов и скругления */}
+
+/* Состояние кнопки после клика (уменьшенные отступы для иконки) */
+.send-code-btn.shrunk {
+    padding: 0 10px; /* Уменьшаем отступы, чтобы кнопка "сжалась" вокруг иконки */
+    border-radius: 20px; /* Увеличиваем скругление, чтобы кнопка стала более круглой */
+}
+
+.send-code-btn .verified-icon {
+    width: 20px;
+    height: 20px;
+    display: none; /* Иконка изначально скрыта и не занимает место */
+    vertical-align: middle; /* Центрируем иконку по вертикали */
+    transition: opacity 0.3s ease 0.2s, visibility 0s 0.2s; /* Плавное появление с задержкой */}
+
+.send-code-btn .verified-icon.visible {
+    display: inline-block; /* Показываем иконку */
+    opacity: 1; /* Для плавного появления */
+}
+
+
+/* Скрываем текст кнопки, когда иконка видима */
+.send-code-btn .button-text {
+    color: #FFF;
+    text-align: center;
+    font-family: "Roboto Flex";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    display: inline-block; /* Чтобы текст вёл себя как блочный элемент */
+    vertical-align: middle; /* Центрируем текст по вертикали */
+    transition: opacity 0.3s ease;
+}
+
+/* Когда текст скрыт */
+.send-code-btn .button-text.hidden {
+    display: none; /* Скрываем текст и убираем его из потока */
+}
+
+
+
+
+.send-code-btn:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
