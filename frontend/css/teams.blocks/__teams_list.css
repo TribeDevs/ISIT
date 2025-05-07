@@ -1,0 +1,794 @@
+.teams-page .teams-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.teams-page .game-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.teams-page .game-icon {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    object-fit: contain;
+    transform: scale(1);
+}
+
+.teams-page .game-icon.active {
+    animation: pulse 0.4s ease-out;
+}
+
+
+.teams-page .create-team-btn {
+    background-color: rgb(251, 103, 4);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.teams-page .create-team-btn:hover {
+    background-color: rgb(200, 82, 3);
+}
+
+.teams-page .game-image {
+    width: 150px;
+    height: 100%;
+    border-radius: 5px;
+    margin-right: 20px;
+    object-fit: cover;
+}
+
+/* УБРАЛ ФИКСИРОВАННУЮ ВЫСОТУ У .team-content И УСТАНОВИЛ МИНИМАЛЬНЫЕ ОТСТУПЫ */
+.teams-page .team-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: auto; /* Автоматическая высота */
+    justify-content: space-between; /* Распределяем пространство между header и avatars */
+}
+
+.teams-page .team-header {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.teams-page .team-name {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.teams-page .players-section{
+    display: flex;
+    flex-direction: column;
+}
+
+.teams-page .players-section {
+    font-size: 16px;
+    color: #9E9D9D;
+    margin: 0;
+    font-weight: 300;
+    align-items: center;
+    flex-direction: row;
+}
+
+.teams-page .players-text {
+    padding-right: 5px;
+}
+
+.teams-page .max-amount-of-players, .slash {
+    padding-right: 1.5px;
+}
+
+.teams-page .more-options {
+    font-size: 24px;
+    color: #ccc;
+    cursor: pointer;
+    margin-left: auto;
+    transition: color 0.3s ease;
+}
+
+.teams-page .more-options:hover {
+    color: rgb(251, 103, 4);
+}
+
+.teams-page .team-avatars a:hover .avatar {
+    background-color: rgb(251, 103, 4);
+}
+
+/* ИЗМЕНИЛ .avatar ДЛЯ ДИНАМИЧЕСКОЙ ВЫСОТЫ И ЦЕНТРИРОВАНИЯ */
+.teams-page .avatar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Центрируем содержимое по вертикали */
+    align-items: center; /* Центрируем содержимое по горизонтали */
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    height: 100%; /* Растягиваем блок до нижней границы */
+    background-color: rgb(76, 75, 75);
+    border-radius: 15px;
+    transition: background-color 0.3s ease;
+    padding: 10px; /* Добавил внутренний отступ */
+    flex: 1; /* Растягиваем блок равномерно */
+}
+
+.teams-page .avatar img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.teams-page .avatar::before,
+.teams-page .avatar.active::before {
+    display: none;
+}
+
+
+/* Стили для модального окна на странице "Команды" */
+.teams-page .team-name-input {
+    display: inline-flex;
+    height: 60px;
+    padding: 18px 20px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    background: #161616;
+    margin-bottom: 20px;
+    width: 570px;
+}
+
+.teams-page .team-name-input input {
+    width: 100%;
+    background: none;
+    border: none;
+    color: rgba(158, 157, 157, 1);
+    font-family: 'Roboto Flex', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    outline: none;
+}
+
+.teams-page .team-name-input input::placeholder {
+    color: rgba(158, 157, 157, 1);
+    font-weight: 100;
+}
+
+.teams-page .selection-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    width: 570px;
+    justify-content: space-between;
+}
+
+.teams-page .game-selection,
+.teams-page .players-count {
+    width: 275px;
+    position: relative;
+}
+
+.teams-page .game-selection .dropdown-selected,
+.teams-page .players-count .dropdown-selected {
+    font-size: 20px;
+    color: rgba(158, 157, 157, 1);
+    font-weight: 100;
+    flex-grow: 1;
+}
+
+.teams-page .dropdown {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    padding: 18px 20px;
+    border-radius: 15px;
+    background: #161616;
+    position: relative;
+}
+
+.teams-page .dropdown-selected {
+    font-size: 20px;
+    color: rgba(158, 157, 157, 1);
+    font-weight: 100;
+    flex-grow: 1;
+}
+
+.teams-page .dropdown-arrow {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.teams-page .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #272727;
+    border-radius: 15px;
+    margin-top: 5px;
+    z-index: 1003;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.teams-page .dropdown-menu.active {
+    display: block;
+}
+
+.teams-page .dropdown-item {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.teams-page .dropdown-item:hover {
+    background: #4C4B4B;
+}
+
+.teams-page .leader-info {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    border-radius: 15px;
+    background: #4C4B4B;
+    width: 570px;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.teams-page .leader-info span {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    color: #ffffff;
+}
+
+.teams-page .leader-profile-link {
+    display: inline-block;
+    margin-right: 20px;
+    text-decoration: none;
+}
+
+.teams-page .leader-profile-link img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.teams-page .leader-profile-link:hover {
+    opacity: 0.8;
+}
+
+.teams-page .modal-buttons {
+    display: flex;
+    width: 570px;
+    justify-content: center;
+}
+
+.teams-page .modal-create-btn {
+    display: flex;
+    width: 570px;
+    height: 70px;
+    padding: 21px 0px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 15px;
+    background: rgb(251, 103, 4);
+    border: none;
+    color: white;
+    font-family: 'Roboto Flex', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.teams-page .modal-create-btn:hover {
+    background-color: rgb(200, 82, 3);
+}
+
+/* Стили для модального окна успешного создания команды */
+.teams-page .success-modal-content {
+    width: 610px;
+    height: 315px;
+    flex-shrink: 0;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.1);
+    transition: opacity 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55), transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.teams-page .modal.active .success-modal-content {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.teams-page .success-modal-header {
+    color: #9E9D9D;
+    font-family: "Roboto Flex";
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 26px;
+    line-height: normal;
+}
+
+.teams-page .success-modal-content .modal-header {
+    margin-bottom: 36px;
+}
+
+.teams-page .success-message {
+    display: flex;
+    width: 570px;
+    height: 70px;
+    padding: 24px 84px 23px 84px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 15px;
+    border: 1px solid #F90;
+    background: linear-gradient(90deg, rgba(255, 153, 0, 0.50) 0%, rgba(255, 0, 0, 0.50) 100%);
+    color: white;
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 26px;
+}
+
+.teams-page .invite-link-label {
+    color: #9E9D9D;
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    width: 570px;
+    text-align: left;
+    margin-bottom: 11px;
+}
+
+.teams-page .invite-link-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 570px;
+    height: 70px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    background: #4C4B4B;
+    padding: 0 20px;
+}
+
+.teams-page .invite-link {
+    color: white;
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+   .compat-object-fit {
+    background-size: cover;
+    background-position: center center;
+
+    /* IE */
+    font-family: 'object-fit: cover; object-position: center;';
+}
+    flex-grow: 0;
+    letter-spacing: 0.2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: normal;
+    max-width: 450px;
+}
+
+.teams-page .copy-link-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.teams-page .copy-link-btn:hover {
+    opacity: 0.8;
+}
+
+/* Стили для страницы "Команды" */
+.teams-page .Teams {
+    color: rgb(251, 103, 4);
+}
+
+/* Общие стили для контейнера */
+.teams-container {
+    min-width: 600px; 
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* Стили для страницы "Команды" */
+.teams-page .Teams {
+    color: rgb(251, 103, 4);
+}
+
+.teams-page .game-icons-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.teams-page .game-icon {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    object-fit: contain;
+    transform: scale(1);
+}
+
+/* УСТАНОВИЛ align-items: stretch ДЛЯ .team-card ЧТОБЫ ДОЧЕРНИЕ ЭЛЕМЕНТЫ РАСТЯГИВАЛИСЬ ПО ВЫСОТЕ */
+.teams-page .team-card {
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(40, 40, 40);
+    border-radius: 10px;
+    padding: 15px;
+    width: 100%;
+    align-items: stretch; /* Растягиваем дочерние элементы по высоте */
+}
+
+.teams-page .more-options {
+    font-size: 24px;
+    color: #ccc;
+    cursor: pointer;
+    margin-left: auto;
+    transition: color 0.3s ease;
+}
+
+.teams-page .more-options:hover {
+    color: rgb(251, 103, 4);
+}
+
+/* ИЗМЕНИЛ .team-avatars ДЛЯ РАСТЯГИВАНИЯ БЛОКОВ .avatar */
+.teams-page .team-avatars {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+    align-items: stretch;
+}
+
+/* ДОБАВИЛ СВОЙСТВА В .team-avatars a ДЛЯ РАСТЯГИВАНИЯ */
+.teams-page .team-avatars a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex: 1; /* Растягиваем <a> */
+}
+
+.teams-page .team-avatars a:hover .avatar {
+    background-color: rgb(251, 103, 4);
+}
+
+/* ИЗМЕНИЛ .avatar span ДЛЯ ОГРАНИЧЕНИЯ ТЕКСТА */
+.teams-page .avatar span {
+    font-size: 16px;
+    color: #ffffff;
+    margin-top: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    text-align: center;
+}
+
+.teams-page .avatar::before,
+.teams-page .avatar.active::before {
+    display: none;
+}
+
+/* Стили для модального окна на странице "Команды" */
+.teams-page .team-name-input {
+    display: inline-flex;
+    height: 60px;
+    padding: 18px 20px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    background: #161616;
+    margin-bottom: 20px;
+    width: 570px;
+}
+
+.teams-page .team-name-input input {
+    width: 100%;
+    background: none;
+    border: none;
+    color: rgba(158, 157, 157, 1);
+    font-family: 'Roboto Flex', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    outline: none;
+}
+
+.teams-page .team-name-input input::placeholder {
+    color: rgba(158, 157, 157, 1);
+    font-weight: 100;
+}
+
+.teams-page .selection-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    width: 570px;
+    justify-content: space-between;
+}
+
+.teams-page .game-selection,
+.teams-page .players-count {
+    width: 275px;
+    position: relative;
+}
+
+.teams-page .game-selection .dropdown-selected,
+.teams-page .players-count .dropdown-selected {
+    font-size: 20px;
+    color: rgba(158, 157, 157, 1);
+    font-weight: 100;
+    flex-grow: 1;
+}
+
+.teams-page .dropdown {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    padding: 18px 20px;
+    border-radius: 15px;
+    background: #161616;
+    position: relative;
+}
+
+.teams-page .dropdown-selected {
+    font-size: 20px;
+    color: rgba(158, 157, 157, 1);
+    font-weight: 100;
+    flex-grow: 1;
+}
+
+.teams-page .dropdown-arrow {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.teams-page .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #272727;
+    border-radius: 15px;
+    margin-top: 5px;
+    z-index: 1003;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.teams-page .dropdown-menu.active {
+    display: block;
+}
+
+.teams-page .dropdown-item {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.teams-page .dropdown-item:hover {
+    background: #4C4B4B;
+}
+
+.teams-page .leader-info {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    border-radius: 15px;
+    background: #4C4B4B;
+    width: 570px;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.teams-page .leader-info span {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    color: #ffffff;
+}
+
+.teams-page .leader-profile-link {
+    display: inline-block;
+    margin-right: 20px;
+    text-decoration: none;
+}
+
+.teams-page .leader-profile-link img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.teams-page .leader-profile-link:hover {
+    opacity: 0.8;
+}
+
+.teams-page .modal-buttons {
+    display: flex;
+    width: 570px;
+    justify-content: center;
+}
+
+.teams-page .modal-create-btn {
+    display: flex;
+    width: 570px;
+    height: 70px;
+    padding: 21px 0px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 15px;
+    background: rgb(251, 103, 4);
+    border: none;
+    color: white;
+    font-family: 'Roboto Flex', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.teams-page .modal-create-btn:hover {
+    background-color: rgb(200, 82, 3);
+}
+
+/* Стили для модального окна успешного создания команды */
+.teams-page .success-modal-content {
+    width: 610px;
+    height: 315px;
+    flex-shrink: 0;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.1);
+    transition: opacity 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55), transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.teams-page .modal.active .success-modal-content {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.teams-page .success-modal-header {
+    color: #9E9D9D;
+    font-family: "Roboto Flex";
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 26px;
+    line-height: normal;
+}
+
+.teams-page .success-modal-content .modal-header {
+    margin-bottom: 36px;
+}
+
+.teams-page .success-message {
+    display: flex;
+    width: 570px;
+    height: 70px;
+    padding: 24px 84px 23px 84px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 15px;
+    border: 1px solid #F90;
+    background: linear-gradient(90deg, rgba(255, 153, 0, 0.50) 0%, rgba(255, 0, 0, 0.50) 100%);
+    color: white;
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 26px;
+}
+
+.teams-page .invite-link-label {
+    color: #9E9D9D;
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    width: 570px;
+    text-align: left;
+    margin-bottom: 11px;
+}
+
+.teams-page .invite-link-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 570px;
+    height: 70px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    background: #4C4B4B;
+    padding: 0 20px;
+}
+
+.teams-page .invite-link {
+    color: white;
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    flex-grow: 0;
+    letter-spacing: 0.2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: normal;
+    max-width: 450px;
+}
+
+.teams-page .copy-link-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.teams-page .copy-link-btn:hover {
+    opacity: 0.8;
+}
+
+
+/* Стили для иконки игры */
+.game-icon-50x50 {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    margin-right: 10px; /* Отступ справа от иконки */
+    filter: grayscale(1) brightness(0.8); /* Делаем иконку серой по умолчанию */
+    transition: opacity 0.3s ease, filter 0.3s ease; /* Добавляем transition для filter */
+}
+
+/* Эффект изменения цвета на rgb(251, 103, 4) при наведении */
+.game-icon:hover {
+    cursor: pointer;
+    filter: none; /* Убираем фильтр, возвращаем исходный цвет */
+}

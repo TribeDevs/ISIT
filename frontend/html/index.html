@@ -9,20 +9,41 @@
     <link rel="icon" type="image/svg+xml" href="../images/Logo.svg" sizes="32x32">
     <link rel="icon" type="image/svg+xml" href="../images/Logo.svg" sizes="64x64">
 
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/common.blocks/header.blocks/__logo.css">
+    <link rel="stylesheet" href="../css/common.blocks/header.blocks/__page_title.css">
+    <link rel="stylesheet" href="../css/common.blocks/header.blocks/__profile_icon.css">
+    <link rel="stylesheet" href="../css/common.blocks/header.blocks/__site_name.css">
+
+    <link rel="stylesheet" href="../css/main_page.blocks/impl_tournaments.blocks/__tournaments_list.css">
+    <link rel="stylesheet" href="../css/main_page.blocks/impl_games.blocks/__games.css">
+
+    <link rel="stylesheet" href="../css/common.blocks/auth.blocks/login.blocks/__login_popup.css">
+    <link rel="stylesheet" href="../css/common.blocks/auth.blocks/register.blocks/__register_popup.css">
+    <link rel="stylesheet" href="../css/common.blocks/auth.blocks/register.blocks/__send_code_btn.css">
+    <link rel="stylesheet" href="../css/common.blocks/auth.blocks/__password_toggle_icon.css">
+
+    <link rel="stylesheet" href="../css/common.blocks/modal.blocks/__modals.css">
+    <link rel="stylesheet" href="../css/common.blocks/modal.blocks/__error.css">
+
+    <link rel="stylesheet" href="../css/common.blocks/general_styles.css">
+    <link rel="stylesheet" href="../css/common.blocks/__search.css">
+    <link rel="stylesheet" href="../css/main_page.blocks/__main.css">
+
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@100..900&display=swap" rel="stylesheet">
 </head>
-<body class="main-page">
+<body class="mainpage">
     <header>
         <nav>
-            <div class="logo-section">
-                <a href="index.html">
-                    <img src="../images/Logo.svg" alt="ISIT GAMING Logo" class="logo">
-                </a>
-                <a href="index.html" class="site-name">
-                    <span class="logo-large">ISIT</span><span class="logo-small">.GAMING</span>
-                </a>
-            </div>
+            <a href = "index.html">
+                <div class="logo-section">
+                    <div class = "ls-left">
+                        <img src="../images/Logo.svg" alt="ISIT GAMING Logo" class="logo">
+                    </div>
+                    <div class = ls-right>
+                        <span class="logo-large">ISIT</span><span class="logo-small">.GAMING</span>
+                    </div>
+                </div>
+            </a>
             <ul class="Menu">
                 <li><a href="tournaments.html" class="Tournaments">Турниры</a></li>
                 <li><a href="teams.html" class="Teams">Команды</a></li>
@@ -229,8 +250,8 @@
     <div class="modal login-modal" id="loginModal">
         <div class="modal-overlay"></div>
         <div class="modal-content">
-            <div class="login-modal-header">
-                <div class="login-modal-logo">
+            <div class="modal-header">
+                <div class="modal-logo">
                     <div class="logo-section">
                         <img src="../images/Logo.svg" alt="ISIT GAMING Logo" class="logo">
                         <div class="site-name">
@@ -239,10 +260,10 @@
                     </div>
                 </div>
                 <div class="close-button">
-                    <img src="../images/Close-button.svg" alt="Закрыть" class="modal-close">
+                    <img src="../images/Close-button.svg" alt="Закрыть" class="modal-close-btn">
                 </div>
             </div>
-            <h2 class="login-modal-title">Вход в аккаунт</h2>
+            <h2 class="modal-title">Вход в аккаунт</h2>
             <label class="login-modal-label">Почта</label>
             <div class="login-modal-input">
                 <input type="text" placeholder="Введите вашу почту..." minlength="10" maxlength="40">
@@ -263,8 +284,8 @@
             <a href="profile.html" class="login-modal-submit-link">
                 <button class="login-modal-submit-btn">Войти</button>
             </a>
-            <div class="login-modal-divider"></div>
-            <div class="login-modal-footer">
+            <div class="modal-divider"></div>
+            <div class="modal-footer">
                 <span class="login-modal-text">Нет аккаунта?</span>
                 <a href="#" class="login-modal-register-link" id="openRegisterModal">Зарегистрируйтесь</a>
             </div>
@@ -275,8 +296,8 @@
     <div class="modal register-modal" id="registerModal">
         <div class="modal-overlay"></div>
         <div class="modal-content">
-            <div class="register-modal-header">
-                <div class="register-modal-logo">
+            <div class="modal-header">
+                <div class="modal-logo">
                     <div class="logo-section">
                         <img src="../images/Logo.svg" alt="ISIT GAMING Logo" class="logo">
                         <div class="site-name">
@@ -285,12 +306,12 @@
                     </div>
                 </div>
                 <div class="close-button">
-                    <img src="../images/Close-button.svg" alt="Закрыть" class="modal-close">
+                    <img src="../images/Close-button.svg" alt="Закрыть" class="modal-close-btn">
                 </div>
             </div>
 
 
-            <h2 class="register-modal-title">Регистрация</h2>
+            <h2 class="modal-title">Регистрация</h2>
             <label class="register-modal-label">E-mail</label>
 
             <div class="register-modal-input">
@@ -348,9 +369,9 @@
 
             <button class="register-modal-submit-btn">Зарегистрироваться</button>
 
-            <div class="register-modal-divider"></div>
+            <div class="modal-divider"></div>
 
-            <div class="login-modal-footer">
+            <div class="modal-footer">
                 <span class="register-modal-text">Уже есть аккаунт?</span>
                 <a href="#" class="register-modal-login-link" id="loginModal">Войти</a>
             </div>

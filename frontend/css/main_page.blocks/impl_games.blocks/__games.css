@@ -1,0 +1,47 @@
+/* Стили для невидимого окна с играми на главной странице */
+.games-window {
+    width: auto;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    grid-template-rows: repeat(2, 250px);
+    gap: 57px 40px;
+    align-content: space-between;
+    justify-content: space-between;
+}
+
+.game-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.game-item a {
+    text-decoration: none; 
+}
+
+.game-image {
+    width: 200px;
+    height: 250px;
+    flex-shrink: 0;
+    aspect-ratio: 4/5;
+    border-radius: 15px;
+    border: 1px solid #000;
+    object-fit: cover;
+}
+
+.game-item:hover .game-image {
+    opacity: 0.8; 
+    cursor: pointer; 
+}
+
+.game-title {
+    color: #FFF;
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 10px; /* Небольшой отступ между картинкой и текстом */
+    text-align: center;
+}

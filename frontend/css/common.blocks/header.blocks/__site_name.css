@@ -1,0 +1,14 @@
+.site-name {
+    color: rgb(251, 103, 4);
+    text-decoration: none;
+    font-family: 'Roboto Flex', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.teams-page-content, .rating-page-content, .global-profile-container,
+.tournaments-page-content, .index-page-content{
+    margin-left: 178px; /* Отступ слева */
+    margin-right: 178px; /* Отступ справа */
+}

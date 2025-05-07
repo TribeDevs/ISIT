@@ -1,0 +1,54 @@
+/* Блок "Статистика" */
+.stats-block {
+    display: flex;
+    grid-area: D;
+    width: 100%; /* Растягивается на всю ширину .right-column */
+    height: 400px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #272727;
+    flex-direction: column;
+}
+
+/* Шапка блока "Статистика" */
+.stats-header {
+    width: 100%; /* Растягивается на всю ширину блока */
+    height: 70px;
+    flex-shrink: 0;
+    background: #4C4B4B;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    align-items: center;
+    padding-left: 32px;
+    padding-bottom: 21px;
+    padding-top: 23px;
+    margin: 0 auto;
+}
+
+/* Текст заголовка "Статистика" */
+.stats-header h2 {
+    color: #FFF;
+    font-family: "Roboto Flex";
+    font-size: 22px;
+    font-weight: 400;
+    line-height: normal;
+    flex-shrink: 0;
+}
+
+/* Контейнер для содержимого статистики */
+.stats-content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Текст "Work in progress..." */
+.stats-placeholder {
+    color: rgba(76, 75, 75, 1);
+    font-family: "Roboto Flex";
+    font-size: 26px;
+    font-weight: 400;
+    line-height: normal;
+    
+}

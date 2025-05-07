@@ -1,0 +1,147 @@
+.profile-section {
+    margin-left: auto; /* Добавьте эту строку */
+    align-items: center;
+    display: flex;
+}
+
+
+.together-columns{
+    display: grid;
+    gap: 20px;
+    width: 100%;
+    grid-template-areas: 
+    "A A A A C C C C C C C C"
+    "B D D D D D D D D D D D";
+
+}
+
+.global-profile-container {
+    display: flex;              /* превращаем в flex-контейнер */
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;    /* выравнивание по верхнему краю */
+    gap: 20px;
+    width: auto;
+    box-sizing: border-box;
+}
+
+.profile-page {
+    min-height: 1200px;
+}
+
+/* Стили для блока профиля */
+.profile-block {
+    grid-area: A;
+    width: auto;
+    height: 370px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    border: 1px solid #FB6704;
+    background: #272727;
+    padding: 30px;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Стили для контейнера фото и данных */
+.profile-content {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+/* Стили для фото профиля */
+.profile-image {
+    width: 150px;
+    height: 150px;
+    flex-shrink: 0;
+    aspect-ratio: 1/1;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.profile-image:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+/* Стили для блока с данными профиля */
+.profile-details {
+    width: 370px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Стили для блока с кнопками */
+.profile-actions-block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.username-btn,
+.email-btn {
+    display: flex;
+    width: 310px;
+    height: 40px;
+    padding: 12px 20px;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #4C4B4B;
+    border: none;
+    color: #FFF;
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    text-transform: none;
+}
+
+.username-btn:hover,
+.email-btn:hover {
+    background-color: #5A5959;
+}
+
+.username-text,
+.email-text {
+    flex-grow: 1;
+    text-align: center;
+}
+
+/* Разделитель */
+.profile-separator {
+    color: #FFF;
+    font-family: "Roboto Flex";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+}
+
+/* Контейнер для левой колонки (Профиль + Аккаунты) */
+.left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 360px; /* Фиксированная ширина, как на скриншоте */
+    flex-shrink: 0; /* Не сжимаем */
+    max-width: 500px;
+    flex-grow: 1;
+}
+
+/* Контейнер для правой колонки (Турниры + Статистика) */
+.right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-grow: 1; /* Занимает оставшееся пространство */
+    width: auto; /* Автоматическая ширина для оставшегося пространства */
+}

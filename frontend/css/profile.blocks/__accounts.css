@@ -1,0 +1,100 @@
+/* Блок "Аккаунты" */
+.accounts-block {
+    grid-area: B;
+    width: auto;
+    min-height: auto;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #272727;
+    flex-direction: column;
+}
+
+/* Шапка блока "Аккаунты" */
+.accounts-header {
+    width: 370px auto;
+    height: 70px;
+    flex-shrink: 0;
+    background: #4C4B4B;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    align-items: center;
+    padding-left: 32px;
+    padding-bottom: 21px;
+    padding-top: 23px;
+}
+
+/* Текст заголовка "Аккаунты" */
+.accounts-header h2 {
+    color: #FFF;
+    font-family: "Roboto Flex";
+    font-size: 22px;
+    font-weight: 400;
+    line-height: normal;
+    flex-shrink: 0;
+}
+
+/* Контейнер для списка аккаунтов */
+.accounts-list {
+    flex-grow: 1;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Блок с привязанной соцсетью */
+.account-item {
+    display: flex;
+    width: auto;
+    padding: 4px 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border-radius: 10px;
+    background: #4C4B4B;
+}
+
+/* Картинка привязанной соцсети */
+.account-icon {
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+    aspect-ratio: 1/1;
+    align-items: flex-end;
+}
+
+/* Кнопка "Привязать" */
+.bind-account-btn {
+    display: flex;
+    width: 170px;
+    height: 45px;
+    padding: 7px 18px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    background: #FB6704;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.bind-account-btn a {
+    text-decoration: none;
+}
+
+/* Эффект при наведении на кнопку */
+.bind-account-btn:hover {
+    background-color: rgb(200, 82, 3);
+}
+
+/* Текст кнопки "Привязать" */
+.bind-account-btn span {
+    flex-shrink: 0;
+    color: #FFF;
+    text-align: center;
+    font-family: "Roboto Flex";
+    font-size: 18px;
+    font-weight: 400;
+    line-height: normal;
+}

@@ -1,0 +1,39 @@
+/* Стили для блока с информацией о студенте */
+.student-info-block {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.student-info .label,
+.student-group .label {
+    color: #FFF;
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.student-info .student-name,
+.student-group .group-name {
+    color: #c0c0c0;
+    font-family: "Roboto Flex", sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 250;
+    line-height: normal;
+}
+
+.student-info .student-name {
+    word-break: break-word;
+}
+
+.student-group {
+    border-bottom: 2px solid white;
+    padding-bottom: 10px;
+}
+
+.student-name {
+    margin-bottom: 10px;
+}

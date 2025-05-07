@@ -1,0 +1,179 @@
+
+/* Стили для дат турнира */
+.profile-tournament-dates {
+    color: #FFF;
+    text-align: right;
+    font-family: "Roboto Flex";
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: normal;
+    letter-spacing: -0.5px;
+    width: fit-content; /* Динамическая ширина под содержимое */
+    flex-shrink: 0; /* Предотвращаем сжатие блока */
+    margin-left: auto; /* Прижимаем даты к правому краю */
+    display: flex; /* Включаем flex для управления расположением */
+    flex-direction: row; /* По умолчанию элементы в ряд */
+}
+
+/* Стили для даты начала и окончания */
+.profile-tournament-start-date,
+.profile-tournament-end-date {
+    text-align: right; /* Даты выровнены по правому краю */
+}
+
+/* Стили для разделителя */
+.profile-separator {
+    display: flex;
+    justify-content: center; /* Центрируем тире по горизонтали */
+    width: 100%; /* Убедимся, что тире занимает всю доступную ширину */
+}
+
+@media (max-width: 1300px) {
+    .profile-tournament-dates {
+        flex-direction: column; /* Меняем на столбец при зуме */
+    }
+}
+
+/* Дата окончания */
+.profile-tournament-end-date {
+    color: #FFF;
+    font-family: "Roboto Flex";
+    font-size: 16px;
+    font-weight: 200;
+    line-height: normal;
+    text-align: right;
+}
+
+/* Стили для полосы прокрутки */
+.profile-tournaments-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Список турниров с прокруткой */
+.profile-tournaments-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 270px;
+    margin-right: 15px;
+}
+
+.profile-tournaments-list::-webkit-scrollbar-track {
+    background: #272727;
+    margin-right: 30px;
+    margin-left: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.profile-tournaments-list::-webkit-scrollbar-thumb {
+    background: #D9D9D9;
+    border-radius: 3px;
+}
+
+
+/* Блок "Прошедшие турниры" */
+.profile-tournaments-block {
+    grid-area: C;
+    border-radius: 20px;
+    background: #272727;
+    height: 370px;
+    width: 100%; /*Растягивается на всю ширину .right-column */
+    display: flex;
+    flex-direction: column;
+    min-width: 480px;
+}
+
+/* Заголовок блока "Прошедшие турниры" */
+.profile-tournaments-header {
+    width: 100%; /* Растягивается на всю ширину блока */
+    height: 70px;
+    flex-shrink: 0;
+    background: #4C4B4B;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    align-items: center;
+    padding-left: 32px;
+    padding-bottom: 21px;
+    padding-top: 23px;
+}
+
+/* Текст заголовка "Прошедшие турниры" */
+.profile-tournaments-header h2 {
+    color: #FFF;
+    font-family: "Roboto Flex";
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/* Каждый элемент турнира */
+.profile-tournament-item {
+    border-bottom: 2px solid #706E6E;
+    width: calc(100% - 48px); /* Учитываем padding и margin */
+    min-height: 60px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    gap: 10px;
+}
+
+/* Иконка игры */
+.profile-tournament-game-icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    transition: opacity 0.3s ease, filter 0.3s ease;
+    float: inline-start;
+}
+
+/* Название турнира */
+.profile-tournament-name {
+    color: #FFF;
+    font-family: "Roboto Flex";
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    flex-grow: 0;
+    justify-content: space-between;
+}
+
+/* Место */
+.profile-tournament-place {
+    color: #FFF;
+    font-family: "Roboto Flex";
+    font-size: 16px;
+    font-weight: 100;
+    line-height: normal;
+    flex-grow: 1;
+    display: flex;
+    justify-content: left;
+}
+
+/* Дата начала */
+.profile-tournament-start-date {
+    color: #FFF;
+    font-family: "Roboto Flex";
+    font-size: 16px;
+    font-weight: 200;
+    line-height: normal;
+    text-align: right;
+}
+
+.pti-left{
+    display: flex;
+    float: left;
+}
+
+.pti-left-text{
+    align-self: baseline;
+    margin-left: 10px;
+}
+
+.pti-right{
+    float: right;
+    margin-left: auto;
+}

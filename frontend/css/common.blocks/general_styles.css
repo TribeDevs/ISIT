@@ -1,0 +1,196 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+
+
+
+/* Общие стили для всех страниц */
+body {
+    background-color: rgb(22, 22, 22);
+    color: white;
+    font-family: 'Roboto Flex', sans-serif;
+    min-height: 100%;
+    margin: 0;
+}
+
+header {
+    background-color: rgb(26, 26, 26);
+    height: 70px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    width: 100%;
+}
+
+/* Остальные стили остаются без изменений */
+nav {
+    display: flex;
+    align-items: center;
+    margin-right: 40px;
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.Menu {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 30px;
+    align-items: center;
+    list-style: none;
+    margin-left: 40px;
+}
+
+
+nav li {
+    display: inline-block;
+    padding: 0 20px;
+    line-height: 70px;
+}
+
+nav .active a {
+    color: rgb(251, 103, 4);
+}
+
+/* Общие стили для контейнера */
+.container {
+    max-width: 1440px;
+    min-width: 9607px; 
+    margin: 0 auto;
+    padding: 0 120px;
+    box-sizing: border-box;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    10% { transform: scale(1.03); }
+    20% { transform: scale(1.08); }
+    30% { transform: scale(1.12); }
+    40% { transform: scale(1.15); }
+    50% { transform: scale(1.1); }
+    60% { transform: scale(1.05); }
+    70% { transform: scale(1.04); }
+    80% { transform: scale(1.03); }
+    90% { transform: scale(1.02); }
+    95% { transform: scale(1.01); }
+    100% { transform: scale(1); }
+}
+
+
+html {
+    height: 100%;
+}
+
+
+
+header {
+    background-color: rgb(26, 26, 26);
+    height: 70px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    position: relative;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    10% { transform: scale(1.03); }
+    20% { transform: scale(1.08); }
+    30% { transform: scale(1.12); }
+    40% { transform: scale(1.15); }
+    50% { transform: scale(1.1); }
+    60% { transform: scale(1.05); }
+    70% { transform: scale(1.04); }
+    80% { transform: scale(1.03); }
+    90% { transform: scale(1.02); }
+    95% { transform: scale(1.01); }
+    100% { transform: scale(1); }
+}
+
+/* Стили для иконки игры */
+.game-icon-50x50 {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    margin-right: 10px; /* Отступ справа от иконки */
+    filter: grayscale(1) brightness(0.8); /* Делаем иконку серой по умолчанию */
+    transition: opacity 0.3s ease, filter 0.3s ease; /* Добавляем transition для filter */
+}
+
+/* Эффект изменения цвета на rgb(251, 103, 4) при наведении */
+.game-icon-50x50:hover {
+    cursor: pointer;
+    filter: none; /* Убираем фильтр, возвращаем исходный цвет */
+}
+
+
+/* Добавляем transition для плавного изменения opacity */
+.game-icon-50x50,
+.tournament-name {
+    transition: opacity 0.3s ease;
+}
+
+
+/* Стили для разделителя */
+.separator {
+    display: flex;
+    justify-content: center; /* Центрируем тире по горизонтали */
+    width: 100%; /* Убедимся, что тире занимает всю доступную ширину */
+}
+
+/* Медиа-запрос для зума (эффективная ширина < 960px) */
+@media (max-width: 1500px) {
+    .tournament-date {
+        flex-direction: column; /* Меняем на столбец при зуме */
+    }
+}
+
+/* Добавляем transition для плавного изменения opacity */
+.game-icon,
+.tournament-name {
+    transition: opacity 0.3s ease;
+}
+
+.edit-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.password-input:nth-of-type(2n) {
+    margin-bottom: 14px;
+}
+
+.game-icon {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    object-fit: contain;
+    filter: grayscale(1) brightness(0.8);
+    transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.game-icon-orange:hover {
+    cursor: pointer;
+    opacity: 0.8;
+    transition: 0.3s ease;
+}
+
+/* Стиль для активной иконки */
+.game-icon.active {
+    filter: none; /* Убираем фильтр, возвращаем оранжевый цвет */
+    animation: pulse 0.4s ease-out; 
+}
+
+
+
+

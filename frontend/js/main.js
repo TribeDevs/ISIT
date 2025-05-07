@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const profileIcon = document.querySelector('.profile-icon');
     const loginModal = document.querySelector('#loginModal');
     if (loginModal) {
-        const closeModalBtn = loginModal.querySelector('.modal-close');
+        const closeModalBtn = loginModal.querySelector('.modal-close-btn');
         const modalOverlay = loginModal.querySelector('.modal-overlay');
 
         // Открытие модального окна при клике на иконку профиля
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Управление модальным окном регистрации
     const registerModal = document.querySelector('#registerModal');
     if (registerModal) {
-        const closeRegisterModalBtn = registerModal.querySelector('.modal-close');
+        const closeRegisterModalBtn = registerModal.querySelector('.modal-close-btn');
         const registerModalOverlay = registerModal.querySelector('.modal-overlay');
 
         closeRegisterModalBtn.addEventListener('click', () => {
