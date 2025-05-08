@@ -7,12 +7,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import ru.isit.models.CustomUserDetails;
 import ru.isit.models.Role;
 import ru.isit.models.User;
+import ru.isit.service.FileStorageService;
 import ru.isit.service.TokenBlacklistService;
 import ru.isit.service.UserService;
 
+import java.io.IOException;
 import java.util.*;
 
 @RestController
@@ -21,6 +24,7 @@ import java.util.*;
 public class UserController {
     private final UserService userService;
     private final TokenBlacklistService blacklistService;
+    private final FileStorageService fileStorageService;
 
 
     @GetMapping("/me")
@@ -63,17 +67,6 @@ public class UserController {
         return null;
     }
 
-    @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN') or @userSecurity.checkUserId(authentication, #id)")
-    public ResponseEntity<User> updateUser(@PathVariable UUID id, @RequestBody User userDetails) {
-        User updatedUser = userService.updateUser(id, userDetails);
-        if (updatedUser != null) {
-            return ResponseEntity.ok(updatedUser);
-        }
-
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build(); // TODO
-    }
-
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> deleteUser(@PathVariable UUID id) {
@@ -102,5 +95,18 @@ public class UserController {
     public ResponseEntity<Void> takeRole(@PathVariable UUID id, @RequestParam String role) {
         userService.revokeRole(id, Role.valueOf(role));
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/{id}/upload-avatar/")
+    @PreAuthorize("@userSecurity.checkUserId(authentication, #id)")
+    public ResponseEntity<String> uploadAvatar(@PathVariable UUID id, @RequestParam("avatar") MultipartFile file) {
+        try {
+            String filePath = fileStorageService.storeFile(file, id);
+            userService.setAvatar(id, filePath);
+
+            return ResponseEntity.ok("Avatar uploaded successfully for user: " + id);
+        } catch (IOException e) {
+            return ResponseEntity.status(500).body("Failed to upload avatar: " + e.getMessage());
+        }
     }
 }

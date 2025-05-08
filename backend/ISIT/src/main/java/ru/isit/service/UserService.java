@@ -47,16 +47,10 @@ public class UserService {
         return userRepository.findById(userId);
     }
 
-    @Transactional
-    public User updateUser(UUID userId, User userDetails) {
-        Optional<User> user = userRepository.findById(userId);
-        if (user.isPresent()) {
-            User updatedUser = user.get();
-            updatedUser.setUsername(userDetails.getUsername());
-            updatedUser.setEmail(userDetails.getEmail());
-            return userRepository.save(updatedUser);
-        }
-        return null;
+    public void setAvatar(UUID userId, String filePath) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        user.setAvatarUrl(filePath);
+        userRepository.save(user);
     }
 
     @Transactional
