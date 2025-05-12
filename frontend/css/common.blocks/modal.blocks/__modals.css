@@ -63,7 +63,7 @@
     margin-bottom: 20px;
 }
 
-.modal-logo{
+.modal-logo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -77,25 +77,24 @@
     line-height: 1;
 }
 
-.register-modal-header .modal-close,
-.login-modal-header .modal-cloe{
+.register-modal-header .modal-close-btn,
+.login-modal-header .modal-close-btn {
     width: 27px;
     height: 27px;
-    cursor: pointer;
     transition: opacity 0.3s ease;
 }
 
-.modal-close:hover {
+.modal-close-btn:hover {
     opacity: 0.8;
 }
 
-.modal-close-btn{
-    width: 27px;
-    height: 27px;
+.modal-close-btn {
+    width: 40px;
+    height: 40px;
     cursor: pointer;
 }
-
-.modal-title{
+ 
+.modal-title {
     color: #FFF;
     text-align: center;
     font-family: "Roboto Flex";
@@ -103,22 +102,29 @@
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    margin-bottom: 20px;
 }
 
-.modal-divider{
+.modal-divider {
     width: 410px;
     height: 2px;
     background: #4C4B4B;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
     border: 1px solid #4C4B4B; /* Яркая граница для отладки */
 }
 
 /* Стили для футера модального окна */
-.modal-footer {
+.login-modal-footer {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 5px; 
-    margin-bottom: 15px;
+    margin-bottom: 5px;
+}
+
+.register-modal-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px; 
+    margin-bottom: -10px;
 }

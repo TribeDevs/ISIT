@@ -82,7 +82,7 @@
     width: 100%; /*Растягивается на всю ширину .right-column */
     display: flex;
     flex-direction: column;
-    min-width: 480px;
+    min-width: 250px;
 }
 
 /* Заголовок блока "Прошедшие турниры" */
@@ -124,7 +124,6 @@
 /* Иконка игры */
 .profile-tournament-game-icon {
     width: 40px;
-    height: 40px;
     flex-shrink: 0;
     transition: opacity 0.3s ease, filter 0.3s ease;
     float: inline-start;
@@ -135,7 +134,7 @@
     color: #FFF;
     font-family: "Roboto Flex";
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: normal;
     flex-grow: 0;
     justify-content: space-between;

@@ -54,20 +54,6 @@
     width: auto;
 }
 
-/* Скорректируем tournament-container для правильного расположения элементов */
-.tournament-container {
-    border-radius: 20px;
-    border: 1px solid #FB6704;
-    background: #272727;
-    display: flex;
-    align-items: center; /* Выравниваем элементы по верхнему краю */
-    padding: 20px;
-    gap: 20px;
-    box-sizing: border-box; /* Убедимся, что padding не увеличивает ширину */
-}
-
-
-
 /* Контейнер для информации о турнире */
 .tournaments-page .tournament-info {
     display: flex;
@@ -75,6 +61,7 @@
     flex: 1; /* Растягиваем на оставшееся пространство */
     position: relative;
     align-items: flex-start; /* Выравниваем текст слева */
+    margin-left: 15px;
 }
 
 /* Контейнер для деталей турнира */
@@ -97,13 +84,12 @@
     line-height: normal;
 }
 
-.tournament-current-stage {
+.tournament-current-stage .tournament-end-stage {
     display: inline-flex;
     padding: 6px 28px 5px 29px;
     justify-content: center;
     border-radius: 10px;
-    background: #161616;
-    color: #FFF;
+    background: #581919;    
     text-align: center;
     font-family: "Roboto Flex";
     font-size: 16px;
@@ -111,8 +97,49 @@
     font-weight: 200;
     line-height: normal;
     position: absolute;
-    top: 10px;
+    width: 150px;
+    top: 8px;
+    right: 10px;
+    width: auto;
+}
+
+.tournament-current-stage .tournament-registration-stage {
+    display: inline-flex;
+    padding: 6px 28px 5px 29px;
+    justify-content: center;
+    border-radius: 10px;
+    background: #545819;    
+    text-align: center;
+    width: 150px;
+    font-family: "Roboto Flex";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: normal;
+    position: absolute;
+    top: 8px;
     right: 10px; 
+    width: auto;
+
+}
+
+.tournament-current-stage .tournament-in-progress-stage {
+    display: inline-flex;
+    padding: 6px 28px 5px 29px;
+    justify-content: center;
+    border-radius: 10px;
+    background: #1E5819;    
+    text-align: center;
+    font-family: "Roboto Flex";
+    font-size: 16px;
+    font-style: normal;
+    width: 150px;
+    font-weight: 200;
+    line-height: normal;
+    position: absolute;
+    top: 8px;
+    right: 10px; 
+    width: auto;
 }
 
 .tournament-container .tournament-divider {
@@ -139,8 +166,10 @@
     background: #272727;
     display: flex;
     align-items: center;
-    padding: 20px; /* Внутренние отступы */
-    gap: 20px; /* Отступ между изображением и заголовком */
+    padding-left: 30px; 
+    padding-bottom: 20px;
+    padding-top: 20px;
+    padding-right: 20px;
     position: relative;
 }
 
