@@ -23,7 +23,7 @@ public class FileStorageService {
     @Value("${file.upload-dir}")
     private String uploadDir;
 
-    public String storeFile(MultipartFile file, UUID userId) throws IOException {
+    public String storeFile(MultipartFile file, UUID id) throws IOException {
         String fileExtension = getFileExtension(file.getOriginalFilename());
         String mimeType = file.getContentType();
 
@@ -35,7 +35,7 @@ public class FileStorageService {
             throw new IOException("Invalid MIME type. Only image files are allowed.");
         }
 
-        String newFileName = generateFileName(userId) + "." + fileExtension;
+        String newFileName = generateFileName(id) + "." + fileExtension;
 
         Path path = Paths.get(uploadDir, newFileName);
         System.out.println("Saving file to: " + path.toString());
