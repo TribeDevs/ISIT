@@ -4,6 +4,7 @@ package ru.isit.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.isit.dto.response.UserResponse;
 import ru.isit.exception.Exception;
 import ru.isit.models.Role;
 import ru.isit.models.User;
@@ -45,8 +46,18 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public Optional<User> getUserById(UUID userId) {
-        return userRepository.findById(userId);
+    public UserResponse getUserById(UUID userId) {
+        Optional<User> user = userRepository.findById(userId);
+        UserResponse response = new UserResponse(
+                user.get().getId(),
+                user.get().getEmail(),
+                user.get().getUsername(),
+                user.get().getRoles(),
+                user.get().getAvatarUrl(),
+                user.get().isVerified(),
+                user.get().getCreatedAt()
+        );
+        return response;
     }
 
     public void setAvatar(UUID userId, String filePath) {

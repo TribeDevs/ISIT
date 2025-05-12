@@ -7,6 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import ru.isit.dto.response.UserResponse;
 import ru.isit.models.CustomUserDetails;
 import ru.isit.models.Role;
 import ru.isit.models.User;
@@ -16,7 +17,6 @@ import ru.isit.service.UserService;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -30,9 +30,9 @@ public class UserController {
 
     @GetMapping("/me")
     public ResponseEntity<?> getProfileDetails(@AuthenticationPrincipal CustomUserDetails userDetails) {
-        Optional<User> user = userService.getUserById(userDetails.getId());
+        UserResponse user = userService.getUserById(userDetails.getId());
 
-        return ResponseEntity.ok(user.get().toResponse());
+        return ResponseEntity.ok(user);
     }
 
     @GetMapping
@@ -44,8 +44,8 @@ public class UserController {
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMIN') or @userSecurity.checkUserId(authentication, #id)")
     public ResponseEntity<?> getUserById(@PathVariable UUID id) {
-        Optional<User> user = userService.getUserById(id);
-        return ResponseEntity.ok(user.get().toResponse());
+        UserResponse user = userService.getUserById(id);
+        return ResponseEntity.ok(user);
     }
 
     @PostMapping("/logout")
