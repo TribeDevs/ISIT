@@ -24,9 +24,11 @@ nav li {
 }
 
 nav a {
+    color: white;
+    text-decoration: none;
     font-family: 'Roboto Flex', sans-serif;
-    font-size: 25px;
-    font-weight: 400;
+    font-size: 20px;
+    font-weight: 300;
     letter-spacing: 1px;
 }
 

@@ -30,8 +30,8 @@
     border: none;
     border-radius: 25px;
     padding: 10px 20px;
-    font-size: 14px;
-    font-weight: 700;
+    font-size: 17px;
+    font-weight: 400;
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -333,8 +333,18 @@
     line-height: normal;
 }
 
-.teams-page .success-modal-content .modal-header {
+.teams-page #successModal .modal-header {
     margin-bottom: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.teams-page #createTeamModal .modal-header {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .teams-page .success-message {
@@ -679,21 +689,6 @@
     background-color: rgb(200, 82, 3);
 }
 
-/* Стили для модального окна успешного создания команды */
-.teams-page .success-modal-content {
-    width: 610px;
-    height: 315px;
-    flex-shrink: 0;
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.1);
-    transition: opacity 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55), transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-}
-
-.teams-page .modal.active .success-modal-content {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-}
-
 .teams-page .success-modal-header {
     color: #9E9D9D;
     font-family: "Roboto Flex";
@@ -701,10 +696,6 @@
     font-weight: 600;
     margin-bottom: 26px;
     line-height: normal;
-}
-
-.teams-page .success-modal-content .modal-header {
-    margin-bottom: 36px;
 }
 
 .teams-page .success-message {

@@ -1,38 +1,43 @@
-/* Стили для невидимого окна с играми на главной странице */
+
+.games-and-tournaments-container {
+    display: flex;
+    flex: 1;
+    min-width: 0; /* Позволяет блокам сжиматься */
+    gap: 20px; /* Отступ между блоками игр и турниров */
+}
+
 .games-window {
-    width: auto;
-    height: auto;
     display: grid;
-    grid-template-columns: repeat(3, 200px);
-    grid-template-rows: repeat(2, 250px);
-    gap: 57px 40px;
-    align-content: space-between;
-    justify-content: space-between;
+    grid-template-columns: repeat(3, minmax(0, 1fr)); /* Равномерное распределение ширины */
+    grid-template-rows: repeat(2, auto); /* Автоматическая высота строк */
+    gap: clamp(15px, 2vw, 30px); /* Динамический отступ: минимум 10px, максимум 40px, зависит от ширины viewport */
+    flex: 2; /* Блок игр занимает больше пространства */
+    min-width: 0; /* Позволяет сжиматься */
 }
 
 .game-item {
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
 }
 
 .game-item a {
-    text-decoration: none; 
+    text-decoration: none;
 }
 
 .game-image {
-    width: 200px;
-    height: 250px;
-    flex-shrink: 0;
-    aspect-ratio: 4/5;
+    width: 200px; /* Начальная ширина 200px */
+    height: 250px; /* Начальная высота 250px */
+    max-width: 100%; /* Позволяет масштабироваться при уменьшении контейнера */
     border-radius: 15px;
     border: 1px solid #000;
     object-fit: cover;
+    transition: all 0.3s ease; /* Плавное изменение размеров */
 }
 
 .game-item:hover .game-image {
-    opacity: 0.8; 
-    cursor: pointer; 
+    opacity: 0.8;
+    cursor: pointer;
 }
 
 .game-title {
@@ -42,6 +47,201 @@
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    margin-top: 10px; /* Небольшой отступ между картинкой и текстом */
+    margin-top: 10px;
     text-align: center;
+}
+
+/* Минимальные стили для .tournaments-window, чтобы он растягивался */
+.tournaments-window {
+    flex: 1; /* Растягивается на оставшееся пространство */
+    min-width: 300px; /* Минимальная ширина для читаемости */
+}
+
+.tournaments-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.tournaments-list::-webkit-scrollbar-track {
+    background: #272727;
+    margin-right: 30px;
+    margin-left: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.tournaments-list::-webkit-scrollbar-thumb {
+    background: #D9D9D9;
+    border-radius: 3px;
+}
+
+.tournaments-header {
+    width: 100%;
+    height: 68px;
+    flex-shrink: 0;
+    background: #4C4B4B;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.tournaments-tabs {
+    height: 35px;
+    flex-shrink: 0;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    padding-bottom: 13px;
+    padding-right: 30px;
+    border-bottom: 1px solid white;
+    width: calc(100% - 60px);
+    max-width: calc(100% - 60px);
+    margin: 0 auto;
+}
+
+.tournaments-tabs,
+.tab {
+    transition: opacity 0.3s ease;
+}
+
+.tournaments-tabs:hover .tab {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.tournament-item {
+    width: 100%;
+    min-height: 70px;
+    max-height: 180px;
+    flex-shrink: 1;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(112, 110, 110, 1);
+}
+
+.tournament-item:last-child {
+    border-bottom: 1px solid rgba(112, 110, 110, 1);
+}
+
+.tournament-name {
+    color: #FFF;
+    font-family: "Roboto Flex";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    display: block;
+}
+
+.tournament-format {
+    color: #706E6E;
+    font-family: "Roboto Flex";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    display: block;
+}
+
+.all-tournaments-btn {
+    display: inline-flex;
+    padding: 14px 85px 13px 85px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    background: #FB6704;
+    color: #FFF;
+    text-align: center;
+    font-family: "Roboto Flex";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-decoration: none;
+    width: fit-content;
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+}
+
+.all-tournaments-btn:hover {
+    opacity: 0.8;
+}
+
+.tournament-item a {
+    text-decoration: none;
+}
+
+.tournament-item:hover .game-icon-50x50,
+.tournament-item:hover .tournament-name {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.tournament-info {
+    flex: 1;
+}
+
+.tournament-date {
+    color: #FFF;
+    text-align: right;
+    font-family: "Roboto Flex";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.5px;
+    width: fit-content;
+    flex-shrink: 0;
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.tournaments-footer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 22px;
+    margin-top: 15px;
+}
+
+.tournaments-tabs .tab-past-tournaments,
+.tournaments-tabs .tab-future-tournaments {
+    color: white;
+    font-family: "Roboto Flex";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    cursor: pointer;
+    margin-top: 16px;
+    transition: color 0.4s ease, opacity 0.1s ease;
+}
+
+.tournaments-tabs .active {
+    color: rgb(251, 103, 4);
+}
+
+.tab-past-tournaments:hover,
+.tab-future-tournaments:hover {
+    opacity: 0.8;
+}
+
+.tournaments-header h2 {
+    color: white;
+    font-family: "Roboto Flex";
+    font-size: 22px;
+    font-weight: 300;
+    margin-left: 30px;
+}
+
+.tournaments-window {
+    width: auto;
+    max-height: 557px;
+    flex-shrink: 1;
+    border-radius: 20px;
+    background: #272727;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }

@@ -46,18 +46,18 @@
 .account-item {
     display: flex;
     width: auto;
-    padding: 4px 10px;
+    padding: 4px 15px;
     justify-content: center;
     align-items: center;
     gap: 20px;
-    border-radius: 10px;
+    border-radius: 15px;
     background: #4C4B4B;
 }
 
 /* Картинка привязанной соцсети */
 .account-icon {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     flex-shrink: 0;
     aspect-ratio: 1/1;
     align-items: flex-end;
@@ -67,7 +67,7 @@
 .bind-account-btn {
     display: flex;
     width: 170px;
-    height: 45px;
+    height: 35px;
     padding: 7px 18px;
     justify-content: center;
     align-items: center;
