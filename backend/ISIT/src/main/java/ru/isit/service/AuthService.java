@@ -17,9 +17,9 @@ import ru.isit.dto.request.SignUpRequest;
 import ru.isit.dto.response.JwtResponse;
 import ru.isit.exception.Exception;
 import ru.isit.models.Role;
+import ru.isit.models.User;
 import ru.isit.repository.UserRepository;
 import ru.isit.security.JwtAuthentication;
-import ru.isit.models.User;
 import ru.isit.security.JwtProvider;
 
 import java.io.IOException;
@@ -55,7 +55,7 @@ public class AuthService {
             throw new Exception("Invalid login or password!");
         }
 
-        String accessToken  = jwtProvider.generateAccessToken(user);
+        String accessToken = jwtProvider.generateAccessToken(user);
         String refreshToken = jwtProvider.generateRefreshToken(user);
 
         refreshStorage.put(user.getEmail(), refreshToken);

@@ -16,14 +16,12 @@ import java.util.UUID;
 @Service
 public class FileStorageService {
 
-    @Value("${file.upload-dir}")
-    private String uploadDir;
-
     private static final List<String> ALLOWED_EXTENSIONS = Arrays.asList("jpg", "jpeg", "png", "gif", "bmp", "tiff");
-
     private static final List<String> ALLOWED_MIME_TYPES = Arrays.asList(
             "image/jpeg", "image/png", "image/gif", "image/bmp", "image/tiff"
     );
+    @Value("${file.upload-dir}")
+    private String uploadDir;
 
     public String storeFile(MultipartFile file, UUID userId) throws IOException {
         String fileExtension = getFileExtension(file.getOriginalFilename());

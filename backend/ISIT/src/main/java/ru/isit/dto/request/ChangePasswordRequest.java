@@ -17,5 +17,4 @@ public class ChangePasswordRequest {
     private String newPassword;
 
 
-
 }

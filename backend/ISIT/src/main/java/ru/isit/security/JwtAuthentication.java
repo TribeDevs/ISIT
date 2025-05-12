@@ -27,13 +27,19 @@ public class JwtAuthentication implements Authentication {
     }
 
     @Override
-    public Object getCredentials() { return null; }
+    public Object getCredentials() {
+        return null;
+    }
 
     @Override
-    public Object getDetails() { return null; }
+    public Object getDetails() {
+        return null;
+    }
 
     @Override
-    public boolean isAuthenticated() { return authenticated; }
+    public boolean isAuthenticated() {
+        return authenticated;
+    }
 
     @Override
     public void setAuthenticated(boolean isAuthenticated) throws IllegalArgumentException {
@@ -41,6 +47,8 @@ public class JwtAuthentication implements Authentication {
     }
 
     @Override
-    public String getName() { return null; }
+    public String getName() {
+        return null;
+    }
 
 }

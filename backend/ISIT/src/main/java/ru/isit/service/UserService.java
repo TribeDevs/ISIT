@@ -1,15 +1,17 @@
 package ru.isit.service;
 
 
-import org.springframework.transaction.annotation.Transactional;
-import ru.isit.exception.Exception;
-import ru.isit.models.User;
-import ru.isit.models.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import ru.isit.exception.Exception;
+import ru.isit.models.Role;
+import ru.isit.models.User;
 import ru.isit.repository.UserRepository;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -64,6 +66,8 @@ public class UserService {
     }
 
     @Transactional
-    public boolean verifyUser(UUID userId) { return false; }
+    public boolean verifyUser(UUID userId) {
+        return false;
+    }
 
 }

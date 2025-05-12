@@ -4,8 +4,14 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import ru.isit.dto.request.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import ru.isit.dto.request.ChangePasswordRequest;
+import ru.isit.dto.request.JwtRequest;
+import ru.isit.dto.request.RefreshJwtRequest;
+import ru.isit.dto.request.SignUpRequest;
 import ru.isit.dto.response.JwtResponse;
 import ru.isit.service.AuthService;
 
