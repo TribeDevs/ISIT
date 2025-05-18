@@ -7,6 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import ru.isit.dto.request.LoginRequest;
 import ru.isit.dto.response.UserResponse;
 import ru.isit.models.CustomUserDetails;
 import ru.isit.models.Role;
@@ -104,9 +105,20 @@ public class UserController {
             String filePath = fileStorageService.storeFile(file, id);
             userService.setAvatar(id, filePath);
 
-            return ResponseEntity.ok("Avatar uploaded successfully for user: " + id);
+            return ResponseEntity.ok("Avatar uploaded successfully");
         } catch (IOException e) {
             return ResponseEntity.status(500).body("Failed to upload avatar: " + e.getMessage());
         }
+    }
+
+    @PostMapping("/{id}/check-auth")
+    @PreAuthorize("@userSecurity.checkUserId(authentication, #id)")
+    public ResponseEntity<String> checkVerify(@PathVariable UUID id, @RequestBody LoginRequest request) {
+        System.out.println("Checking verification for user: " + id);
+        if (userService.verifyUser(id, request)) {
+            return ResponseEntity.ok("Аккаунт верифицирован!");
+        }
+
+        return ResponseEntity.status(500).body("Не получилось верифицировать аккаунт");
     }
 }
