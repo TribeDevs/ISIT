@@ -1,18 +1,15 @@
-# Этап сборки с Maven
 FROM maven:3.9.6-eclipse-temurin-21-alpine AS builder
 WORKDIR /application
 COPY . .
 WORKDIR /application/backend/ISIT
 RUN mvn clean install -Dmaven.test.skip
 
-# Этап извлечения слоёв
 FROM bellsoft/liberica-openjre-alpine:22-cds AS layers
 WORKDIR /application
 COPY --from=builder /application/backend/ISIT/target/*.jar app.jar
 COPY backend/ISIT/*.env ./
 RUN java -Djarmode=tools -jar app.jar extract --layers --destination extracted
 
-# Финальный runtime-образ
 FROM bellsoft/liberica-openjre-alpine:22-cds
 VOLUME /tmp
 RUN adduser -S spring-user
