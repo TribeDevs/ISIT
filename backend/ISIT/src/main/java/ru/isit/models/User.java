@@ -47,5 +47,8 @@ public class User {
 
     private String avatarUrl;
     private boolean verified = false;
+    private String sfuName;
+    private String sfuGroup;
+    private String sfuInstitute;
 
 }

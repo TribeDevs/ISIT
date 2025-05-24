@@ -1,13 +1,13 @@
 FROM maven:3.9.6-eclipse-temurin-21-alpine AS builder
 WORKDIR /application
 COPY . .
-WORKDIR /application/backend/ISIT
+WORKDIR /application
 RUN mvn clean install -Dmaven.test.skip
 
 FROM bellsoft/liberica-openjre-alpine:22-cds AS layers
 WORKDIR /application
 COPY --from=builder /application/backend/ISIT/target/*.jar app.jar
-COPY backend/ISIT/*.env ./
+COPY .env ./
 RUN java -Djarmode=tools -jar app.jar extract --layers --destination extracted
 
 FROM bellsoft/liberica-openjre-alpine:22-cds

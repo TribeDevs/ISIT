@@ -24,15 +24,21 @@ import java.util.UUID;
 @RequestMapping("/api/${api.version}/users")
 @RequiredArgsConstructor
 public class UserController {
+
     private final UserService userService;
     private final TokenBlacklistService blacklistService;
     private final FileStorageService fileStorageService;
 
+    @GetMapping("/check-auth")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<?> checkAuthorization(@AuthenticationPrincipal CustomUserDetails userDetails) {
+        UserResponse user = userService.getUserById(userDetails.getId());
+        return ResponseEntity.ok(user);
+    }
 
     @GetMapping("/me")
     public ResponseEntity<?> getProfileDetails(@AuthenticationPrincipal CustomUserDetails userDetails) {
         UserResponse user = userService.getUserById(userDetails.getId());
-
         return ResponseEntity.ok(user);
     }
 
@@ -49,45 +55,31 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @PostMapping("/logout")
-    public ResponseEntity<?> logout(HttpServletRequest request) {
-        String token = extractToken(request);
-
-        if (token == null) {
-            return ResponseEntity.badRequest().body("Токен не может быть пустым!");
+    @PostMapping("/{id}/upload-avatar")
+    @PreAuthorize("@userSecurity.checkUserId(authentication, #id)")
+    public ResponseEntity<String> uploadAvatar(@PathVariable UUID id, @RequestParam("avatar") MultipartFile file) {
+        try {
+            String filePath = fileStorageService.storeFile(file, id);
+            userService.setAvatar(id, filePath);
+            return ResponseEntity.ok("Avatar uploaded successfully");
+        } catch (IOException e) {
+            return ResponseEntity.status(500).body("Failed to upload avatar: " + e.getMessage());
         }
-
-        blacklistService.addToBlacklist(token);
-        return ResponseEntity.ok("Выход прошел успешно!");
     }
 
-    private String extractToken(HttpServletRequest request) {
-        String header = request.getHeader("Authorization");
-        if (header != null && header.startsWith("Bearer ")) {
-            return header.substring(7);
+    @PostMapping("/{id}/check-sfu")
+    @PreAuthorize("@userSecurity.checkUserId(authentication, #id)")
+    public ResponseEntity<String> checkVerify(@PathVariable UUID id, @RequestBody LoginRequest request) {
+        if (userService.verifyUser(id, request)) {
+            return ResponseEntity.ok("Аккаунт верифицирован!");
         }
-        return null;
+        return ResponseEntity.status(500).body("Не получилось верифицировать аккаунт");
     }
-
-    @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<?> deleteUser(@PathVariable UUID id) {
-        System.out.println(id);
-        boolean isDeleted = userService.deleteUser(id);
-        System.out.println(id);
-
-        if (isDeleted) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok().build();
-    }
-
 
     @PutMapping("/{id}/giveRole")
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Void> grantRole(@PathVariable UUID id, @RequestParam String role) {
         userService.grantRole(id, Role.valueOf(role));
-
         return ResponseEntity.noContent().build();
     }
 
@@ -98,27 +90,31 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/{id}/upload-avatar/")
-    @PreAuthorize("@userSecurity.checkUserId(authentication, #id)")
-    public ResponseEntity<String> uploadAvatar(@PathVariable UUID id, @RequestParam("avatar") MultipartFile file) {
-        try {
-            String filePath = fileStorageService.storeFile(file, id);
-            userService.setAvatar(id, filePath);
-
-            return ResponseEntity.ok("Avatar uploaded successfully");
-        } catch (IOException e) {
-            return ResponseEntity.status(500).body("Failed to upload avatar: " + e.getMessage());
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletRequest request) {
+        String token = extractToken(request);
+        if (token == null) {
+            return ResponseEntity.badRequest().body("Токен не может быть пустым!");
         }
+        blacklistService.addToBlacklist(token);
+        return ResponseEntity.ok("Выход прошел успешно!");
     }
 
-    @PostMapping("/{id}/check-auth")
-    @PreAuthorize("@userSecurity.checkUserId(authentication, #id)")
-    public ResponseEntity<String> checkVerify(@PathVariable UUID id, @RequestBody LoginRequest request) {
-        System.out.println("Checking verification for user: " + id);
-        if (userService.verifyUser(id, request)) {
-            return ResponseEntity.ok("Аккаунт верифицирован!");
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<?> deleteUser(@PathVariable UUID id) {
+        boolean isDeleted = userService.deleteUser(id);
+        if (isDeleted) {
+            return ResponseEntity.noContent().build();
         }
+        return ResponseEntity.ok().build();
+    }
 
-        return ResponseEntity.status(500).body("Не получилось верифицировать аккаунт");
+    private String extractToken(HttpServletRequest request) {
+        String header = request.getHeader("Authorization");
+        if (header != null && header.startsWith("Bearer ")) {
+            return header.substring(7);
+        }
+        return null;
     }
 }

@@ -2,6 +2,7 @@ package ru.isit.service;
 
 
 import lombok.RequiredArgsConstructor;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,9 @@ import ru.isit.repository.UserRepository;
 import java.io.IOException;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import java.net.URI;
 import java.net.URLEncoder;
 import java.net.http.HttpClient;
@@ -89,15 +93,17 @@ public class UserService {
         return false;
     }
 
+
     @Transactional
     public boolean verifyUser(UUID id, LoginRequest request) {
-        HttpClient httpClient = HttpClient.newBuilder()
-                .cookieHandler(new CookieManager(null, CookiePolicy.ACCEPT_ALL))
-                .build();
         try {
+            CookieManager cookieManager = new CookieManager();
+            cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
+
             HttpClient client = HttpClient.newBuilder()
                     .version(HttpClient.Version.HTTP_2)
                     .followRedirects(HttpClient.Redirect.NORMAL)
+                    .cookieHandler(cookieManager)
                     .build();
 
             Map<String, String> formData = Map.of(
@@ -110,37 +116,71 @@ public class UserService {
                             URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8))
                     .collect(Collectors.joining("&"));
 
-            HttpRequest getRequest = HttpRequest.newBuilder()
+            HttpRequest loginRequest = HttpRequest.newBuilder()
                     .uri(URI.create("https://users.sfu-kras.ru/php/auth.php"))
                     .header("Content-Type", "application/x-www-form-urlencoded")
+                    .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
                     .POST(HttpRequest.BodyPublishers.ofString(formBody))
                     .build();
 
-            HttpResponse<String> response = client.send(getRequest, HttpResponse.BodyHandlers.ofString());
+            HttpResponse<String> loginResponse = client.send(loginRequest, HttpResponse.BodyHandlers.ofString());
 
-            if (response.statusCode() != 200) {
+            if (loginResponse.statusCode() != 200) {
                 return false;
             }
-            System.out.println("Response: " + response.body());
-            JSONObject json = new JSONObject(response.body());
-            String result = json.getString("data");
 
-            if (response.statusCode() == 200 && "SUCCESS".equals(result)) {
-                User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
-                user.setVerified(true);
-                userRepository.save(user);
-                return true;
+            JSONObject authJson = new JSONObject(loginResponse.body());
+            if (!"SUCCESS".equalsIgnoreCase(authJson.optString("data", ""))) {
+                return false;
             }
 
+            HttpRequest infoRequest = HttpRequest.newBuilder()
+                    .uri(URI.create("https://users.sfu-kras.ru/php/login_info.php"))
+                    .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+                    .GET()
+                    .build();
 
-            return false;
-        } catch (Exception e) {
-            throw new RuntimeException("Ошибка при проверке авторизации", e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            HttpResponse<String> infoResponse = client.send(infoRequest, HttpResponse.BodyHandlers.ofString());
+            String html = infoResponse.body();
+
+            Document doc = Jsoup.parse(html);
+
+            Element fioEl = doc.selectFirst("div.fioview");
+            if (fioEl == null) {
+                System.err.println("ФИО не найдено. HTML:\n" + doc.html());
+                return false;
+            }
+            String fullName = fioEl.text().split("\\(")[0].trim();
+
+            Element groupEl = doc.selectFirst("td.profile_title:containsOwn(Группа) + td");
+            if (groupEl == null) {
+                System.err.println("Группа не найдена. HTML:\n" + doc.html());
+                return false;
+            }
+            String group = groupEl.text();
+
+            Element instituteEl = doc.selectFirst("td.profile_title:containsOwn(Институт) + td");
+            if (instituteEl == null) {
+                System.err.println("Институт не найден. HTML:\n" + doc.html());
+                return false;
+            }
+            String institute = instituteEl.text();
+
+            User user = userRepository.findById(id)
+                    .orElseThrow(() -> new RuntimeException("User not found: " + id));
+
+            user.setVerified(true);
+            user.setSfuName(fullName);
+            user.setSfuGroup(group);
+            user.setSfuInstitute(institute);
+            userRepository.save(user);
+
+            return true;
+
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException("Ошибка при верификации: " + e.getMessage(), e);
+        } catch (JSONException e) {
+            throw new RuntimeException("Ошибка парсинга JSON: " + e.getMessage(), e);
         }
     }
-
 }

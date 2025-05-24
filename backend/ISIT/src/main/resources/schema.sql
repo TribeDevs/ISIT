@@ -5,7 +5,9 @@ CREATE TABLE IF NOT EXISTS users (
                                      email VARCHAR(100) UNIQUE NOT NULL,
                                      avatar_url VARCHAR(255),
                                      verified BOOL,
-                                     created_at TIMESTAMP
+                                     created_at TIMESTAMP,
+                                     sfu_name VARCHAR(255),
+                                     sfu_group VARCHAR(50)
 );
 
 CREATE TABLE IF NOT EXISTS user_roles (
@@ -18,6 +20,12 @@ ALTER TABLE user_roles
         FOREIGN KEY (user_id)
             REFERENCES users(id)
             ON DELETE CASCADE;
+
+CREATE TABLE IF NOT EXISTS user_sfu (
+    user_id UUID PRIMARY KEY,
+    sfu_name VARCHAR(255),
+    sfu_group VARCHAR(50)
+);
 
 CREATE TABLE IF NOT EXISTS codes (
                                       id UUID PRIMARY KEY,
