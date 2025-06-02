@@ -1,0 +1,16 @@
+
+@import url(common.blocks/header.blocks/__logo.css);
+@import url(common.blocks/header.blocks/__page_title.css);
+@import url(common.blocks/header.blocks/__profile_icon.css);
+@import url(common.blocks/header.blocks/__site_name.css);
+
+@import url(common.blocks/auth.blocks/login.blocks/__login_popup.css);
+@import url(common.blocks/auth.blocks/register.blocks/__register_popup.css);
+@import url(common.blocks/auth.blocks/register.blocks/__send_code_btn.css);
+@import url(common.blocks/auth.blocks/__password_toggle_icon.css);
+
+@import url(common.blocks/modal.blocks/__modals.css);
+@import url(common.blocks/modal.blocks/__error.css);
+
+@import url(common.blocks/general_styles.css);
+@import url(common.blocks/__search.css);
