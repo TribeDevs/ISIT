@@ -6,9 +6,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.isit.dto.request.ChangeUsernameRequest;
 import ru.isit.dto.request.LoginRequest;
 import ru.isit.dto.response.UserResponse;
 import ru.isit.exception.Exception;
+import ru.isit.models.CustomUserDetails;
 import ru.isit.models.Role;
 import ru.isit.models.User;
 import ru.isit.repository.UserRepository;
@@ -72,7 +74,10 @@ public class UserService {
                 user.get().getRoles(),
                 user.get().getAvatarUrl(),
                 user.get().isVerified(),
-                user.get().getCreatedAt()
+                user.get().getCreatedAt(),
+                user.get().getSfuName(),
+                user.get().getSfuGroup(),
+                user.get().getSfuInstitute()
         );
         return response;
     }
@@ -80,6 +85,13 @@ public class UserService {
     public void setAvatar(UUID userId, String filePath) {
         User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
         user.setAvatarUrl(filePath);
+        userRepository.save(user);
+    }
+
+    public void changeUsername(CustomUserDetails userDetails, ChangeUsernameRequest request) {
+        User user = userRepository.findById(userDetails.getId()).orElseThrow(() -> new RuntimeException("User not found"));
+
+        user.setUsername(request.getNewUsername());
         userRepository.save(user);
     }
 

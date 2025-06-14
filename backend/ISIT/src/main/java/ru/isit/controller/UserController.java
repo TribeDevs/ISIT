@@ -7,16 +7,21 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import ru.isit.dto.request.ChangePasswordRequest;
+import ru.isit.dto.request.ChangeUsernameRequest;
 import ru.isit.dto.request.LoginRequest;
+import ru.isit.dto.response.EmptyResponse;
 import ru.isit.dto.response.UserResponse;
 import ru.isit.models.CustomUserDetails;
 import ru.isit.models.Role;
 import ru.isit.models.User;
+import ru.isit.service.AuthService;
 import ru.isit.service.FileStorageService;
 import ru.isit.service.TokenBlacklistService;
 import ru.isit.service.UserService;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,6 +33,7 @@ public class UserController {
     private final UserService userService;
     private final TokenBlacklistService blacklistService;
     private final FileStorageService fileStorageService;
+    private final AuthService authService;
 
     @GetMapping("/check-auth")
     @PreAuthorize("isAuthenticated()")
@@ -57,23 +63,23 @@ public class UserController {
 
     @PostMapping("/{id}/upload-avatar")
     @PreAuthorize("@userSecurity.checkUserId(authentication, #id)")
-    public ResponseEntity<String> uploadAvatar(@PathVariable UUID id, @RequestParam("avatar") MultipartFile file) {
+    public ResponseEntity<?> uploadAvatar(@PathVariable UUID id, @RequestParam("avatar") MultipartFile file) {
         try {
             String filePath = fileStorageService.storeFile(file, id);
             userService.setAvatar(id, filePath);
-            return ResponseEntity.ok("Avatar uploaded successfully");
+            return ResponseEntity.ok(Collections.emptyMap());
         } catch (IOException e) {
-            return ResponseEntity.status(500).body("Failed to upload avatar: " + e.getMessage());
+            return ResponseEntity.badRequest().body(Collections.emptyMap());
         }
     }
 
     @PostMapping("/{id}/check-sfu")
     @PreAuthorize("@userSecurity.checkUserId(authentication, #id)")
-    public ResponseEntity<String> checkVerify(@PathVariable UUID id, @RequestBody LoginRequest request) {
+    public ResponseEntity<?> checkVerify(@PathVariable UUID id, @RequestBody LoginRequest request) {
         if (userService.verifyUser(id, request)) {
-            return ResponseEntity.ok("Аккаунт верифицирован!");
+            return ResponseEntity.ok().build();
         }
-        return ResponseEntity.status(500).body("Не получилось верифицировать аккаунт");
+        return ResponseEntity.badRequest().body(Collections.emptyMap());
     }
 
     @PutMapping("/{id}/giveRole")
@@ -94,10 +100,10 @@ public class UserController {
     public ResponseEntity<?> logout(HttpServletRequest request) {
         String token = extractToken(request);
         if (token == null) {
-            return ResponseEntity.badRequest().body("Токен не может быть пустым!");
+            return ResponseEntity.badRequest().body(Collections.emptyMap());
         }
         blacklistService.addToBlacklist(token);
-        return ResponseEntity.ok("Выход прошел успешно!");
+        return ResponseEntity.ok(Collections.emptyMap());
     }
 
     @DeleteMapping("/{id}")
@@ -107,8 +113,23 @@ public class UserController {
         if (isDeleted) {
             return ResponseEntity.noContent().build();
         }
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(Collections.emptyMap());
     }
+
+
+    @PostMapping("/changePassword")
+    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest request) {
+        authService.changePassword(request);
+
+        return ResponseEntity.ok(Collections.emptyMap());
+    }
+
+    @PostMapping("/changeUsername")
+    public ResponseEntity<?> changeUsername(@AuthenticationPrincipal CustomUserDetails userDetails, @RequestBody ChangeUsernameRequest request) {
+        userService.changeUsername(userDetails, request);
+        return ResponseEntity.ok(Collections.emptyMap());
+    }
+
 
     private String extractToken(HttpServletRequest request) {
         String header = request.getHeader("Authorization");

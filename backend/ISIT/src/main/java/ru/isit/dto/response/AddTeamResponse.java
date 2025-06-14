@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class AddTeamResponse {
 
-    private String inviteLink;
+    private String inviteCode;
 
 }

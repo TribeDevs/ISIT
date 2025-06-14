@@ -12,8 +12,11 @@ import ru.isit.dto.request.ChangePasswordRequest;
 import ru.isit.dto.request.JwtRequest;
 import ru.isit.dto.request.RefreshJwtRequest;
 import ru.isit.dto.request.SignUpRequest;
+import ru.isit.dto.response.EmptyResponse;
 import ru.isit.dto.response.JwtResponse;
 import ru.isit.service.AuthService;
+
+import java.util.Collections;
 
 
 @RestController
@@ -26,7 +29,7 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<?> signUp(@RequestBody @Valid SignUpRequest request) {
         authService.signUp(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Аккаунт создан!");
+        return ResponseEntity.status(201).body(Collections.emptyMap());
     }
 
     @PostMapping("/signin")
@@ -38,7 +41,7 @@ public class AuthController {
     @PostMapping("/forgotPassword")
     public ResponseEntity<?> forgotPassword(@RequestBody @Valid ChangePasswordRequest request) {
         authService.changePassword(request);
-        return ResponseEntity.ok("");
+        return ResponseEntity.ok(Collections.emptyMap());
     }
 
     @PostMapping("/token")

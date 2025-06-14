@@ -18,4 +18,7 @@ public class UserResponse {
     private String avatarUrl;
     private boolean verified;
     private LocalDateTime createdAt;
+    private String sfuName;
+    private String sfuGroup;
+    private String sfuInstitute;
 }

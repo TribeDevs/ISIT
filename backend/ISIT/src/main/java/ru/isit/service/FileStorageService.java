@@ -52,7 +52,7 @@ public class FileStorageService {
 
         Files.copy(file.getInputStream(), path, java.nio.file.StandardCopyOption.REPLACE_EXISTING);
 
-        return path.toString();
+        return newFileName;
     }
 
     private String getFileExtension(String fileName) {
