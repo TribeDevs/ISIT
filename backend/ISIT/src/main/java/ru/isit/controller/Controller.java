@@ -6,8 +6,11 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.isit.dto.response.EmptyResponse;
 import ru.isit.security.JwtAuthentication;
 import ru.isit.service.AuthService;
+
+import java.util.Collections;
 
 @RestController
 @RequestMapping()
@@ -18,16 +21,16 @@ public class Controller {
 
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("hello/user")
-    public ResponseEntity<String> helloUser() {
+    public ResponseEntity<?> helloUser() {
         final JwtAuthentication authInfo = authService.getAuthInfo();
-        return ResponseEntity.ok("Hello user " + authInfo.getPrincipal() + "!");
+        return ResponseEntity.ok(Collections.emptyMap());
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("hello/admin")
-    public ResponseEntity<String> helloAdmin() {
+    public ResponseEntity<?> helloAdmin() {
         final JwtAuthentication authInfo = authService.getAuthInfo();
-        return ResponseEntity.ok("Hello admin " + authInfo.getPrincipal() + "!");
+        return ResponseEntity.ok(Collections.emptyMap());
     }
 
 }

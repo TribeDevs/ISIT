@@ -19,6 +19,7 @@ import ru.isit.service.CustomUserDetailsService;
 import ru.isit.service.TokenBlacklistService;
 
 import java.io.IOException;
+import java.util.UUID;
 
 @Slf4j
 @Component
@@ -45,7 +46,9 @@ public class JwtFilter extends GenericFilterBean {
         if (token != null && jwtProvider.validateAccessToken(token)) {
             final Claims claims = jwtProvider.getAccessClaims(token);
 
-            CustomUserDetails userDetails = userDetailsService.loadUserByUsername(claims.getSubject());
+            UUID userId = UUID.fromString(claims.get("id", String.class));
+            CustomUserDetails userDetails = userDetailsService.loadUserById(userId);
+
 
             JwtAuthentication auth = new JwtAuthentication();
             auth.setUserDetails(userDetails);

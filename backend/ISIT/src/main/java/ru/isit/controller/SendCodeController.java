@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.isit.dto.request.SendCodeRequest;
+import ru.isit.dto.response.EmptyResponse;
 import ru.isit.service.AuthService;
 
 import java.io.IOException;
+import java.util.Collections;
 
 
 @RestController
@@ -24,7 +26,7 @@ public class SendCodeController {
     @PostMapping()
     public ResponseEntity<?> sendCode(@RequestBody @Valid SendCodeRequest request) throws MessagingException, IOException {
         authService.sendConfirmationEmail(request.getEmail(), "Подтверждение почты");
-        return ResponseEntity.ok().body("На вашу почту отправлено письмо для подтверждения!");
+        return ResponseEntity.ok(Collections.emptyMap());
     }
 
 }

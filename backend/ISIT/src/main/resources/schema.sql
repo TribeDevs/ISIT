@@ -5,7 +5,10 @@ CREATE TABLE IF NOT EXISTS users (
                                      email VARCHAR(100) UNIQUE NOT NULL,
                                      avatar_url VARCHAR(255),
                                      verified BOOL,
-                                     created_at TIMESTAMP
+                                     created_at TIMESTAMP,
+                                     sfu_name VARCHAR(255),
+                                     sfu_group VARCHAR(50),
+                                     sfu_institute VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS user_roles (
@@ -41,12 +44,17 @@ ALTER TABLE bind_platform
             ON DELETE CASCADE;
 
 CREATE TABLE IF NOT EXISTS teams (
-                                     id UUID PRIMARY KEY,
-                                     name VARCHAR(25) UNIQUE NOT NULL,
-                                     creator_id UUID NOT NULL,
-                                     logo_url VARCHAR(255),
-                                     created_at TIMESTAMP
+    id UUID PRIMARY KEY,
+    name VARCHAR(25) UNIQUE NOT NULL,
+    creator_id UUID NOT NULL,
+    count_members INTEGER,
+    game_id INTEGER,
+    logo_url VARCHAR(255),
+    invite_code VARCHAR,
+    created_at TIMESTAMP,
+    users JSONB
 );
+
 
 ALTER TABLE teams
     ADD CONSTRAINT fk_teams_creator

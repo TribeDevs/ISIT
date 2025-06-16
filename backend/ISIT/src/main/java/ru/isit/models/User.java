@@ -3,9 +3,11 @@ package ru.isit.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
-import ru.isit.dto.response.UserResponse;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -45,17 +47,8 @@ public class User {
 
     private String avatarUrl;
     private boolean verified = false;
-
-    public UserResponse toResponse() {
-        return new UserResponse(
-                this.id,
-                this.email,
-                this.username,
-                this.roles,
-                this.avatarUrl,
-                this.verified,
-                this.createdAt
-        );
-    }
+    private String sfuName;
+    private String sfuGroup;
+    private String sfuInstitute;
 
 }

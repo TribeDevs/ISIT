@@ -9,7 +9,8 @@ public class SignUpRequest {
     @NotBlank
     private String email;
 
-    @NotBlank String code;
+    @NotBlank
+    String code;
 
     @NotBlank
     private String username;

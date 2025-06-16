@@ -4,7 +4,6 @@ import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -18,8 +17,6 @@ public class EmailService {
     private String fromEmail;
 
     public void sendMessage(String to, String title, String content) throws MessagingException {
-
-
         MimeMessage message = mailSender.createMimeMessage();
         message.setFrom(fromEmail);
 
