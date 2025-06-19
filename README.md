@@ -5,11 +5,11 @@
 <hr>
 <div>
   <h2>Команда:</h2>
-  <h3>Frontend-разработчик #1 — <a href=https://t.me/xjpqlcdkw>Максим Суворов</a> (rub1ck0n)</h3> 
-  <h3>Backend-разработчик — <a href=https://t.me/teligod>Андрей Ярошенко</a> (YaroGITk)</h3> 
-  <h3>Frontend-разработчик #2 — <a href=https://t.me/whoiam_lol>Кирилл Мягких</a> (claymorr)</h3> 
-  <h3>Frontend-разработчик #3— <a href=https://t.me/xmmmus>Сергей Тверетинов</a> (dwasp1)</h3> 
-  <h3>Руководитель проекта — <a href=https://t.me/Howksss>Савинов Никита</a> (Howksss)</h3> 
+  <h3>Frontend-разработчик — <a href=https://t.me/xjpqlcdkw>Максим Суворов</a> (rub1ck0n)</h3> 
+  <h3>Ведущий Backend-разработчик — <a href=https://t.me/teligod>Андрей Ярошенко</a> (YaroGITk)</h3> 
+  <h3>Figma-дизайнер #1 — <a href=https://t.me/whoiam_lol>Кирилл Мягких</a> (claymorr)</h3> 
+  <h3>Figma-дизайнер #2— <a href=https://t.me/xmmmus>Сергей Тверетинов</a> (dwasp1)</h3> 
+  <h3>Руководитель проекта, ведущий Frontend-разработчик  — <a href=https://t.me/Howksss>Савинов Никита</a> (Howksss)</h3> 
 </div>
 <hr>
 <div align=center>
