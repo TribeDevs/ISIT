@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/src/css/style.css">
+    <title>ISIT - киберспортивная площадка</title>
+</head>
+
+<body>
+    <!-- Mobile first -->
+
+    <!-- Модальное окно --> 
+    <div class="modal">
+        <div class="modal__wrapper">
+            <div class="modal__block"></div>
+        </div>
+    </div>
+
+    <!-- MENU MOBILE -->
+    <div class="nav-mobile">
+        <div class="nav-mobile__body">
+            <a class="nav-mobile__item nav-mobile__item_active">
+                <img src="./src/images/icons/home.svg" class="nav-mobile_icon">
+                <span class="nav-mobile__page-name">Главная</span>
+            </a>
+            <a class="nav-mobile__item">
+                <img src="./src/images/icons/tournaments.svg" class="nav-mobile_icon">
+                <span class="nav-mobile__page-name">Турниры</span>
+            </a>
+            <a class="nav-mobile__item">
+                <img src="./src/images/icons/teams.svg" class="nav-mobile_icon">
+                <span class="nav-mobile__page-name">Команды</span>
+            </a>
+            <!-- if auth != true -->
+            <button class="nav-mobile__item">
+                <img src="./src/images/icons/login.svg" class="nav-mobile_icon">
+                <span class="nav-mobile__page-name">Войти</span>
+            </button>
+
+            <!-- if auth != true -->
+            <!-- <a class="nav-mobile__item">
+                <img src="./src/images/avatars/2.jpg" class="nav-mobile__profile">
+            </a> -->
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <div class="header">
+        <a href="/" class="header__logo">
+            <img src="./src/images/logo/1.svg" alt="ISIT" class="header__logo-img">
+            <div class="header__logo-name">ISIT <span>esport</span></div>
+        </a>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="page">
+        <!-- ИГРЫ -->
+        <div class="page-row">
+            <div class="page-row__title">
+                <h2>ИГРЫ</h2>
+            </div>
+            <div class="page-row__content">
+                <!-- for desktop in media screen -->
+                <div class="game-tabs">
+                    <a href="/tournaments&game_id=1" class="game-tabs__item">
+                        <img src="" alt="перейти к турнирам" class="game-tabs__item-img">
+                    </a>
+                </div>
+
+                <!-- for mobile -->
+                <div class="slider">
+                    <div class="slider__items">
+                        <div class="slider__track">
+                            <div class="slider__page">
+                                <a href="/tournaments&game_id=1" class="slider__item">
+                                    <img src="./src/images/games/cs2.png" alt="перейти к турнирам"
+                                        class="slider__item-img"></img>
+                                </a>
+                                <a href="/tournaments&game_id=1" class="slider__item">
+                                    <img src="./src/images/games/cs2.png" alt="перейти к турнирам"
+                                        class="slider__item-img"></img>
+                                </a>
+                                <a href="/tournaments&game_id=1" class="slider__item">
+                                    <img src="./src/images/games/cs2.png" alt="перейти к турнирам"
+                                        class="slider__item-img"></img>
+                                </a>
+                                <a href="/tournaments&game_id=1" class="slider__item">
+                                    <img src="./src/images/games/cs2.png" alt="перейти к турнирам"
+                                        class="slider__item-img"></img>
+                                </a>
+                            </div>
+                            <div class="slider__page">
+                                <a href="/tournaments&game_id=1" class="slider__item">
+                                    <img src="./src/images/games/cs2.png" alt="перейти к турнирам"
+                                        class="slider__item-img"></img>
+                                </a>
+                                <a href="/tournaments&game_id=1" class="slider__item">
+                                    <img src="./src/images/games/cs2.png" alt="перейти к турнирам"
+                                        class="slider__item-img"></img>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider__nav">
+                        <button class="slider__nav-arrow slider__nav-arrow_prev">
+                            <img src="./src/images/icons/arrow-prev.svg">
+                        </button>
+
+                        <div class="slider__nav-pages">
+                            <!-- <button class="slider__nav-page active"></button> -->
+                        </div>
+
+                        <button class="slider__nav-arrow slider__nav-arrow_next">
+                            <img src="./src/images/icons/arrow-next.svg">
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ТУРНИРЫ -->
+        <div class="page-row">
+            <div class="page-row__title">
+                <h2>ТУРНИРЫ</h2>
+            </div>
+            <div class="page-row__content">
+                <div class="tournaments-tabs">
+                    <div class="tournaments-tabs__header">
+                        <button class="tournaments-tabs__button tournaments-tabs__button_active">АКТУАЛЬНЫЕ</button>
+                        <button class="tournaments-tabs__button">ПРОШЕДШИЕ</button>
+                    </div>
+                    <div class="tournaments-tabs__content">
+                        <div class="tournaments-list">
+                            <div class="tournaments-item">
+                                <div class="tournaments-item__name">SibFU Spring Cup 2047</div>
+                                <div class="tournaments-item__meta">
+                                    <div class="tournaments-item__participants gr-red">LIVE</div>
+                                    <a href="/tournaments/1" class="tournaments-item__link">
+                                        <img src="./src/images/icons/arrow-next.svg" alt="подробнее"
+                                            class="tournaments-item__link-arrow">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="tournaments-item">
+                                <div class="tournaments-item__name">SibFU Spring Cup 2047</div>
+                                <div class="tournaments-item__meta">
+                                    <div class="tournaments-item__participants gr-yellow">13/20</div>
+                                    <a href="/tournaments/1" class="tournaments-item__link">
+                                        <img src="./src/images/icons/arrow-next.svg" alt="подробнее"
+                                            class="tournaments-item__link-arrow">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="tournaments-item">
+                                <div class="tournaments-item__name">SibFU Spring Cup 2047</div>
+                                <div class="tournaments-item__meta">
+                                    <div class="tournaments-item__participants gr-green">13/20</div>
+                                    <a href="/tournaments/1" class="tournaments-item__link">
+                                        <img src="./src/images/icons/arrow-next.svg" alt="подробнее"
+                                            class="tournaments-item__link-arrow">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="tournaments-item">
+                                <div class="tournaments-item__name">SibFU Spring Cup 2047</div>
+                                <div class="tournaments-item__meta">
+                                    <div class="tournaments-item__participants gr-red">2/9</div>
+                                    <a href="/tournaments/1" class="tournaments-item__link">
+                                        <img src="./src/images/icons/arrow-next.svg" alt="подробнее"
+                                            class="tournaments-item__link-arrow">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="tournaments-item">
+                                <div class="tournaments-item__name">SibFU Spring Cup 2047</div>
+                                <div class="tournaments-item__meta">
+                                    <div class="tournaments-item__participants gr-red">13/20</div>
+                                    <a href="/tournaments/1" class="tournaments-item__link">
+                                        <img src="./src/images/icons/arrow-next.svg" alt="подробнее"
+                                            class="tournaments-item__link-arrow">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-row__footer">
+                    <a href="/tournaments" class="page-row__all-link">ВСЕ ТУРНИРЫ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const track = document.querySelector('.slider__track');
+            const slider = document.querySelector('.slider__items'); // Добавляем элемент слайдера
+            const items = document.querySelectorAll('.slider__page');
+            const prevBtn = document.querySelector('.slider__nav-arrow_prev');
+            const nextBtn = document.querySelector('.slider__nav-arrow_next');
+            const pagesContainer = document.querySelector('.slider__nav-pages');
+
+            let currentIndex = 0;
+            const itemCount = items.length;
+            let startX = 0;
+            let isDragging = false;
+
+            // Создаем точки навигации
+            items.forEach((_, index) => {
+                const pageDot = document.createElement('div');
+                pageDot.classList.add('slider__nav-page');
+                if (index === 0) pageDot.classList.add('active');
+                pageDot.dataset.index = index;
+                pagesContainer.appendChild(pageDot);
+            });
+
+            const pageDots = document.querySelectorAll('.slider__nav-page');
+
+            // Функция обновления слайдера
+            function updateSlider() {
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                track.style.transition = isDragging ? 'none' : 'transform 0.5s ease';
+
+                // Обновляем активную точку
+                pageDots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentIndex);
+                });
+            }
+
+            // Переключение по стрелкам
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex > 0) ? currentIndex - 1 : itemCount - 1;
+                updateSlider();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex < itemCount - 1) ? currentIndex + 1 : 0;
+                updateSlider();
+            });
+
+            // Переключение по точкам
+            pageDots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    currentIndex = parseInt(dot.dataset.index);
+                    updateSlider();
+                });
+            });
+
+            // Добавляем обработчики для touch-устройств
+            slider.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                isDragging = true;
+            }, { passive: true });
+
+            slider.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                const x = e.touches[0].clientX;
+                const diff = startX - x;
+                track.style.transform = `translateX(calc(-${currentIndex * 100}% - ${diff}px))`;
+            }, { passive: true });
+
+            slider.addEventListener('touchend', (e) => {
+                if (!isDragging) return;
+                isDragging = false;
+
+                const endX = e.changedTouches[0].clientX;
+                const diff = startX - endX;
+
+                if (diff > 50) {
+                    // Свайп влево - вперед
+                    currentIndex = (currentIndex < itemCount - 1) ? currentIndex + 1 : 0;
+                } else if (diff < -50) {
+                    // Свайп вправо - назад
+                    currentIndex = (currentIndex > 0) ? currentIndex - 1 : itemCount - 1;
+                }
+
+                updateSlider();
+            });
+        });
+    </script>
+</body>
+
+</html>
