@@ -1,0 +1,41 @@
+@use '../utils/mixins' as *;
+@use '../utils/variables' as *;
+
+.page-row {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	gap: 10px;
+	padding: 0 14px;
+
+	// .page-row__title
+
+	&__title {
+	}
+
+	// .page-row__content
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	} 
+
+	// .page-row__footer 
+
+	&__footer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: $tab-dark;
+		width: 100%;
+		padding: 10px;
+	}
+
+	// .page-row__all-link
+
+	&__all-link {
+		font-size: 20px;
+		font-weight: 600;
+	}
+}

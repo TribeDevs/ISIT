@@ -1,0 +1,51 @@
+@use '../utils/mixins' as *;
+@use '../utils/variables' as *;
+
+.tournaments-item {
+	display: flex;
+	width: 100%;
+	padding: 10px;
+	font-size: 16px;
+	font-weight: 600;
+	background-color: $tab-light;
+
+	&:nth-child(2n) {
+		background-color: $tab-dark;
+	} 
+
+	// .tournaments-item__name
+
+	&__name {
+		width: 100%;
+	}
+
+	// .tournaments-item__meta
+
+	&__meta {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	// .tournaments-item__participants
+
+	&__participants {
+		text-align: center;
+		padding: 4px 8px;
+		border-radius: 3px;
+		width: 70px;
+		opacity: 0.9;
+	}
+
+	// .tournaments-item__link
+
+	&__link {
+		background-color: $btn-light;
+		border-radius: 3px;
+		padding: 4px;
+	}
+
+	// .tournaments-item__link-arrow
+
+	&__link-arrow {}
+}

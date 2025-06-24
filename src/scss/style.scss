@@ -1,0 +1,24 @@
+// core
+@use 'core/reset';
+@use 'core/fonts';
+@use 'core/base';
+
+// utils
+@use 'utils/mixins';
+@use 'utils/variables';
+
+// blocks
+@use 'blocks/game-tabs';
+@use 'blocks/header';
+@use 'blocks/modal';
+@use 'blocks/page';
+@use 'blocks/page-row';
+@use 'blocks/slider';
+@use 'blocks/tournaments-item';
+@use 'blocks/tournaments-list';
+@use 'blocks/tournaments-tabs';
+@use 'blocks/nav-mobile';
+
+
+
+@use 'themes/dark';

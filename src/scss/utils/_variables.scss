@@ -1,0 +1,27 @@
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+) !default;
+
+$bg: #161616;
+$bg-light: #1A1A1A;
+$orange: #FB6704;
+$white: #fff;
+$black: #000;
+$tab-light: #1F1F1F;
+$tab-dark: #1C1C1C;
+$btn-light: #363636;
+
+$green-gradient: linear-gradient(283deg, #5EA730 -17.69%, #70B843 129.53%);
+$red-gradient: linear-gradient(283deg, #BA4848 -17.69%, #F11B1B 129.53%);
+$yellow-gradient: linear-gradient(283deg, #E4A669 -17.69%, #EE8E19 129.53%);
+$blur-gradient: linear-gradient(to right, rgba(22, 22, 21, 0.6), rgba(24, 24, 24, 0.6));
+
+$d-transition: cubic-bezier(.25, .46, .45, .94) 1s;
+$f-transition: cubic-bezier(.25, .46, .45, .94) 0.2s;
+
+$shadow: 0px 0px 24px -1px rgba(0, 0, 0, 0.50);

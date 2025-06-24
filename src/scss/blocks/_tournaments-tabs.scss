@@ -1,0 +1,37 @@
+@use '../utils/mixins' as *;
+@use '../utils/variables' as *;
+
+
+.tournaments-tabs {
+	width: 100%;
+
+	// .tournaments-tabs__header
+
+	&__header {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+	}
+
+	// .tournaments-tabs__button
+
+	&__button {
+		width: 100%;
+		background-color: $tab-dark;
+		font-size: 20px;
+		font-weight: 700;
+		padding: 10px;
+		transition: $f-transition;
+
+		&_active {
+			background-color: $orange;
+		}
+	}
+
+	// .tournaments-tabs__content
+
+	&__content {
+		border: 1px solid $orange;
+	}
+}

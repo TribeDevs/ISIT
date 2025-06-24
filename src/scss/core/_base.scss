@@ -1,0 +1,74 @@
+@use 'fonts' as *;
+@use '../utils/variables' as *;
+// ======================
+// Глобальные сбросы
+// ======================
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+// ======================
+// Базовые элементы
+// ======================
+body {
+  font-family: 'Lato', system-ui, sans-serif; 
+  line-height: 1.5;
+  color: #fff;
+  background-color: #161616;
+}
+
+// ======================
+// Типография
+// ======================
+h1, h2, h3, h4 {
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 40px;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #dedede;
+  }
+}
+
+button {
+  color: #fff; 
+}
+
+.gr-green {
+  background: $green-gradient;
+}
+
+.gr-red {
+  background: $red-gradient;
+}
+
+.gr-yellow {
+  background: $yellow-gradient;
+}
+
+// ======================
+// Формы и интерактивные элементы
+// ======================
+

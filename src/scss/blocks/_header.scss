@@ -1,0 +1,38 @@
+@use '../utils/mixins' as *;
+@use '../utils/variables' as *;
+
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 70px;
+	width: 100%;
+	background-color: $bg-light;
+	margin-bottom: 1rem;
+
+	// .header__logo
+
+	&__logo {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+	}
+
+	// .header__logo-img
+
+	&__logo-img {}
+
+	// .header__logo-name
+
+	&__logo-name {
+		font-size: 40px;
+		font-weight: 800;
+
+		span {
+			color: $orange;
+			font-size: 14px;
+			margin-left: -0.8em;
+		}
+	}
+}
