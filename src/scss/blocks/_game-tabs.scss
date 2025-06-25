@@ -1,13 +1,33 @@
+@use '../utils/mixins' as *;
+@use '../utils/variables' as *;
+
 .game-tabs {
 	display: none;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 10px;
+	width: 100%;
+	// .game-tabs__item
 
-		// .game-tabs__item
+	&__item {
+		width: 100%;
+		border-radius: 8px;
+		overflow: hidden;
+		transition: $f-transition;
 
-		&__item {
+		&:hover &-img {
+			scale: 0.98;
+			opacity: 1;
 		}
+	}
 
-		// .game-tabs__item-img
+	// .game-tabs__item-img
 
-		&__item-img {
-		}
+	&__item-img {
+		transition: $f-transition;
+		width: 100%;
+		border-radius: 8px;
+		opacity: 0.9;
+	}
+
+
 }

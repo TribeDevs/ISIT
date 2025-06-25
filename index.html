@@ -11,10 +11,106 @@
 <body>
     <!-- Mobile first -->
 
-    <!-- Модальное окно -->
+    <!-- Модальное окно. set in 'model' -> 'modal_active' -->
     <div class="modal">
         <div class="modal__wrapper">
-            <div class="modal__blcok"></div>
+            <!-- modal auth -->
+            <div class="modal__auth" style="display: none;">
+                <div class="header">
+                    <img src="./src/images/logo/1.svg" alt="ISIT" class="header__logo-img">
+                    <div class="header__logo-name">ISIT <span>esport</span></div>
+                </div>
+                <div class="modal__line">
+                    <span class="modal__title">Вход в аккаунт</span>
+                </div>
+                <div class="modal__line">
+                    <span class="modal__line-title">Почта</span>
+                    <input type="email" name="email" class="modal__input" id="modal-email"
+                        placeholder="Введите вашу почту">
+                    <span class="modal__error"></span>
+                </div>
+                <div class="modal__line">
+                    <span class="modal__line-title">Пароль</span>
+                    <div class="password-wrapper">
+                        <input type="password" name="password" class="modal__input password" id="modal-password"
+                            placeholder="Введите ваш пароль">
+                        <button type="button" class="password-toggle" aria-label="Показать пароль">
+                            <img src="./src/images/icons/pass-hide.svg" alt="Скрытый пароль" class="password-icon">
+                        </button>
+                    </div>
+                    <span class="modal__error"></span>
+                </div>
+                <div class="modal__line">
+                    <button class="modal__btn">Войти</button>
+                </div>
+                <div class="modal__line">
+                    <span class="modal__register-text">Нет аккаунта? <button class="modal__register-btn"
+                            id="register-btn">Зарегистрируйтесь</button></span>
+                </div>
+            </div>
+
+            <!-- modal signup -->
+            <div class="modal__signup">
+                <div class="header">
+                    <img src="./src/images/logo/1.svg" alt="ISIT" class="header__logo-img">
+                    <div class="header__logo-name">ISIT <span>esport</span></div>
+                </div>
+                <div class="modal__line">
+                    <span class="modal__title">Регистрация</span>
+                </div>
+                <div class="modal__line">
+                    <span class="modal__line-title">Email</span>
+                    <input type="email" name="email" class="modal__input" id="modal-email"
+                        placeholder="Введите вашу почту">
+
+                    <span class="modal__error"></span>
+                </div>
+                <div class="modal__line">
+                    <span class="modal__line-title">Код из письма</span>
+                    <div class="code-wrapper">
+                        <input type="text" name="code" class="modal__input" id="modal-code" placeholder="Код из письма">
+                        <button class="modal__btn">
+                            <img src="./src/images/icons/send-code.svg" alt="">
+                        </button>
+                    </div>
+                    <span class="modal__error"></span>
+                </div>
+                <div class="modal__line">
+                    <span class="modal__line-title">Никнейм</span>
+                    <input type="text" name="username" class="modal__input" id="modal-username"
+                        placeholder="Можно изменить позже">
+                    <span class="modal__error"></span>
+                </div>
+                <div class="modal__line">
+                    <span class="modal__line-title">Пароль</span>
+                    <div class="password-wrapper">
+                        <input type="password" name="password" class="modal__input password" id="modal-password"
+                            placeholder="Введите ваш пароль">
+                        <button type="button" class="password-toggle" aria-label="Показать пароль">
+                            <img src="./src/images/icons/pass-hide.svg" alt="Скрытый пароль" class="password-icon">
+                        </button>
+                    </div>
+                    <span class="modal__error"></span>
+                </div>
+                <div class="modal__line">
+                    <span class="modal__line-title">Повторите пароль</span>
+                    <div class="password-wrapper">
+                        <input type="password" name="password" class="modal__input password" id="modal-password-confirm"
+                            placeholder="Повторите пароль">
+                        <button type="button" class="password-toggle" aria-label="Показать пароль">
+                            <img src="./src/images/icons/pass-hide.svg" alt="Скрытый пароль" class="password-icon">
+                        </button>
+                    </div>
+                    <span class="modal__error"></span>
+                </div>
+                <div class="modal__line">
+                    <button class="modal__btn">Зарегистрироваться</button>
+                </div>
+                <div class="modal__line">
+                    <span class="modal__register-text">Уже есть аккаунт? <button class="modal__register-btn"
+                            id="register-btn">Войти</button></span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -52,6 +148,31 @@
             <img src="./src/images/logo/1.svg" alt="ISIT" class="header__logo-img">
             <div class="header__logo-name">ISIT <span>esport</span></div>
         </a>
+        <div class="header__links">
+            <a href="/tournaments" class="header__link">Турниры</a>
+            <a href="/teams" class="header__link">Команды</a>
+        </div>
+        <div class="header__user">
+            <!-- if auth == true -->
+            <button class="header__user-profile">
+                <!-- if avatar == null -->
+                <!-- <span>A</span> -->
+
+                <!-- if avatar != null -->
+                <img src="./src/images/avatars/2.jpg">
+            </button>
+            <div class="header__user-nav">
+                <a href="/profile" class="header__user-nav-item">Профиль</a>
+                <button class="header__user-nav-item">Настройки</button>
+                <button class="header__user-nav-item">Выйти</a>
+
+            </div>
+
+            <!-- if auth != true -->
+            <!-- <button class="header__user-auth">
+                <img src="./src/images/avatars/1.png">
+             </button> -->
+        </div>
     </div>
 
     <!-- CONTENT -->
@@ -61,11 +182,21 @@
             <div class="page-row__title">
                 <h2>ИГРЫ</h2>
             </div>
+
             <div class="page-row__content">
-                <!-- for desktop in media screen -->
+                <!-- for desktop -->
                 <div class="game-tabs">
                     <a href="/tournaments&game_id=1" class="game-tabs__item">
-                        <img src="" alt="перейти к турнирам" class="game-tabs__item-img">
+                        <img src="./src/images/games/cs2.png" alt="перейти к турнирам" class="game-tabs__item-img">
+                    </a>
+                    <a href="/tournaments&game_id=1" class="game-tabs__item">
+                        <img src="./src/images/games/cs2.png" alt="перейти к турнирам" class="game-tabs__item-img">
+                    </a>
+                    <a href="/tournaments&game_id=1" class="game-tabs__item">
+                        <img src="./src/images/games/cs2.png" alt="перейти к турнирам" class="game-tabs__item-img">
+                    </a>
+                    <a href="/tournaments&game_id=1" class="game-tabs__item">
+                        <img src="./src/images/games/cs2.png" alt="перейти к турнирам" class="game-tabs__item-img">
                     </a>
                 </div>
 
@@ -117,8 +248,8 @@
                         </button>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
 
         <!-- ТУРНИРЫ -->
@@ -195,7 +326,66 @@
     </div>
 
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Получаем оба модальных окна
+            const modalAuth = document.querySelector('.modal__auth');
+            const modalSignup = document.querySelector('.modal__signup');
 
+            // Функция для закрытия модального окна
+            function closeModal(modal) {
+                modal.style.display = 'none';
+            }
+
+            // Обработчик для модального окна авторизации
+            modalAuth.addEventListener('click', function (e) {
+                // Проверяем, что кликнули именно по фону (а не по содержимому)
+                if (e.target === modalAuth) {
+                    closeModal(modalAuth);
+                }
+            });
+
+            // Обработчик для модального окна регистрации
+            modalSignup.addEventListener('click', function (e) {
+                if (e.target === modalSignup) {
+                    closeModal(modalSignup);
+                }
+            });
+
+            // Дополнительно: закрытие по Escape
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    if (modalAuth.style.display !== 'none') {
+                        closeModal(modalAuth);
+                    }
+                    if (modalSignup.style.display !== 'none') {
+                        closeModal(modalSignup);
+                    }
+                }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleButton = document.querySelector('.password-toggle');
+            const passwordInput = document.getElementById('modal-password');
+            const icon = toggleButton.querySelector('img');
+
+            toggleButton.addEventListener('click', function () {
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    icon.src = './src/images/icons/pass-show.svg';
+                    icon.alt = 'Показанный пароль';
+                    toggleButton.setAttribute('aria-label', 'Скрыть пароль');
+                } else {
+                    passwordInput.type = 'password';
+                    icon.src = './src/images/icons/pass-hide.svg';
+                    icon.alt = 'Скрытый пароль';
+                    toggleButton.setAttribute('aria-label', 'Показать пароль');
+                }
+            });
+        });
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const track = document.querySelector('.slider__track');

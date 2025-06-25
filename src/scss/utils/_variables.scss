@@ -1,5 +1,5 @@
 $breakpoints: (
-  xs: 0,
+  xs: 0px,
   sm: 576px,
   md: 768px,
   lg: 992px,
@@ -15,6 +15,7 @@ $black: #000;
 $tab-light: #1F1F1F;
 $tab-dark: #1C1C1C;
 $btn-light: #363636;
+$error: #db3636;
 
 $green-gradient: linear-gradient(283deg, #5EA730 -17.69%, #70B843 129.53%);
 $red-gradient: linear-gradient(283deg, #BA4848 -17.69%, #F11B1B 129.53%);

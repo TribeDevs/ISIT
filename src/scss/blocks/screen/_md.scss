@@ -1,0 +1,61 @@
+@use '../../utils/mixins' as *;
+@use '../../utils/variables' as *;
+
+@include respond-to(md) {
+    .tournaments {
+        &-tabs {
+            &__button {
+                font-size: 20px;
+            }
+        }
+    }
+    .nav-mobile {
+        transform: translate(0, 300%);
+    }
+
+    .page {
+        padding: 0 40px;
+    }
+
+    .page-row {
+        &__title h2 {
+            font-size: 64px;
+
+        }
+    }
+
+    .tournaments-item {
+        padding: 20px 10px;
+    }
+
+    .slider {
+        &__nav-arrow img {
+            width: 32px;
+            height: 32px;
+        }
+
+        &__nav-page {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+
+    .header {
+        justify-content: space-between;
+        padding: 20px;
+        height: auto;
+
+        &__logo-name {
+            width: 130px;
+        }
+        &__links {
+            width: 100%;
+        }
+
+        &__user,
+        &__links {
+            display: flex;
+        }
+    }
+}

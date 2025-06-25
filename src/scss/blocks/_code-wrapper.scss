@@ -1,0 +1,13 @@
+@use '../utils/mixins' as *;
+@use '../utils/variables' as *;
+
+.code-wrapper {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+
+    .modal__btn {
+        width: auto;
+        font-weight: normal;
+    }
+}

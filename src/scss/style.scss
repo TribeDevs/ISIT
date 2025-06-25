@@ -18,6 +18,13 @@
 @use 'blocks/tournaments-list';
 @use 'blocks/tournaments-tabs';
 @use 'blocks/nav-mobile';
+@use 'blocks/password-wrapper';
+@use 'blocks/code-wrapper';
+
+@use 'blocks/screen/xs'; 
+@use 'blocks/screen/sm';
+@use 'blocks/screen/md';
+@use 'blocks/screen/xl';
 
 
 

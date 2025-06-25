@@ -19,13 +19,20 @@
 	&__button {
 		width: 100%;
 		background-color: $tab-dark;
-		font-size: 20px;
 		font-weight: 700;
 		padding: 10px;
 		transition: $f-transition;
 
 		&_active {
 			background-color: $orange;
+		}
+
+		&:hover {
+			opacity: 0.8;
+		}
+
+		&:active {
+			opacity: 0.9;
 		}
 	}
 
